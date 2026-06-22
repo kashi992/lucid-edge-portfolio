@@ -1,0 +1,320 @@
+import { useEffect, useRef, useState } from "react";
+import { BENEFITS, IMAGES } from "../data/services";
+
+function Counter({ target, suffix }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef(null);
+  const done = useRef(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !done.current) {
+        done.current = true; obs.disconnect();
+        const dur = 1600, t0 = performance.now();
+        const tick = now => {
+          const p = Math.min((now - t0) / dur, 1);
+          setVal(Math.round((1 - Math.pow(1 - p, 3)) * target));
+          if (p < 1) requestAnimationFrame(tick);
+          else setVal(target);
+        };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.3 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [target]);
+  return <span ref={ref}>{val}{suffix}</span>;
+}
+
+const STATS = [
+  { value: 16,  suffix: "+", label: "Years of craft"      },
+  { value: 120, suffix: "+", label: "Projects shipped"    },
+  { value: 40,  suffix: "+", label: "Brands elevated"     },
+  { value: 98,  suffix: "%", label: "Client satisfaction" },
+];
+
+export default function BenefitsSection() {
+  const sectionRef    = useRef(null);
+  const progressRef   = useRef(null);
+  const spacerRef     = useRef(null); // 200vh scroll space for both headings
+  const h1Ref         = useRef(null); // "Good design"
+  const h2Ref         = useRef(null); // "takes time."
+  const panel1Ref     = useRef(null);
+  const panel2Ref     = useRef(null);
+  const panel3Ref     = useRef(null);
+  const benefitRefs   = useRef([]);
+  const titleRefs     = useRef([]);
+
+  useEffect(() => {
+    (async () => {
+      const { default: gsap } = await import("gsap");
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ── Progress bar ─────────────────────────────────────────────────────
+      gsap.to(progressRef.current, {
+        scaleY: 1, ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top", end: "bottom bottom", scrub: 1,
+        },
+      });
+
+      // ── Set initial off-screen positions ─────────────────────────────────
+      gsap.set(h1Ref.current, { xPercent: -115 });
+      gsap.set(h2Ref.current, { xPercent: 115 });
+
+      // ── Single timeline over 200vh drives both headings sequentially ──────
+      // First 100vh  → h1 sweeps: left → center → right
+      // Second 100vh → h2 sweeps: right → center → left
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: spacerRef.current,
+          start: "top top",
+          end: "bottom top",   // 240vh total scroll distance
+          scrub: 1.5,
+        },
+      })
+        // h1: in (0–0.42 of 1st half) → hold (0.42–0.58) → out (0.58–1.0 of 1st half)
+        .to(h1Ref.current, { xPercent: 0,    ease: "none", duration: 0.42 })
+        .to(h1Ref.current, { xPercent: 0,    ease: "none", duration: 0.16 })
+        .to(h1Ref.current, { xPercent: 115,  ease: "none", duration: 0.42 })
+        // h2: in → hold → out (second half)
+        .to(h2Ref.current, { xPercent: 0,    ease: "none", duration: 0.42 })
+        .to(h2Ref.current, { xPercent: 0,    ease: "none", duration: 0.16 })
+        .to(h2Ref.current, { xPercent: -115, ease: "none", duration: 0.42 });
+
+      // ── PANEL 1: headline clip reveal ────────────────────────────────────
+      gsap.fromTo(titleRefs.current.filter(Boolean),
+        { yPercent: 110 },
+        {
+          yPercent: 0, duration: 1.0, ease: "power4.out", stagger: 0.12,
+          scrollTrigger: { trigger: panel1Ref.current, start: "top 70%", once: true },
+        }
+      );
+
+      // ── PANEL 2: benefits stagger ─────────────────────────────────────────
+      gsap.fromTo(benefitRefs.current.filter(Boolean),
+        { x: 60, opacity: 0 },
+        {
+          x: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power3.out",
+          scrollTrigger: { trigger: panel2Ref.current, start: "top 70%", once: true },
+        }
+      );
+
+      // ── PANEL 3: stat cells pop ───────────────────────────────────────────
+      gsap.fromTo(panel3Ref.current?.querySelectorAll(".stat-cell") ?? [],
+        { y: 40, opacity: 0, scale: 0.95 },
+        {
+          y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 0.7, ease: "back.out(1.4)",
+          scrollTrigger: { trigger: panel3Ref.current, start: "top 70%", once: true },
+        }
+      );
+    })();
+  }, []);
+
+  return (
+    <section
+      data-nav="peach"
+      ref={sectionRef}
+      style={{ position: "relative", zIndex: 5 }}
+    >
+
+      {/* ══════════════════════════════════════════════
+          STICKY FULL-BLEED PHOTO
+      ══════════════════════════════════════════════ */}
+      <div style={{
+        position: "sticky", top: 0,
+        width: "100vw", height: "100vh",
+        overflow: "hidden", zIndex: 1,
+      }}>
+        <img
+          src={IMAGES.aboutDark}
+          alt="" aria-hidden="true"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
+        />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, transparent 40%, rgba(13,13,13,0.65) 100%)",
+          pointerEvents: "none",
+        }} />
+
+        {/* Progress bar — right edge */}
+        <div style={{ position: "absolute", top: 0, right: 0, width: 3, height: "100%", background: "rgba(255,255,255,0.07)", zIndex: 2 }}>
+          <div ref={progressRef} style={{ width: "100%", height: "100%", background: "var(--orange1)", transform: "scaleY(0)", transformOrigin: "top center" }} />
+        </div>
+
+        {/* Studio badge */}
+        <div style={{ position: "absolute", top: "4vh", left: "5vw", zIndex: 2 }}>
+          <p style={{ fontFamily: "var(--font)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>
+            Lucid Edge · Est. 2008
+          </p>
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════
+          SCROLLING LAYER — pulled over the photo
+      ══════════════════════════════════════════════ */}
+      <div style={{ position: "relative", zIndex: 2, marginTop: "-100vh" }}>
+
+        {/* ── 200vh SCROLL SPACER + sticky heading stage ── */}
+        <div ref={spacerRef}>
+          {/* Sticky stage — stays locked at top:0 for the full 200vh */}
+          <div style={{
+            position: "sticky", top: 0, height: "200vh",
+            overflow: "hidden",
+            pointerEvents: "none", userSelect: "none",
+          }}>
+            {/* h1: "Good design" — absolutely centered, starts off-screen left */}
+            <div
+              ref={h1Ref}
+              style={{
+                position: "absolute", inset: 0,
+                display: "flex", alignItems: "center",
+                paddingLeft: "4vw",
+                fontFamily: "var(--font)",
+                fontSize: "clamp(4rem, 13vw, 17rem)",
+                fontWeight: 900, letterSpacing: "-0.05em",
+                lineHeight: 1, color: "var(--bg-warm)",
+                whiteSpace: "nowrap",
+                willChange: "transform",
+              }}
+            >
+              Good design
+            </div>
+
+            {/* h2: "takes time." — absolutely centered, starts off-screen right */}
+            <div
+              ref={h2Ref}
+              style={{
+                position: "absolute", inset: 0,
+                display: "flex", alignItems: "center", justifyContent: "flex-end",
+                paddingRight: "4vw",
+                fontFamily: "var(--font)",
+                fontSize: "clamp(4rem, 13vw, 17rem)",
+                fontWeight: 900, letterSpacing: "-0.05em",
+                lineHeight: 1, color: "var(--orange1)",
+                whiteSpace: "nowrap",
+                willChange: "transform",
+              }}
+            >
+              takes time.
+            </div>
+          </div>
+        </div>
+
+        {/* ── PANEL 1: perspective + sharp instincts ── */}
+        <div
+          ref={panel1Ref}
+          style={{
+            background: "#0d0d0d",
+            borderRadius: "2.5vw 2.5vw 0 0",
+            padding: "8vw 8vw 7vw",
+            minHeight: "100vh",
+            display: "flex", flexDirection: "column", justifyContent: "center",
+          }}
+        >
+          <span style={{ fontFamily: "var(--font)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)", display: "block", marginBottom: "4vw" }}>
+            01 — About the Studio
+          </span>
+
+          {["perspective", "+ sharp instincts"].map((line, i) => (
+            <div key={i} style={{ overflow: "hidden", paddingBottom: "0.05em" }}>
+              <div
+                ref={r => (titleRefs.current[i] = r)}
+                style={{
+                  fontFamily: "var(--font)",
+                  fontSize: "clamp(3rem, 6.5vw, 8rem)",
+                  fontWeight: 900, letterSpacing: "-0.04em",
+                  color: i === 0 ? "var(--bg-warm)" : "var(--orange1)",
+                  lineHeight: "90%", display: "block",
+                }}
+              >
+                {line}
+              </div>
+            </div>
+          ))}
+
+          <p style={{ fontFamily: "var(--font)", fontSize: "clamp(0.9rem, 1.2vw, 1.1rem)", color: "rgba(255,255,255,0.4)", lineHeight: "170%", margin: "4vw 0 0", maxWidth: "52ch" }}>
+            Companies partner with me because of a unique combination of premium visual direction,
+            sharp instincts, and meticulous craft — from concept through final delivery.
+          </p>
+        </div>
+
+        {/* ── PANEL 2: benefits ── */}
+        <div
+          ref={panel2Ref}
+          style={{
+            background: "#111",
+            padding: "7vw 8vw",
+            minHeight: "100vh",
+            display: "flex", flexDirection: "column", justifyContent: "center",
+            borderTop: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          <span style={{ fontFamily: "var(--font)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)", display: "block", marginBottom: "4vw" }}>
+            02 — Why partner with us
+          </span>
+
+          <h2 style={{ fontFamily: "var(--font)", fontSize: "clamp(2.2rem, 4.5vw, 5.5rem)", fontWeight: 900, letterSpacing: "-0.03em", color: "var(--bg-warm)", lineHeight: "92%", margin: "0 0 5vw" }}>
+            What I bring<br /><span style={{ color: "var(--orange1)" }}>to the table</span>
+          </h2>
+
+          {BENEFITS.map((item, i) => (
+            <div
+              key={i}
+              ref={r => (benefitRefs.current[i] = r)}
+              style={{ display: "flex", alignItems: "flex-start", gap: "2rem", padding: "2vw 0", borderBottom: "1px solid rgba(255,255,255,0.05)", opacity: 0 }}
+            >
+              <div style={{ width: 36, height: 36, borderRadius: "50%", border: "1.5px solid var(--orange1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <span style={{ fontFamily: "var(--font)", fontSize: "0.6rem", fontWeight: 800, color: "var(--orange1)" }}>0{i + 1}</span>
+              </div>
+              <p style={{ fontFamily: "var(--font)", fontSize: "clamp(0.88rem, 1.1vw, 1.05rem)", color: "rgba(255,255,255,0.58)", lineHeight: "158%", margin: 0 }}>
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ── PANEL 3: stats + CTA ── */}
+        <div
+          ref={panel3Ref}
+          style={{
+            background: "#0d0d0d",
+            padding: "7vw 8vw 10vw",
+            minHeight: "100vh",
+            display: "flex", flexDirection: "column", justifyContent: "center",
+            borderTop: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          <span style={{ fontFamily: "var(--font)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.2)", display: "block", marginBottom: "4vw" }}>
+            03 — By the numbers
+          </span>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "rgba(255,255,255,0.05)", borderRadius: "1.2vw", overflow: "hidden", marginBottom: "6vw" }}>
+            {STATS.map((s, i) => (
+              <div key={i} className="stat-cell" style={{ padding: "3.5vw 3vw", background: "#0d0d0d" }}>
+                <div style={{ fontFamily: "var(--font)", fontSize: "clamp(2.5rem, 5vw, 6rem)", fontWeight: 900, letterSpacing: "-0.04em", color: "var(--orange1)", lineHeight: 1, marginBottom: "0.5rem" }}>
+                  <Counter target={s.value} suffix={s.suffix} />
+                </div>
+                <p style={{ fontFamily: "var(--font)", fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", margin: "0 0 1rem" }}>
+                  {s.label}
+                </p>
+                <div style={{ width: "1.8rem", height: 2, background: "var(--orange1)", borderRadius: 2 }} />
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="#contact"
+            style={{ display: "inline-flex", alignItems: "center", gap: "1rem", alignSelf: "flex-start", color: "#0d0d0d", fontFamily: "var(--font)", fontSize: "0.8rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", background: "var(--orange1)", padding: "1.1em 2.6em", borderRadius: "100vw", boxShadow: "0 0 60px rgba(212,255,0,0.18)", transition: "transform 0.2s, box-shadow 0.2s" }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.boxShadow = "none"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 0 60px rgba(212,255,0,0.18)"; }}
+          >
+            Let&apos;s work together →
+          </a>
+        </div>
+
+      </div>
+    </section>
+  );
+}
