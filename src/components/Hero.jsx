@@ -14,8 +14,8 @@ const JUAN_VW   = (660 / 233) * SVG_H_VW;     // "Lucid" width
 const CARD_VW   = 25;                          // measured from reference frame
 const MORA_VW   = (480 / 233) * SVG_H_VW;     // "Edge" width
 
-const JUAN_PATHS = `<text x="0" y="210" font-family="Syne, sans-serif" font-weight="800" font-size="220" fill="#D4FF00" letter-spacing="-8">Lucid</text>`;
-const MORA_PATHS = `<text x="0" y="210" font-family="Syne, sans-serif" font-weight="800" font-size="220" fill="#D4FF00" letter-spacing="-8">Edge</text>`;
+const JUAN_PATHS = `<text x="0" y="210" font-family="Syne, sans-serif" font-weight="800" font-size="200" fill="#D4FF00" letter-spacing="-8">Lucid</text>`;
+const MORA_PATHS = `<text x="0" y="210" font-family="Syne, sans-serif" font-weight="800" font-size="200" fill="#D4FF00" letter-spacing="-8">Edge</text>`;
 
 export default function Hero({ visible }) {
   const sectionRef = useRef(null);
@@ -182,7 +182,7 @@ export default function Hero({ visible }) {
               style={{ width: CARD_VW + "vw" }}
             >
               <div
-                className="w-full overflow-hidden h-[24vw] rounded-[0.6vw] bg-[#111]"
+                className="w-full overflow-hidden h-[14vw] rounded-[0.6vw] bg-[#111]"
                 style={{
                   boxShadow: "0 16px 45px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.3)",
                   border: "1px solid rgba(255,255,255,.12)",
