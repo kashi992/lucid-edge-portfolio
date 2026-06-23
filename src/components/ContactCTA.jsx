@@ -122,12 +122,12 @@ export default function ContactCTA() {
     <section
       data-nav="grey"
       className="w-screen flex flex-col justify-start items-center relative z-[5]"
-      style={{ background: "var(--orange1)" }}
+      style={{ background: "var(--bg-cold)" }}
     >
       <div
         ref={wrapRef}
         className="w-[92vw] rounded-[5vw] overflow-hidden mt-[5vw] mb-[5vw] relative"
-        style={{ border: "1px solid var(--grey)" }}
+        style={{ border: "1px solid rgba(220,255,0,0.18)", background: "var(--blue)" }}
       >
         {/* Text block */}
         <div
@@ -137,7 +137,7 @@ export default function ContactCTA() {
           {/* heading — word split */}
           <h2
             className="relative w-[60%] m-0 z-[3] text-[6vw] leading-[115%] tracking-[-0.3vw] overflow-hidden"
-            style={{ color: "var(--grey)", fontFamily: "var(--font)" }}
+            style={{ color: "var(--bg-warm)", fontFamily: "var(--font)" }}
             aria-label="Let's build something people remember"
           >
             {HEADING_WORDS.map((word, i) => (
@@ -155,7 +155,7 @@ export default function ContactCTA() {
           {/* subtitle — word split */}
           <p
             className="m-0 text-[1.5vw] font-semibold leading-[160%] tracking-[0.03rem] overflow-hidden"
-            style={{ color: "var(--grey)", fontFamily: "var(--font)" }}
+            style={{ color: "rgba(239,239,239,0.5)", fontFamily: "var(--font)" }}
             aria-label="from global tech companies to growing startups."
           >
             {SUBTITLE_WORDS.map((word, i) => (
@@ -175,13 +175,14 @@ export default function ContactCTA() {
         <div
           ref={dividerRef}
           className="w-full h-[1px]"
-          style={{ background: "var(--grey)" }}
+          style={{ background: "rgba(255,255,255,0.08)" }}
         />
 
         {/* CTA button */}
         <a
           href="mailto:hello@lucidedge.co?subject=Hey%20Lucid%20Edge!"
           data-copy-email="hello@lucidedge.co"
+          data-cursor-skip
           onMouseEnter={onEnter}
           onMouseLeave={onLeave}
           className="flex flex-row items-center w-full relative overflow-hidden no-underline cursor-pointer h-[14vw] pl-[5vw] pr-[5vw] gap-[4vw]"
@@ -190,7 +191,7 @@ export default function ContactCTA() {
           {/* fill */}
           <div
             ref={fillRef}
-            className="absolute pointer-events-none z-[4] w-full h-[0%] bottom-0 left-0"
+            className="absolute pointer-events-none z-[6] w-full h-[0%] bottom-0 left-0"
             style={{ background: "var(--grey)" }}
           />
 
@@ -208,7 +209,7 @@ export default function ContactCTA() {
           {/* "Let's talk" — word split, slides out on hover */}
           <h2
             className="relative m-0 z-[5] text-[6vw] leading-[93%] tracking-[-0.3vw] flex-1 flex justify-center gap-[1.5vw] overflow-hidden"
-            style={{ color: "var(--grey)", fontFamily: "var(--font)" }}
+            style={{ color: "var(--blue)", fontFamily: "var(--font)" }}
             aria-label="Let's talk"
           >
             {TALK_WORDS.map((word, i) => (
@@ -226,7 +227,7 @@ export default function ContactCTA() {
 
           {/* email — letter split, fades in on hover */}
           <h2
-            className="absolute m-0 z-[5] text-[6vw] leading-[93%] tracking-[-0.3vw]"
+            className="absolute m-0 z-[7] text-[6vw] leading-[93%] tracking-[-0.3vw]"
             style={{
               color: "var(--orange1)",
               fontFamily: "var(--font)",

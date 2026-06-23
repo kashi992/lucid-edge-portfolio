@@ -127,7 +127,7 @@ export default function WorkCTA() {
       data-nav="grey"
       ref={wrapRef}
       className="flex justify-center items-center w-screen relative overflow-hidden z-[5] h-[63vw] pb-[3vw]"
-      style={{ background: "var(--bg-warm)" }}
+      style={{ background: "var(--bg-cold)" }}
     >
       {/* W */}
       <div
@@ -185,7 +185,7 @@ export default function WorkCTA() {
             loading="lazy"
             alt=""
             ref={flapRef}
-            className="absolute inset-0 z-[5] w-full h-[270px] [transform-origin:bottom_center]"
+            className="absolute inset-0 z-[5] w-full h-full [transform-origin:bottom_center]"
           />
         </a>
         </div>

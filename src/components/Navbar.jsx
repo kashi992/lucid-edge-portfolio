@@ -114,7 +114,7 @@ export default function Navbar({ visible }) {
             </Link>
           </li>
           <li>
-            <a href="#work" className="nav-link">Work</a>
+            <a href="/work" className="nav-link">Work</a>
           </li>
         </ul>
 

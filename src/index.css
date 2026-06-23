@@ -7,13 +7,13 @@
 
 /* ── CSS variables ─────────────────────────────────────────────────────────── */
 :root {
-  --bg-warm:   #F4F4F2;
-  --bg-grey:   #E8E8E6;
-  --bg-cold:   #e8e9ef;
-  --orange1:   #D4FF00;
-  --orange2:   #bce600;
-  --blue:      #1A1A1A;
-  --grey:      #888888;
+  --bg-warm:   #efefef;
+  --bg-grey:   #e3e3e3;
+  --bg-cold:   #cde1e1;
+  --orange1:   #dcff00;
+  --orange2:   #c8e800;
+  --blue:      #222222;
+  --grey:      #69695a;
   --font:      'Space Grotesk', Arial, sans-serif;
 }
 
@@ -89,7 +89,7 @@ ul, ol { list-style: none; }
   display: flex;
   position: fixed;
   inset: 0 auto auto 0;
-  box-shadow: inset 0 2px 30px #d4ff00a0, inset 0 2px 130px 8px #d4ff0040;
+  box-shadow: inset 0 2px 30px #dcff00a0, inset 0 2px 130px 8px #dcff0040;
 }
 .top-glow-blur {
   z-index: 800;
@@ -179,7 +179,7 @@ ul, ol { list-style: none; }
 }
 .orange-intro {
   z-index: 911;
-  background-color: #1A1A1A;
+  background-color: #222222;
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   justify-content: center;
@@ -307,7 +307,7 @@ ul, ol { list-style: none; }
 .main-cont-button:hover .text-wrapper-cta { color: var(--bg-warm); }
 
 /* ── Selection ──────────────────────────────────────────────────────────────── */
-::selection { background-color: #D4FF00; color: #1A1A1A; }
+::selection { background-color: #dcff00; color: #222222; }
 
 /* ── Utility ────────────────────────────────────────────────────────────────── */
 .overflow-clip { overflow: hidden; }
