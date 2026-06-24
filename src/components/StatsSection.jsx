@@ -1,134 +1,78 @@
 import { useEffect, useRef, useState } from "react";
 
-const STATS = [
-  { value: 16,  suffix: "+", label: "Years"       },
-  { value: 120, suffix: "+", label: "Projects"    },
-  { value: 40,  suffix: "+", label: "Clients"     },
-  { value: 98,  suffix: "%", label: "Satisfaction" },
+/* ── Floating shapes ─────────────────────────────────────────────────────── */
+const SHAPES = [
+  { src: "/images/big-circle-scroll1.png",  w: "55vw", top: "35vw", left: "-18vw", zIndex: 42, py: -80 },
+  { src: "/images/big-pill-scroll1.png",    w: "30vw", top: "30vw", left: "28%",   zIndex: 41, py: -60 },
+  { src: "/images/big-hexagon-scroll1.png", w: "32vw", top: "28vw", right: "-4vw", zIndex: 44, py: -70 },
+  { src: "/images/big-circle-scroll2.png",  w: "60vw", top: "60vw", left: "20%",   zIndex: 43, py: -50 },
+  { src: "/images/big-circle-scroll3.png",  w: "22vw", top: "80vw", right: "2vw",  zIndex: 49, py: -40 },
+  { src: "/images/big-square-scroll1.png",  w: "22vw", top: "88vw", left: "2vw",   zIndex: 49, py: -30 },
+  { src: "/images/blue-circle-scroll.svg",  w: "4vw",  top: "52vw", left: "48vw",  zIndex: 50, py: -20 },
+  { src: "/images/blue-pill-scroll.svg",    w: "6vw",  top: "38vw", right: "28vw", zIndex: 50, py: -35 },
+  { src: "/images/blue-hexagon-scroll.svg", w: "3vw",  top: "75vw", right: "25vw", zIndex: 50, py: -25 },
 ];
 
-const RIGHT_IMAGES = [
-  { src: "/images/alena-app-design-juan-mora-1.webp" },
-  { src: "/images/ampli-juan-mora-cover.jpg" },
-  { src: "/images/apechain-apeportal-juan-mora-1.jpg" },
-  { src: "/images/best-things-for-everything-google-shopping-juan-mora1.jpg" },
-  { src: "/images/cryptopunks-mosh-juan-mora-1.jpg" },
-  { src: "/images/alena-app-design-juan-mora-3.webp" },
-];
-
-// CountUp: fires when the number enters the viewport, cubic ease over 1800ms
-function CountUp({ target, suffix, delay = 0 }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          obs.disconnect();
-          setTimeout(() => {
-            const duration = 1800;
-            const startTime = performance.now();
-            const tick = (now) => {
-              const elapsed = now - startTime;
-              const t = Math.min(elapsed / duration, 1);
-              const ease = 1 - Math.pow(1 - t, 3);
-              setCount(Math.round(ease * target));
-              if (t < 1) requestAnimationFrame(tick);
-              else setCount(target);
-            };
-            requestAnimationFrame(tick);
-          }, delay);
-        }
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [target, delay]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-}
+const WORDS = ["16", "years", "making", "users", "click", "and", "scroll", "my", "designs"];
 
 export default function StatsSection() {
-  const sectionRef   = useRef(null);
-  const lineRef      = useRef(null);
-  const headlineRef  = useRef(null);
-  const wordsRef     = useRef([]);
-  const pillRef      = useRef(null);
-  const hoverPillRef = useRef(null);
-  const imageRefs    = useRef([]);
-  const path1Ref     = useRef(null);
-  const path2Ref     = useRef(null);
+  const sectionRef  = useRef(null);
+  const headlineRef = useRef(null);
+  const headingInnerRef = useRef(null);
+  const wordsRef    = useRef([]);
+  const pillRef     = useRef(null);
+  const shapeRefs   = useRef([]);
+  const line1Ref    = useRef(null);
+  const line2Ref    = useRef(null);
 
   const [hovered, setHovered] = useState(false);
 
-  // ── Main GSAP animations ──────────────────────────────────────────────────
   useEffect(() => {
     (async () => {
       const { default: gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
-      const headline = headlineRef.current;
-
-      // 1. Line scaleX 0 → 1
-      if (lineRef.current) {
-        gsap.fromTo(
-          lineRef.current,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            duration: 1.1,
-            ease: "power3.inOut",
-            scrollTrigger: { trigger: headline, start: "top 80%", once: true },
-          }
-        );
-      }
-
-      // 2. Words stagger y:80→0, opacity:0→1
+      /* ── Words stagger entrance ── */
       const words = wordsRef.current.filter(Boolean);
       if (words.length) {
-        gsap.fromTo(
-          words,
+        gsap.fromTo(words,
           { y: 80, opacity: 0 },
           {
-            y: 0,
-            opacity: 1,
-            duration: 0.75,
-            stagger: 0.065,
-            ease: "power4.out",
-            scrollTrigger: { trigger: headline, start: "top 75%", once: true },
+            y: 0, opacity: 1, duration: 0.75, stagger: 0.065, ease: "power4.out",
+            scrollTrigger: { trigger: headlineRef.current, start: "top 75%", once: true },
           }
         );
       }
 
-      // 3. Pill scale:0→1 opacity:0→1 back.out(2)
+      /* ── Click pill pop-in ── */
       if (pillRef.current) {
-        gsap.fromTo(
-          pillRef.current,
+        gsap.fromTo(pillRef.current,
           { scale: 0, opacity: 0 },
           {
-            scale: 1,
-            opacity: 1,
-            duration: 0.7,
-            ease: "back.out(2)",
-            scrollTrigger: { trigger: headline, start: "top 70%", once: true },
+            scale: 1, opacity: 1, duration: 0.7, ease: "back.out(2)",
+            scrollTrigger: { trigger: headlineRef.current, start: "top 70%", once: true },
           }
         );
       }
 
-      // 5. SVG paths draw on scroll
-      [path2Ref.current].forEach((path) => {
+      /* ── Title scroll animation — drifts left + fades gently as shapes take over ── */
+      if (headingInnerRef.current) {
+        gsap.to(headingInnerRef.current, {
+          x: "-6vw",
+          opacity: 0.25,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "70% top",
+            scrub: 1.2,
+          },
+        });
+      }
+
+      /* ── Lines draw on scroll — dark blue, contrast against warm shapes ── */
+      [line1Ref.current, line2Ref.current].forEach((path) => {
         if (!path) return;
         const len = path.getTotalLength();
         gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
@@ -137,246 +81,168 @@ export default function StatsSection() {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 60%",
+            end: "bottom 30%",
             scrub: 1.5,
           },
         });
       });
 
-      // 4. Image cards: entrance + parallax
-      imageRefs.current.forEach((card, i) => {
-        if (!card) return;
+      /* ── Shapes: entrance + parallax ── */
+      shapeRefs.current.forEach((shape, i) => {
+        if (!shape) return;
 
-        // Entrance
-        gsap.fromTo(
-          card,
-          { y: 60, opacity: 0, scale: 0.95 },
+        gsap.fromTo(shape,
+          { opacity: 0, y: 60 },
           {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 88%",
-              once: true,
-            },
+            opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
+            delay: i * 0.07,
+            scrollTrigger: { trigger: sectionRef.current, start: "top 60%", once: true },
           }
         );
 
-        // Independent parallax
-        gsap.to(card, {
-          y: -(30 + i * 15),
+        gsap.to(shape, {
+          y: SHAPES[i].py,
           ease: "none",
           scrollTrigger: {
-            trigger: card,
+            trigger: sectionRef.current,
             start: "top bottom",
             end: "bottom top",
-            scrub: 1.2 + i * 0.1,
+            scrub: 1.5,
           },
         });
       });
     })();
   }, []);
 
-  // ── Hover pill slide ──────────────────────────────────────────────────────
-  useEffect(() => {
-    (async () => {
-      const { default: gsap } = await import("gsap");
-      if (!hoverPillRef.current) return;
-      gsap.to(hoverPillRef.current, {
-        top: hovered ? "0" : "9vw",
-        duration: 0.4,
-        ease: hovered ? "back.out(1.4)" : "power3.in",
-      });
-    })();
-  }, [hovered]);
-
-  const words = [
-    "16", "years", "making", "users", "click", "and", "scroll", "my", "designs",
-  ];
-
   return (
     <section
-      data-nav="grey"
       ref={sectionRef}
-      className="w-screen relative z-[5] grid grid-cols-2"
+      data-nav="grey"
+      className="w-screen relative"
       style={{ background: "var(--bg-warm)" }}
     >
-      {/* ── Two growing SVG lines ── */}
-      <svg
-        className="absolute top-0 left-0 w-full h-full overflow-visible z-0 pointer-events-none"
-        preserveAspectRatio="none"
-        viewBox="0 0 1000 2000"
+      <div
+        className="relative overflow-hidden flex flex-col items-center"
+        style={{ height: "117vw", paddingTop: "13vw" }}
       >
-        <path
-          ref={path2Ref}
-          d="M 920 0 C 780 150, 980 320, 820 500 C 660 680, 900 820, 740 1020 C 580 1220, 860 1380, 680 1560 C 500 1740, 820 1860, 900 2000"
-          fill="none"
-          stroke="var(--blue)"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
 
-      {/* ══════════════════════════════════════════════
-          LEFT STICKY COLUMN
-      ══════════════════════════════════════════════ */}
-      <div className="sticky top-0 h-screen flex flex-col justify-center z-[1] box-border pt-[6vw] pr-[4vw] pb-[6vw] pl-[6vw] gap-[3vw]">
-        {/* ── Label row ── */}
-        <div className="flex items-center gap-4">
-          <div
-            ref={lineRef}
-            className="w-12 flex-shrink-0 h-[2px] [transform-origin:left_center] scale-x-0"
-            style={{ background: "var(--lime, #c8f135)" }}
+        {/* ── Scroll-drawn lines — --blue so they contrast warmly against the peach shapes ── */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 1000 2000"
+          style={{ zIndex: 47 }}
+        >
+          <path
+            ref={line1Ref}
+            d="M 820 300 C 850 400, 780 520, 820 650 C 860 780, 720 880, 680 1020 C 640 1160, 750 1280, 680 1420 C 610 1560, 700 1700, 740 2000"
+            fill="none"
+            stroke="var(--blue)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.35"
           />
-          <span
-            className="whitespace-nowrap uppercase text-[0.7rem] font-bold tracking-[0.16em]"
-            style={{ fontFamily: "var(--font)", color: "var(--grey)" }}
-          >
-            About the Studio
-          </span>
-        </div>
+          <path
+            ref={line2Ref}
+            d="M 870 300 C 910 420, 830 540, 880 680 C 930 820, 780 920, 740 1060 C 700 1200, 810 1320, 740 1460 C 670 1600, 760 1740, 800 2000"
+            fill="none"
+            stroke="var(--blue)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.35"
+          />
+        </svg>
 
-        {/* ── Headline ── */}
-        <h2
-          ref={headlineRef}
-          className="m-0 font-extrabold leading-[130%] tracking-[-0.03em]"
-          style={{
-            fontSize: "clamp(1.8rem, 4vw, 4.5rem)",
-            color: "var(--blue)",
-            fontFamily: "var(--font)",
-          }}
-        >
-          {words.map((word, i) => (
-            <span
-              key={i}
-              ref={(r) => (wordsRef.current[i] = r)}
-              className="inline-block mr-[0.18em]"
-            >
-              {word === "click" ? (
-                <span
-                  ref={pillRef}
-                  onMouseEnter={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                  className="inline-flex items-center justify-center relative overflow-hidden cursor-pointer align-baseline rounded-[100vw] px-[0.45em] py-[0.05em] [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
-                  style={{
-                    background: "var(--orange1)",
-                    transform: hovered ? "scale(0.93)" : "scale(1)",
-                  }}
-                >
-                  {/* "click" slides up and fades out */}
-                  <span
-                    className="block [transition:opacity_0.25s,transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
-                    style={{
-                      color: "var(--blue)",
-                      opacity: hovered ? 0 : 1,
-                      transform: hovered ? "translateY(-60%)" : "translateY(0)",
-                    }}
-                  >
-                    click
-                  </span>
-                  {/* "let's go" slides up from below */}
-                  <span
-                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap rounded-[100vw] text-[0.8em] [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
-                    style={{
-                      background: "var(--blue)",
-                      color: "var(--orange1)",
-                      transform: hovered ? "translateY(0)" : "translateY(110%)",
-                    }}
-                  >
-                    let&apos;s go
-                  </span>
-                </span>
-              ) : (
-                <span style={{ color: word === "scroll" ? "var(--orange1)" : "var(--blue)" }}>
-                  {word}
-                </span>
-              )}
-            </span>
-          ))}
-        </h2>
+        {/* ── Floating shapes ── */}
+        {SHAPES.map((shape, i) => (
+          <img
+            key={i}
+            ref={el => shapeRefs.current[i] = el}
+            src={shape.src}
+            alt=""
+            loading="lazy"
+            className="absolute pointer-events-none will-change-transform"
+            style={{
+              width: shape.w,
+              top: shape.top,
+              left: shape.left,
+              right: shape.right,
+              zIndex: shape.zIndex,
+              opacity: 0,
+            }}
+          />
+        ))}
 
-        {/* ── Stats 2×2 grid ── */}
+        {/* ── Sticky heading wrapper ── */}
         <div
-          className="grid grid-cols-2 overflow-hidden rounded-[0.6vw] mt-[1vw] gap-[2px]"
-          style={{ background: "var(--bg-grey)" }}
+          className="sticky top-0 mb-[10vw]"
+          style={{ width: "65%", zIndex: 55 }}
         >
-          {STATS.map((s, i) => (
-            <div
-              key={i}
-              className="flex flex-col gap-[0.4rem]"
+          {/* Inner div is what GSAP animates (drift + fade on scroll) */}
+          <div ref={headingInnerRef} className="will-change-transform">
+            <h2
+              ref={headlineRef}
+              className="m-0 font-semibold"
               style={{
-                background: "var(--bg-warm)",
-                padding: "clamp(1.2rem, 2.5vw, 2.5rem) clamp(1rem, 2vw, 2rem)",
+                fontSize: "7.82vw",
+                letterSpacing: "-0.35vw",
+                lineHeight: "105%",
+                color: "var(--grey)",
+                fontFamily: "var(--font)",
               }}
             >
-              {/* Big number */}
-              <div
-                className="font-extrabold leading-none tracking-[-0.03em]"
-                style={{
-                  fontFamily: "var(--font)",
-                  fontSize: "clamp(2rem, 4.5vw, 5rem)",
-                  color: "var(--blue)",
-                }}
-              >
-                <CountUp target={s.value} suffix={s.suffix} delay={i * 200} />
-              </div>
-              {/* Label */}
-              <p
-                className="m-0 uppercase text-[0.8rem] font-medium tracking-[0.04em]"
-                style={{ fontFamily: "var(--font)", color: "var(--grey)" }}
-              >
-                {s.label}
-              </p>
-              {/* Lime accent bar */}
-              <div
-                className="w-8 rounded-sm h-[2px] mt-[0.3rem]"
-                style={{ background: "var(--lime, #c8f135)" }}
-              />
-            </div>
-          ))}
+              {WORDS.map((word, i) => (
+                <span
+                  key={i}
+                  ref={r => wordsRef.current[i] = r}
+                  className="inline-block mr-[0.18em]"
+                >
+                  {word === "click" ? (
+                    <span
+                      ref={pillRef}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                      className="inline-flex items-center justify-center relative overflow-hidden cursor-pointer align-baseline rounded-[100vw] px-[0.45em] py-[0.05em] [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
+                      style={{
+                        background: "var(--orange1)",
+                        transform: hovered ? "scale(0.95)" : "scale(1)",
+                      }}
+                    >
+                      <span
+                        className="block [transition:opacity_0.25s,transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
+                        style={{
+                          color: "var(--blue)",
+                          opacity: hovered ? 0 : 1,
+                          transform: hovered ? "translateY(-60%)" : "translateY(0)",
+                        }}
+                      >
+                        click
+                      </span>
+                      <span
+                        className="absolute inset-0 flex items-center justify-center whitespace-nowrap rounded-[100vw] text-[0.45em] font-semibold [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
+                        style={{
+                          background: "var(--blue)",
+                          color: "var(--orange1)",
+                          transform: hovered ? "translateY(0)" : "translateY(110%)",
+                        }}
+                      >
+                       Let's go
+                      </span>
+                    </span>
+                  ) : (
+                    <span style={{ color: word === "scroll" ? "var(--blue)" : "var(--grey)" }}>
+                      {word}
+                    </span>
+                  )}
+                </span>
+              ))}
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/* ══════════════════════════════════════════════
-          RIGHT SCROLLING COLUMN
-      ══════════════════════════════════════════════ */}
-      <div className="flex flex-col relative z-[1] box-border gap-[3vw] pt-[10vw] pr-[5vw] pb-[10vw] pl-[4vw]">
-        {RIGHT_IMAGES.map((img, i) => {
-          const isEvery3rd = (i + 1) % 3 === 0;
-          const rotation   = i % 2 === 0 ? "0.6deg" : "-0.6deg";
-          const aspect     = i % 2 === 0 ? "4/3" : "16/9";
-
-          return (
-            <div
-              key={i}
-              ref={(r) => (imageRefs.current[i] = r)}
-              className="overflow-hidden will-change-transform rounded-[0.8vw]"
-              style={{
-                aspectRatio: aspect,
-                transform: `rotate(${rotation})`,
-                boxShadow: isEvery3rd
-                  ? "0 12px 48px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1)"
-                  : "0 6px 24px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06)",
-                border: isEvery3rd
-                  ? "3px solid var(--orange1)"
-                  : "1px solid rgba(0,0,0,0.07)",
-                opacity: 0, // GSAP animates in
-              }}
-            >
-              <img
-                src={img.src}
-                alt=""
-                loading="lazy"
-                className="w-full h-full object-cover block"
-              />
-            </div>
-          );
-        })}
       </div>
     </section>
   );

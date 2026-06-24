@@ -125,9 +125,10 @@ export default function BenefitsSection() {
       const taglineWords = taglineRef.current     ? [...taglineRef.current.querySelectorAll(".sw")]     : [];
 
       /* ─ Collect step2 word spans ─ */
-      const hdrWords    = step2HdrRef.current ? [...step2HdrRef.current.querySelectorAll(".sw")]       : [];
-      const listWords   = listRef.current     ? [...listRef.current.querySelectorAll(".sw")]           : [];
-      const checkIcons  = listRef.current     ? [...listRef.current.querySelectorAll(".check-icon")]   : [];
+      const hdrWords   = step2HdrRef.current ? [...step2HdrRef.current.querySelectorAll(".sw")]     : [];
+      const listItems  = listRef.current     ? [...listRef.current.querySelectorAll("li")]          : [];
+      const listWords  = listRef.current     ? [...listRef.current.querySelectorAll(".sw")]         : [];
+      const checkIcons = listRef.current     ? [...listRef.current.querySelectorAll(".check-icon")] : [];
 
       /* ─ Initial states ─ */
       gsap.set([...hdrWords, ...listWords, ...checkIcons], { opacity: 0 });
@@ -201,18 +202,28 @@ export default function BenefitsSection() {
       /* ══ TIMELINE 3 — scrub step2 enter ══ */
       const tl3 = gsap.timeline({ paused: true });
 
-      tl3
-        .fromTo([...hdrWords, ...listWords, ...checkIcons],
-          { opacity: 0 },
-          { opacity: 1, ease: "none", duration: 0.2,
-            stagger: { each: 0.2, from: "start" } },
-          0
-        )
-        .fromTo(ctaRef.current,
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, ease: "power2.out", duration: 0.5 },
-          "<50%"
-        );
+      // Header words first
+      tl3.fromTo(
+        hdrWords,
+        { opacity: 0 },
+        { opacity: 1, ease: "none", duration: 0.2, stagger: { each: 0.2, from: "start" } },
+        0
+      );
+
+      // Per list item: tick icon → its words
+      listItems.forEach((li) => {
+        const icon  = li.querySelector(".check-icon");
+        const words = [...li.querySelectorAll(".sw")];
+        if (icon)        tl3.fromTo(icon,  { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.2 }, ">");
+        if (words.length) tl3.fromTo(words, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.2, stagger: { each: 0.15, from: "start" } }, ">");
+      });
+
+      tl3.fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.5 },
+        ">"
+      );
 
       ScrollTrigger.create({
         trigger: step2SpacerRef.current,
