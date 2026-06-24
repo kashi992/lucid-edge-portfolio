@@ -1,0 +1,1801 @@
+{
+  "metadata": {
+    "version": "5.9.0",
+    "frameRate": 30,
+    "totalFrames": 60,
+    "durationSeconds": 2.0,
+    "canvasWidth": 1916,
+    "canvasHeight": 233,
+    "animationName": "juan-logo-mouse",
+    "is3D": false
+  },
+  "assets": [
+    {
+      "index": 0,
+      "id": "image_0",
+      "name": null,
+      "width": 900,
+      "height": 375,
+      "dataType": "image/jpeg",
+      "dataLength": 60563,
+      "dataSizeKB": 59,
+      "note": "Base64 encoded image data"
+    },
+    {
+      "index": 1,
+      "id": "image_1",
+      "name": null,
+      "width": 900,
+      "height": 375,
+      "dataType": "image/jpeg",
+      "dataLength": 47007,
+      "dataSizeKB": 45,
+      "note": "Base64 encoded image data"
+    },
+    {
+      "index": 2,
+      "id": "image_2",
+      "name": null,
+      "width": 900,
+      "height": 375,
+      "dataType": "image/jpeg",
+      "dataLength": 43543,
+      "dataSizeKB": 42,
+      "note": "Base64 encoded image data"
+    },
+    {
+      "index": 3,
+      "id": "image_3",
+      "name": null,
+      "width": 900,
+      "height": 375,
+      "dataType": "image/jpeg",
+      "dataLength": 120147,
+      "dataSizeKB": 117,
+      "note": "Base64 encoded image data"
+    },
+    {
+      "index": 4,
+      "id": "comp_0",
+      "name": "projects",
+      "width": null,
+      "height": null
+    }
+  ],
+  "layers": [
+    {
+      "index": 0,
+      "name": "J",
+      "type": 4,
+      "layerIndex": 1,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 0.999
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0.001
+              },
+              "t": 0,
+              "s": [
+                0,
+                116,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 0.999
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0.001
+              },
+              "t": 30,
+              "s": [
+                0,
+                116,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                0,
+                116,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            0,
+            77.499,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                35.078,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                338.94,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "name": "u",
+      "type": 4,
+      "layerIndex": 2,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                66.25,
+                148.133,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                244.75,
+                148.133,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                518.75,
+                148.133,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            50.5,
+            57,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                45.54,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                306.689,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "name": "a",
+      "type": 4,
+      "layerIndex": 3,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                135,
+                146.69,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                403.5,
+                146.69,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                797.5,
+                146.69,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            48.5,
+            58,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                71.312,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                232.829,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "name": "n",
+      "type": 4,
+      "layerIndex": 4,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                227.83,
+                143.168,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                564.33,
+                143.168,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1046.33,
+                143.168,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            -786.67,
+            101.918,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                60.273,
+                100,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                100,
+                100,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                155.819,
+                100,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "name": "M",
+      "type": 4,
+      "layerIndex": 5,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                867.5,
+                114.75,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                1369.5,
+                114.75,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1689.5,
+                114.75,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            82,
+            76.5,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                193.937,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                91.463,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "name": "o",
+      "type": 4,
+      "layerIndex": 6,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                1196,
+                146.036,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                1588,
+                146.036,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1810,
+                146.036,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            58,
+            58,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                267.241,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                60.345,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "name": "r",
+      "type": 4,
+      "layerIndex": 7,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                1474.5,
+                145.5,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                1732.5,
+                145.5,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1868.5,
+                145.5,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            33.5,
+            57,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                315.015,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                48.448,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "name": "a",
+      "type": 4,
+      "layerIndex": 8,
+      "inPoint": 0,
+      "outPoint": 184,
+      "startTime": 0,
+      "duration": 184,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 0.999
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0.001
+              },
+              "t": 0,
+              "s": [
+                1916,
+                146.345,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 0.999
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0.001
+              },
+              "t": 30,
+              "s": [
+                1916,
+                146.345,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1916,
+                146.345,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            96.792,
+            57.77,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                380.43,
+                150,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                150,
+                150,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                34.619,
+                150,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Group 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "name": "Mask",
+      "type": 4,
+      "layerIndex": 9,
+      "inPoint": 0,
+      "outPoint": 200,
+      "startTime": 0,
+      "duration": 200,
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                512.127,
+                117.5,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                973.127,
+                117.5,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1423.127,
+                117.5,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            0,
+            0,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 0,
+              "s": [
+                72.046,
+                100,
+                100
+              ]
+            },
+            {
+              "i": {
+                "x": [
+                  0.999,
+                  0.999,
+                  0.999
+                ],
+                "y": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "o": {
+                "x": [
+                  0.001,
+                  0.001,
+                  0.001
+                ],
+                "y": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "t": 30,
+              "s": [
+                100,
+                100,
+                100
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                72,
+                100,
+                100
+              ]
+            }
+          ]
+        }
+      },
+      "shapeCount": 1,
+      "shapes": [
+        {
+          "name": "Rectangle 1",
+          "type": "gr",
+          "hasPathData": false
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "name": "projects",
+      "type": 0,
+      "layerIndex": 10,
+      "inPoint": 0,
+      "outPoint": 200,
+      "startTime": 0,
+      "duration": 200,
+      "assetReference": "comp_0",
+      "animatedProperties": {
+        "o": {
+          "isAnimated": false,
+          "value": 100
+        },
+        "r": {
+          "isAnimated": false,
+          "value": 0
+        },
+        "p": {
+          "isAnimated": true,
+          "keyframeCount": 3,
+          "keyframes": [
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 0,
+              "s": [
+                439,
+                116,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "i": {
+                "x": 0.999,
+                "y": 1
+              },
+              "o": {
+                "x": 0.001,
+                "y": 0
+              },
+              "t": 30,
+              "s": [
+                940,
+                116,
+                0
+              ],
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "ti": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "t": 60,
+              "s": [
+                1417,
+                116,
+                0
+              ]
+            }
+          ]
+        },
+        "a": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            1400,
+            1095,
+            0
+          ]
+        },
+        "s": {
+          "isAnimated": false,
+          "keyframeCount": 3,
+          "keyframes": [
+            35.429,
+            35.429,
+            100
+          ]
+        }
+      }
+    }
+  ]
+}

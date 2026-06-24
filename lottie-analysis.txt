@@ -1,0 +1,302 @@
+====================================================================================================
+LOTTIE ANIMATION COMPLETE ANALYSIS: juan-name-mouse.json
+====================================================================================================
+
+METADATA:
+  Version: 5.9.0
+  Frame Rate: 30 fps
+  Total Duration: 60 frames (2.00 seconds)
+  Canvas: 1916px x 233px
+  Name: juan-logo-mouse
+
+====================================================================================================
+ASSETS (Embedded Images)
+====================================================================================================
+
+Asset 0:
+  ID: image_0
+  Name: N/A
+  Width: 900
+  Height: 375
+  Data: Base64 image/jpeg (60563 chars, ~59KB)
+
+Asset 1:
+  ID: image_1
+  Name: N/A
+  Width: 900
+  Height: 375
+  Data: Base64 image/jpeg (47007 chars, ~45KB)
+
+Asset 2:
+  ID: image_2
+  Name: N/A
+  Width: 900
+  Height: 375
+  Data: Base64 image/jpeg (43543 chars, ~42KB)
+
+Asset 3:
+  ID: image_3
+  Name: N/A
+  Width: 900
+  Height: 375
+  Data: Base64 image/jpeg (120147 chars, ~117KB)
+
+Asset 4:
+  ID: comp_0
+  Name: projects
+  Width: None
+  Height: None
+
+====================================================================================================
+ALL LAYERS - COMPLETE DETAILS
+====================================================================================================
+
+[Layer 0] 'J'
+  Type Code: 4
+  Index: 1
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 0.999}, 'o': {'x': 0.001, 'y': 0.001}, 't': 0, 's': [0, 116, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 0.999}, 'o': {'x': 0.001, 'y': 0.001}, 't': 30, 's': [0, 116, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [0, 116, 0]}
+    a: 3 keyframe(s)
+      [0] 0
+      [1] 77.499
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [35.078, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [338.94, 150, 100]}
+
+[Layer 1] 'u'
+  Type Code: 4
+  Index: 2
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [66.25, 148.133, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [244.75, 148.133, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [518.75, 148.133, 0]}
+    a: 3 keyframe(s)
+      [0] 50.5
+      [1] 57
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [45.54, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [306.689, 150, 100]}
+
+[Layer 2] 'a'
+  Type Code: 4
+  Index: 3
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [135, 146.69, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [403.5, 146.69, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [797.5, 146.69, 0]}
+    a: 3 keyframe(s)
+      [0] 48.5
+      [1] 58
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [71.312, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [232.829, 150, 100]}
+
+[Layer 3] 'n'
+  Type Code: 4
+  Index: 4
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [227.83, 143.168, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [564.33, 143.168, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1046.33, 143.168, 0]}
+    a: 3 keyframe(s)
+      [0] -786.67
+      [1] 101.918
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [60.273, 100, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [100, 100, 100]}
+      [2] {'t': 60, 's': [155.819, 100, 100]}
+
+[Layer 4] 'M'
+  Type Code: 4
+  Index: 5
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [867.5, 114.75, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [1369.5, 114.75, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1689.5, 114.75, 0]}
+    a: 3 keyframe(s)
+      [0] 82
+      [1] 76.5
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [193.937, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [91.463, 150, 100]}
+
+[Layer 5] 'o'
+  Type Code: 4
+  Index: 6
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [1196, 146.036, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [1588, 146.036, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1810, 146.036, 0]}
+    a: 3 keyframe(s)
+      [0] 58
+      [1] 58
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [267.241, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [60.345, 150, 100]}
+
+[Layer 6] 'r'
+  Type Code: 4
+  Index: 7
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [1474.5, 145.5, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [1732.5, 145.5, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1868.5, 145.5, 0]}
+    a: 3 keyframe(s)
+      [0] 33.5
+      [1] 57
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [315.015, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [48.448, 150, 100]}
+
+[Layer 7] 'a'
+  Type Code: 4
+  Index: 8
+  In-point: 0 frames
+  Out-point: 184 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Group 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 0.999}, 'o': {'x': 0.001, 'y': 0.001}, 't': 0, 's': [1916, 146.345, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 0.999}, 'o': {'x': 0.001, 'y': 0.001}, 't': 30, 's': [1916, 146.345, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1916, 146.345, 0]}
+    a: 3 keyframe(s)
+      [0] 96.792
+      [1] 57.77
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [380.43, 150, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [150, 150, 100]}
+      [2] {'t': 60, 's': [34.619, 150, 100]}
+
+[Layer 8] 'Mask'
+  Type Code: 4
+  Index: 9
+  In-point: 0 frames
+  Out-point: 200 frames
+  Start Time (st): 0 frames
+  Shapes: 1 element(s)
+    [0] 'Rectangle 1' (ty: gr)
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [512.127, 117.5, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [973.127, 117.5, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1423.127, 117.5, 0]}
+    a: 3 keyframe(s)
+      [0] 0
+      [1] 0
+      [2] 0
+    s: 3 keyframe(s)
+      [0] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 0, 's': [72.046, 100, 100]}
+      [1] {'i': {'x': [0.999, 0.999, 0.999], 'y': [1, 1, 1]}, 'o': {'x': [0.001, 0.001, 0.001], 'y': [0, 0, 0]}, 't': 30, 's': [100, 100, 100]}
+      [2] {'t': 60, 's': [72, 100, 100]}
+
+[Layer 9] 'projects'
+  Type Code: 0
+  Index: 10
+  In-point: 0 frames
+  Out-point: 200 frames
+  Start Time (st): 0 frames
+  Asset Ref: comp_0
+  Transform Keyframes:
+    p: 3 keyframe(s)
+      [0] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 0, 's': [439, 116, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [1] {'i': {'x': 0.999, 'y': 1}, 'o': {'x': 0.001, 'y': 0}, 't': 30, 's': [940, 116, 0], 'to': [0, 0, 0], 'ti': [0, 0, 0]}
+      [2] {'t': 60, 's': [1417, 116, 0]}
+    a: 3 keyframe(s)
+      [0] 1400
+      [1] 1095
+      [2] 0
+    s: 3 keyframe(s)
+      [0] 35.429
+      [1] 35.429
+      [2] 100
+
+====================================================================================================
+ANIMATION TYPE SUMMARY
+====================================================================================================
+
+Does this animation use:
+  - SVG text paths with stroke-dashoffset? NO
+  - Crossfade between photo images? YES (4 images with different start/end times)
+  - Position/scale/rotation animation? YES (all text letters animate with p/a/s keyframes)
+
+VISUAL AT FRAME 0:
+  - All 8 text letters visible (J, u, a, n, M, o, r, a)
+  - Mask layer visible
+  - Projects composition visible
+  - First image (image_0) animating in background
+
+VISUAL AT FRAME 60:
+  - Same layers visible (60 frames is within all layer durations)
+  - Text is still animating (last keyframe is beyond frame 60)
+  - Images continue crossfading
+
+HOW IT WORKS:
+  1. Text is rendered as SVG shape groups (not text elements)
+  2. Each letter animates: position (p), anchor point (a), scale (s)
+  3. 4 images (JPEG) embedded as assets - fade in/out at different times:
+     - image_0: frames 0-200 (ip:0, op:200)
+     - image_1: frames 30-230 (ip:30, op:230)
+     - image_2: frames 15-215 (ip:15, op:215)
+     - image_3: frames 45-245 (ip:45, op:245)
+  4. Mask layer applies rectangular mask to effect
+  5. Projects composition uses comp_0 reference
