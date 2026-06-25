@@ -126,7 +126,7 @@ const EDGE_POSITIONS = [
   [870,  1320, 1600],  // E
   [1200, 1465, 1720],  // d
   [1480, 1622, 1810],  // g
-  [1700, 1780, 1870],  // e
+  [1750, 1780, 1870],  // e
 ];
 const EDGE_SCALES = [
   [194, 150, 91],  // E
@@ -207,8 +207,8 @@ const TOTAL = LUCID.length + EDGE.length + 2; // +2 for mask + projects
 const layers = [
   ...LUCID.map((ch, i) => buildLayer(ch, i, LUCID_POSITIONS[i], LUCID_SCALES[i], TOTAL)),
   ...EDGE.map((ch, i) => buildLayer(ch, i + LUCID.length, EDGE_POSITIONS[i], EDGE_SCALES[i], TOTAL)),
-  original.layers.find(l => l.nm === 'Mask'),
-  original.layers.find(l => l.nm === 'projects'),
+  original.layers.find(l => l.nm === 'Mask'),     // track matte source (td:1) for projects
+  original.layers.find(l => l.nm === 'projects'),  // uses Mask as track matte (tt:1)
 ].filter(Boolean);
 
 // ── Write ──────────────────────────────────────────────────────────────────

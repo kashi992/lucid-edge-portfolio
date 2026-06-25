@@ -142,6 +142,7 @@ ul, ol { list-style: none; }
 }
 .nav-social-link.is-peach { color: var(--orange1); }
 .nav-social-link.is-peach:hover { color: var(--bg-warm); }
+.nav-char { display: inline-block; }
 
 /* ── Loader ─────────────────────────────────────────────────────────────────── */
 .container-loader {
@@ -288,3 +289,84 @@ ul, ol { list-style: none; }
 
 /* ── Utility ────────────────────────────────────────────────────────────────── */
 .overflow-clip { overflow: hidden; }
+
+/* ── Mobile bottom nav ───────────────────────────────────────────────────────── */
+.nav-menu-mobile {
+  display: none;
+  position: fixed;
+  bottom: 3vw;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 990;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  background-color: #22222299;
+  border-radius: 100px;
+  padding: 2vw 4vw;
+  gap: 4vw;
+  align-items: center;
+  justify-content: center;
+}
+.nav-link-mobile {
+  color: var(--bg-warm);
+  font-family: var(--font);
+  font-size: 3.5vw;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 1.5vw 3vw;
+  border-radius: 100px;
+  transition: background-color 0.3s ease;
+}
+.nav-link-mobile.is-peach { color: var(--orange1); }
+.nav-link-mobile:hover { background-color: #ffffff22; }
+
+/* ── Responsive: Tablet (≤991px) ─────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .nav-name-jm { font-size: 1.1rem; }
+  /* StatsSection */
+  .stats-height { height: 230vw !important; padding-top: 18vw !important; }
+  .stats-heading { font-size: 9vw !important; letter-spacing: -0.45vw !important; width: 80% !important; }
+}
+
+/* ── Responsive: Mobile (≤767px) ─────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Cursor — hidden on touch devices */
+  .cursor-jm, .cursor-jm-icon, .text-jm-cursor { display: none !important; }
+  body { cursor: auto; }
+
+  /* Navbar — center logo only */
+  nav.fixed { justify-content: center !important; }
+  .nav-wordmark { margin: 0 auto; }
+  .nav-name-jm { font-size: 3vw; letter-spacing: 0; }
+  .dot-jm { width: 0.7vw; height: 0.7vw; }
+
+  /* Mobile bottom nav */
+  .nav-menu-mobile { display: flex; }
+
+  /* Hero */
+  .hero-top-label { margin-top: 0 !important; padding-top: 0 !important; }
+
+  /* StatsSection */
+  .stats-height { height: 230vw !important; padding-top: 18vw !important; }
+  .stats-heading {
+    font-size: 10vw !important;
+    letter-spacing: -0.45vw !important;
+    text-align: center !important;
+    width: 85% !important;
+  }
+  .stats-sticky { width: 85% !important; }
+
+  /* ServicesSection */
+  .service-headline { font-size: 10vw !important; }
+
+  /* BenefitsSection step1 — hidden on mobile (reference: display:none) */
+  .benefits-step1 { display: none !important; }
+  .benefits-bg { height: 180vw !important; }
+}
+
+/* ── Responsive: Small mobile (≤479px) ───────────────────────────────────────── */
+@media (max-width: 479px) {
+  .nav-name-jm { font-size: 4.8vw; }
+  .dot-jm { width: 1.7vw; height: 1.7vw; }
+  .stats-heading { font-size: 10vw !important; }
+}

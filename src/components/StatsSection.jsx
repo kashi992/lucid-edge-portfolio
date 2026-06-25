@@ -147,7 +147,7 @@ export default function StatsSection() {
       style={{ background: "var(--bg-warm)" }}
     >
       <div
-        className="relative overflow-hidden flex flex-col items-center"
+        className="stats-height relative overflow-hidden flex flex-col items-center"
         style={{ height: "117vw", paddingTop: "13vw" }}
       >
 
@@ -192,11 +192,11 @@ export default function StatsSection() {
         ))}
 
         {/* ── Sticky heading ── */}
-        <div className="sticky top-0 mb-[10vw]" style={{ width: "65%", zIndex: 55 }}>
+        <div className="stats-sticky sticky top-0 mb-[10vw]" style={{ width: "65%", zIndex: 55 }}>
           <div ref={headingInnerRef} className="will-change-transform">
             <h2
               ref={headlineRef}
-              className="m-0 font-semibold"
+              className="stats-heading m-0 font-semibold"
               style={{
                 fontSize: "7.82vw",
                 letterSpacing: "-0.35vw",

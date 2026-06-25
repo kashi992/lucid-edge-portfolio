@@ -49,7 +49,7 @@ export default function Hero({ visible }) {
       const dt  = now - lastTime;
       lastTime  = now;
 
-      const t = 1 - Math.exp(-dt / 50);
+      const t = 1 - Math.exp(-dt / 150);
       curProgress.current += (tgtProgress.current - curProgress.current) * t;
 
       const anim = animRef.current;
@@ -97,22 +97,22 @@ export default function Hero({ visible }) {
       <div className="absolute inset-0 z-[2]" style={{ opacity: 0.82, backgroundImage: "linear-gradient(5deg, transparent 81%, #000)" }} />
       <div className="absolute inset-0 z-[2]" style={{ opacity: 0.56, backgroundImage: "linear-gradient(190deg, transparent 54%, #000)" }} />
 
-      <div className="relative z-[3] w-full h-full flex flex-col justify-between p-[4vw]">
+      {/* ── Desktop layout: column (top label / bottom lottie+subtitle) ── */}
+      {/* ── Mobile layout:  row   (left heading / right subtitle)       ── */}
+      <div className="relative z-[3] w-full h-full flex flex-row items-center justify-between md:flex-col md:justify-between p-[4vw]">
 
-        {/* Top label */}
-        <div className="hero-top-label" style={{ marginTop: "7vw" }}>
-          <h1 className="m-0 font-semibold leading-[100%]" style={{ fontSize: "clamp(1rem, 2.5rem, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
+        {/* Top label — left on mobile, top on desktop */}
+        <div className="hero-top-label w-[50%] md:w-auto" style={{ marginTop: "0", paddingTop: "clamp(0px, 7vw, 7vw)" }}>
+          <h1 className="m-0 font-semibold leading-[110%]" style={{ fontSize: "clamp(1rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
             Brand &amp; Web<br />Design Specialist
           </h1>
         </div>
 
-        {/* Bottom — Lottie name animation + subtitle */}
-        <div className="hero-bottom-label flex flex-col items-end w-full">
+        {/* Bottom — right on mobile (no Lottie), bottom on desktop (with Lottie) */}
+        <div className="hero-bottom-label flex flex-col items-end w-[35%] md:w-full">
 
-          {/* Lottie: canvas is 1916×233, aspect ratio = 12.16vw tall at full width.
-              overflow:visible on the SVG inside lets letters bleed above the container
-              (matching how the reference site renders large letters at cursor extremes). */}
-          <div className="w-full" style={{ height: "12.16vw" }}>
+          {/* Lottie — hidden on mobile */}
+          <div className="hidden md:block w-full" style={{ height: "12.16vw" }}>
             <div
               ref={lottieRef}
               className="w-full h-full [&_svg]:overflow-visible"
@@ -120,7 +120,7 @@ export default function Hero({ visible }) {
             />
           </div>
 
-          <p className="m-0 text-right font-semibold leading-[100%]" style={{ marginTop: "1vw", fontSize: "clamp(1rem, 2.5rem, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
+          <p className="m-0 text-right font-semibold leading-[110%]" style={{ marginTop: "1vw", fontSize: "clamp(0.75rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
             Freelance Design Director
           </p>
         </div>
