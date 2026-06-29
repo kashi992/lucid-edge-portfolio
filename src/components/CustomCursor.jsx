@@ -9,8 +9,9 @@ export default function CustomCursor() {
   const cur       = useRef({ x: -200, y: -200 });
   const raf       = useRef(null);
   const angle     = useRef(0);
-  const hovering  = useRef(false);
-  const emailMode = useRef(false);
+  const hovering   = useRef(false);
+  const emailMode  = useRef(false);
+  const suppressed = useRef(false);
 
   useEffect(() => {
     const dot  = dotRef.current;
@@ -45,13 +46,16 @@ export default function CustomCursor() {
 
     /* hide on window leave */
     const hide = () => { dot.style.opacity = "0"; ring.style.opacity = "0"; };
-    const show = () => { dot.style.opacity = "1"; ring.style.opacity = "0.8"; };
+    const show = () => {
+      if (suppressed.current) return;
+      dot.style.opacity = "1"; ring.style.opacity = "0.8";
+    };
     document.addEventListener("mouseleave", hide);
     document.addEventListener("mouseenter", show);
 
     /* ── interactive hover ── */
     const expand = () => {
-      if (emailMode.current) return;
+      if (emailMode.current || suppressed.current) return;
       hovering.current = true;
       ring.style.transform = "translate(-50%, -50%) scale(2.2)";
       ring.style.opacity   = "0.9";
@@ -115,11 +119,27 @@ export default function CustomCursor() {
     const obs = new MutationObserver(() => { bindInteractive(); bindEmail(); });
     obs.observe(document.body, { childList: true, subtree: true });
 
+    const hideCursor = () => {
+      suppressed.current = true;
+      dot.style.opacity  = "0";
+      ring.style.opacity = "0";
+    };
+    const showCursor = () => {
+      suppressed.current = false;
+      dot.style.opacity  = "1";
+      ring.style.opacity = "0.8";
+      contract();
+    };
+    document.addEventListener("cursor:hide", hideCursor);
+    document.addEventListener("cursor:show", showCursor);
+
     return () => {
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseleave", hide);
       document.removeEventListener("mouseenter", show);
       document.removeEventListener("click", onClickEmail);
+      document.removeEventListener("cursor:hide", hideCursor);
+      document.removeEventListener("cursor:show", showCursor);
       cancelAnimationFrame(raf.current);
       obs.disconnect();
     };

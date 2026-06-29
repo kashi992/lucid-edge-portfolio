@@ -1,9 +1,10 @@
 /* ── Fonts ─────────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 /* ── CSS variables ─────────────────────────────────────────────────────────── */
 :root {
@@ -83,7 +84,7 @@ ul, ol { list-style: none; }
 
 /* ── Navbar ────────────────────────────────────────────────────────────────── */
 .nav-name-jm {
-  color: var(--grey);
+  color: var(--blue);
   letter-spacing: -0.04rem;
   font-family: var(--font);
   font-size: 1.1rem;
@@ -101,7 +102,7 @@ ul, ol { list-style: none; }
 .nav-link {
   -webkit-backdrop-filter: blur(11px);
   backdrop-filter: blur(11px);
-  color: var(--grey);
+  color: var(--blue);
   cursor: pointer;
   background-color: #64646412;
   border-radius: 90px;
@@ -124,7 +125,7 @@ ul, ol { list-style: none; }
 .nav-social-link {
   -webkit-backdrop-filter: blur(11px);
   backdrop-filter: blur(11px);
-  color: var(--grey);
+  color: var(--blue);
   cursor: pointer;
   border-radius: 5rem;
   padding: 8px 14px;

@@ -120,12 +120,6 @@ function ServiceRow({ service, index }) {
             >
               {service.title}
             </h2>
-            {isWebflow && (
-              <>
-                <img src={IMAGES.webflowFrame} loading="lazy" alt="" className="h-[3.5vw]" />
-                <img src={IMAGES.framerFrame}  loading="lazy" alt="" className="h-[3.5vw]" />
-              </>
-            )}
           </div>
         </div>
 
@@ -173,84 +167,226 @@ function ServiceRow({ service, index }) {
       {isWebflow && (
         <div className="flex box-border gap-[2vw] px-[3.8vw] pb-[5vw]">
 
-          {/* Webflow card */}
+          {/* ── Webflow card ── */}
           <div
             ref={r => (cardInnerRefs.current[0] = r)}
-            className="flex-1 overflow-hidden flex flex-col justify-between relative box-border rounded-[1.2vw] p-[3vw] min-h-[22vw]"
+            className="flex-1 overflow-hidden flex flex-col relative box-border rounded-[1.2vw] min-h-[30vw]"
             style={{
-              background: "linear-gradient(135deg, #0a0a2e 0%, #0b2a6b 60%, #0a3fa8 100%)",
-              border: "1px solid rgba(8,127,241,0.35)",
+              background: "linear-gradient(145deg, #050d1f 0%, #08204a 55%, #093b8f 100%)",
+              border: "1px solid rgba(8,127,241,0.3)",
             }}
           >
-            {/* Glow */}
-            <div
-              className="absolute rounded-full pointer-events-none -top-[20%] -right-[10%] w-[50%] h-[50%]"
-              style={{ background: "radial-gradient(circle, rgba(8,127,241,0.25) 0%, transparent 70%)" }}
-            />
+            {/* ambient glow */}
+            <div className="absolute pointer-events-none rounded-full w-[60%] h-[60%] -top-[20%] right-[5%]"
+              style={{ background: "radial-gradient(circle, rgba(8,127,241,0.2) 0%, transparent 70%)" }} />
 
-            <div>
-              <img src={IMAGES.webflowTag} loading="lazy" alt="Webflow" className="block h-[2.2vw] mb-[2.5vw]" />
-              <p
-                className="leading-[170%] mb-[2vw] mt-0 max-w-[36ch]"
-                style={{
-                  fontFamily: "var(--font)",
-                  fontSize: "clamp(0.75rem, 1vw, 1rem)",
-                  color: "rgba(255,255,255,0.5)",
-                }}
-              >
-                Visual-first development with pixel-perfect CMS integration and seamless client hand-off.
-              </p>
+            {/* browser chrome */}
+            <div className="relative z-10 flex items-center gap-[0.45vw] px-[1.4vw] py-[1vw]"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+              {["rgba(255,90,90,0.5)","rgba(255,200,50,0.5)","rgba(50,200,50,0.5)"].map((c, i) => (
+                <div key={i} className="rounded-full flex-shrink-0"
+                  style={{ width: "0.55vw", height: "0.55vw", minWidth: 7, minHeight: 7, background: c }} />
+              ))}
+              <div className="flex-1 mx-[0.8vw] flex items-center gap-[0.35vw] rounded-[0.4vw] px-[0.7vw]"
+                style={{ height: "1.5vw", minHeight: 18, background: "rgba(255,255,255,0.05)" }}>
+                <div className="rounded-full flex-shrink-0"
+                  style={{ width: "0.45vw", height: "0.45vw", minWidth: 6, minHeight: 6, background: "rgba(8,127,241,0.6)" }} />
+                <span style={{ fontFamily: "var(--font)", fontSize: "clamp(0.45rem, 0.62vw, 0.7rem)", color: "rgba(255,255,255,0.3)" }}>
+                  studio.webflow.io
+                </span>
+              </div>
+              <img src={IMAGES.webflowTag} loading="lazy" alt="Webflow"
+                style={{ height: "1.2vw", minHeight: 14, opacity: 0.65, flexShrink: 0 }} />
             </div>
 
-            <div className="flex flex-wrap gap-[0.6vw]">
+            {/* CMS editor body */}
+            <div className="relative z-10 flex flex-1 overflow-hidden">
+              {/* sidebar */}
+              <div className="flex flex-col gap-[0.5vw] p-[1vw] flex-shrink-0"
+                style={{ width: "9vw", borderRight: "1px solid rgba(255,255,255,0.06)" }}>
+                {[
+                  { w: "55%", active: false },
+                  { w: "45%", active: true  },
+                  { w: "35%", active: false },
+                  { w: "40%", active: false },
+                  { w: "30%", active: false },
+                  { w: "42%", active: false },
+                ].map(({ w, active }, i) => (
+                  <div key={i} className="rounded-[0.3vw] flex items-center"
+                    style={{ height: "1.3vw", minHeight: 14, padding: "0 0.5vw", background: active ? "rgba(8,127,241,0.2)" : "transparent" }}>
+                    <div className="rounded-full"
+                      style={{ height: "0.35vw", minHeight: 4, width: w, background: active ? "rgba(8,127,241,0.85)" : "rgba(255,255,255,0.1)" }} />
+                  </div>
+                ))}
+              </div>
+
+              {/* canvas */}
+              <div className="flex-1 p-[1.2vw] flex flex-col gap-[0.9vw] min-w-0">
+                {/* hero block */}
+                <div className="rounded-[0.5vw] relative flex flex-col items-center justify-center gap-[0.5vw] flex-shrink-0"
+                  style={{ height: "7vw", minHeight: 56, background: "rgba(8,127,241,0.07)", border: "1px dashed rgba(8,127,241,0.25)" }}>
+                  <span style={{ position: "absolute", top: "0.4vw", right: "0.6vw", fontFamily: "var(--font)", fontSize: "clamp(0.38rem, 0.52vw, 0.58rem)", color: "rgba(8,127,241,0.5)", letterSpacing: "0.1em" }}>HERO</span>
+                  <div className="rounded-full" style={{ height: "0.8vw", minHeight: 7, width: "55%", background: "rgba(8,127,241,0.4)" }} />
+                  <div className="rounded-full" style={{ height: "0.45vw", minHeight: 4, width: "35%", background: "rgba(255,255,255,0.12)" }} />
+                  <div className="rounded-full" style={{ height: "1.4vw", minHeight: 11, width: "4.5vw", background: "rgba(8,127,241,0.7)", marginTop: "0.3vw" }} />
+                </div>
+
+                {/* CMS collection */}
+                <div className="rounded-[0.4vw] overflow-hidden flex-shrink-0"
+                  style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
+                  <div className="flex gap-[0.5vw] px-[0.8vw] py-[0.5vw]"
+                    style={{ background: "rgba(8,127,241,0.15)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                    {[0,1,2].map(ci => (
+                      <div key={ci} className="flex-1 rounded-full"
+                        style={{ height: "0.45vw", minHeight: 4, background: "rgba(8,127,241,0.6)" }} />
+                    ))}
+                  </div>
+                  {[0.18, 0.12, 0.08].map((op, ri) => (
+                    <div key={ri} className="flex gap-[0.5vw] px-[0.8vw] py-[0.55vw]"
+                      style={{ borderBottom: ri < 2 ? "1px solid rgba(255,255,255,0.04)" : "none" }}>
+                      {[0.7, 0.5, 0.35].map((w, ci) => (
+                        <div key={ci} className="flex-1 rounded-full"
+                          style={{ height: "0.4vw", minHeight: 3, background: `rgba(255,255,255,${op})` }} />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+
+                {/* publish row */}
+                <div className="flex justify-end mt-auto">
+                  <div className="flex items-center gap-[0.5vw] rounded-full px-[1.2vw] flex-shrink-0"
+                    style={{ height: "2vw", minHeight: 20, background: "rgb(8,127,241)", boxShadow: "0 0 16px rgba(8,127,241,0.55)" }}>
+                    <div className="rounded-full bg-white flex-shrink-0" style={{ width: "0.45vw", height: "0.45vw", minWidth: 5, minHeight: 5 }} />
+                    <span style={{ fontFamily: "var(--font)", fontSize: "clamp(0.48rem, 0.65vw, 0.72rem)", color: "white", fontWeight: 700 }}>Publish</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* tags */}
+            <div className="relative z-10 flex flex-wrap gap-[0.6vw] p-[1.5vw]"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
               {["CMS Hand-off", "Interactions", "Responsive", "Hosting"].map(tag => (
-                <span
-                  key={tag}
-                  className="uppercase font-bold tracking-[0.1em] text-[rgba(8,127,241,0.9)] bg-[rgba(8,127,241,0.12)] border border-[rgba(8,127,241,0.25)] rounded-[100vw] px-[1em] py-[0.4em]"
-                  style={{ fontFamily: "var(--font)", fontSize: "clamp(0.6rem, 0.75vw, 0.8rem)" }}
-                >
+                <span key={tag} className="uppercase font-bold tracking-[0.1em] rounded-[100vw] px-[1em] py-[0.4em]"
+                  style={{ fontFamily: "var(--font)", fontSize: "clamp(0.6rem, 0.75vw, 0.8rem)", color: "rgba(8,127,241,0.9)", background: "rgba(8,127,241,0.12)", border: "1px solid rgba(8,127,241,0.25)" }}>
                   {tag}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Framer card */}
+          {/* ── Framer card ── */}
           <div
             ref={r => (cardInnerRefs.current[1] = r)}
-            className="flex-1 overflow-hidden flex flex-col justify-between relative box-border rounded-[1.2vw] p-[3vw] min-h-[22vw]"
+            className="flex-1 overflow-hidden flex flex-col relative box-border rounded-[1.2vw] min-h-[30vw]"
             style={{
-              background: "linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 60%, #2d0a5e 100%)",
-              border: "1px solid rgba(100,50,255,0.35)",
+              background: "linear-gradient(145deg, #0a0712 0%, #160a2e 55%, #28095e 100%)",
+              border: "1px solid rgba(120,60,255,0.3)",
             }}
           >
-            {/* Glow */}
-            <div
-              className="absolute rounded-full pointer-events-none -top-[20%] -right-[10%] w-[50%] h-[50%]"
-              style={{ background: "radial-gradient(circle, rgba(100,50,255,0.2) 0%, transparent 70%)" }}
-            />
+            {/* ambient glow */}
+            <div className="absolute pointer-events-none rounded-full w-[60%] h-[60%] -top-[20%] right-[5%]"
+              style={{ background: "radial-gradient(circle, rgba(120,60,255,0.18) 0%, transparent 70%)" }} />
 
-            <div>
-              <img src={IMAGES.framerTag} loading="lazy" alt="Framer" className="block h-[2.2vw] mb-[2.5vw]" />
-              <p
-                className="leading-[170%] mb-[2vw] mt-0 max-w-[36ch]"
-                style={{
-                  fontFamily: "var(--font)",
-                  fontSize: "clamp(0.75rem, 1vw, 1rem)",
-                  color: "rgba(255,255,255,0.5)",
-                }}
-              >
-                Motion-rich sites powered by React components, advanced animations and live prototyping.
-              </p>
+            {/* browser chrome */}
+            <div className="relative z-10 flex items-center gap-[0.45vw] px-[1.4vw] py-[1vw]"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+              {["rgba(255,90,90,0.5)","rgba(255,200,50,0.5)","rgba(50,200,50,0.5)"].map((c, i) => (
+                <div key={i} className="rounded-full flex-shrink-0"
+                  style={{ width: "0.55vw", height: "0.55vw", minWidth: 7, minHeight: 7, background: c }} />
+              ))}
+              <div className="flex-1 mx-[0.8vw] flex items-center gap-[0.35vw] rounded-[0.4vw] px-[0.7vw]"
+                style={{ height: "1.5vw", minHeight: 18, background: "rgba(255,255,255,0.05)" }}>
+                <div className="rounded-full flex-shrink-0"
+                  style={{ width: "0.45vw", height: "0.45vw", minWidth: 6, minHeight: 6, background: "rgba(120,60,255,0.7)" }} />
+                <span style={{ fontFamily: "var(--font)", fontSize: "clamp(0.45rem, 0.62vw, 0.7rem)", color: "rgba(255,255,255,0.3)" }}>
+                  studio.framer.com
+                </span>
+              </div>
+              <img src={IMAGES.framerTag} loading="lazy" alt="Framer"
+                style={{ height: "1.2vw", minHeight: 14, opacity: 0.65, flexShrink: 0 }} />
             </div>
 
-            <div className="flex flex-wrap gap-[0.6vw]">
+            {/* Framer canvas body */}
+            <div className="relative z-10 flex flex-1 overflow-hidden">
+              {/* layers panel */}
+              <div className="flex flex-col gap-[0.4vw] p-[1vw] flex-shrink-0"
+                style={{ width: "8vw", borderRight: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="rounded-full flex-shrink-0"
+                  style={{ height: "0.4vw", minHeight: 4, width: "70%", background: "rgba(120,60,255,0.6)", marginBottom: "0.4vw" }} />
+                {[
+                  { indent: 0, w: "80%", active: false },
+                  { indent: 1, w: "65%", active: true  },
+                  { indent: 2, w: "55%", active: false },
+                  { indent: 2, w: "60%", active: false },
+                  { indent: 1, w: "70%", active: false },
+                  { indent: 2, w: "45%", active: false },
+                ].map(({ indent, w, active }, i) => (
+                  <div key={i} className="flex items-center rounded-[0.2vw]"
+                    style={{ height: "1.2vw", minHeight: 13, paddingLeft: `${0.3 + indent * 0.6}vw`, background: active ? "rgba(120,60,255,0.2)" : "transparent" }}>
+                    <div className="rounded-full"
+                      style={{ height: "0.35vw", minHeight: 3, width: w, background: active ? "rgba(150,90,255,0.85)" : "rgba(255,255,255,0.1)" }} />
+                  </div>
+                ))}
+              </div>
+
+              {/* canvas */}
+              <div className="flex-1 p-[1.2vw] flex flex-col gap-[1vw] min-w-0">
+                {/* interaction state stack */}
+                <div className="flex flex-col gap-[0.7vw]">
+                  {[
+                    { label: "Default", accent: "rgba(255,255,255,0.06)", border: "rgba(255,255,255,0.12)" },
+                    { label: "Hover",   accent: "rgba(120,60,255,0.15)",  border: "rgba(120,60,255,0.45)" },
+                    { label: "Active",  accent: "rgba(120,60,255,0.3)",   border: "rgba(150,90,255,0.75)" },
+                  ].map(({ label, accent, border }, i) => (
+                    <div key={i} className="flex items-center gap-[0.8vw]">
+                      <span className="flex-shrink-0"
+                        style={{ fontFamily: "var(--font)", fontSize: "clamp(0.42rem, 0.55vw, 0.62rem)", color: "rgba(255,255,255,0.3)", width: "3.5vw", minWidth: 34, letterSpacing: "0.07em" }}>
+                        {label}
+                      </span>
+                      <div className="flex-1 flex items-center justify-between rounded-[0.5vw] px-[0.8vw]"
+                        style={{ height: "2.5vw", minHeight: 22, background: accent, border: `1px solid ${border}` }}>
+                        <div className="rounded-full" style={{ height: "0.55vw", minHeight: 5, width: "40%", background: border }} />
+                        <div className="rounded-[100vw]" style={{ height: "1.5vw", minHeight: 14, width: "22%", background: border }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* easing curve + label */}
+                <div className="flex items-end gap-[0.8vw] mt-auto">
+                  <svg viewBox="0 0 60 40" style={{ width: "5vw", minWidth: 44, height: "3.5vw", minHeight: 28, flexShrink: 0 }}>
+                    <path d="M 5 35 C 15 35, 10 5, 55 5" stroke="rgba(120,60,255,0.7)" strokeWidth="1.5" fill="none" />
+                    <circle cx="5"  cy="35" r="2" fill="rgba(120,60,255,0.5)" />
+                    <circle cx="55" cy="5"  r="2" fill="rgba(150,90,255,0.9)" />
+                  </svg>
+                  <span style={{ fontFamily: "var(--font)", fontSize: "clamp(0.4rem, 0.52vw, 0.6rem)", color: "rgba(255,255,255,0.22)", letterSpacing: "0.1em" }}>
+                    ease-in-out
+                  </span>
+                </div>
+              </div>
+
+              {/* props panel */}
+              <div className="flex flex-col gap-[0.65vw] p-[1vw] flex-shrink-0"
+                style={{ width: "7vw", borderLeft: "1px solid rgba(255,255,255,0.06)" }}>
+                {["Width","Height","Opacity","Radius"].map((_, i) => (
+                  <div key={i} className="flex flex-col gap-[0.2vw]">
+                    <div className="rounded-full" style={{ height: "0.3vw", minHeight: 3, width: "50%", background: "rgba(255,255,255,0.15)" }} />
+                    <div className="rounded-[0.25vw] flex items-center justify-center"
+                      style={{ height: "1.3vw", minHeight: 13, background: "rgba(120,60,255,0.1)", border: "1px solid rgba(120,60,255,0.2)" }}>
+                      <div className="rounded-full" style={{ height: "0.35vw", minHeight: 3, width: "55%", background: "rgba(150,90,255,0.5)" }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* tags */}
+            <div className="relative z-10 flex flex-wrap gap-[0.6vw] p-[1.5vw]"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
               {["React Components", "Animations", "Prototyping", "CMS"].map(tag => (
-                <span
-                  key={tag}
-                  className="uppercase font-bold tracking-[0.1em] text-[rgba(130,80,255,0.9)] bg-[rgba(100,50,255,0.12)] border border-[rgba(100,50,255,0.25)] rounded-[100vw] px-[1em] py-[0.4em]"
-                  style={{ fontFamily: "var(--font)", fontSize: "clamp(0.6rem, 0.75vw, 0.8rem)" }}
-                >
+                <span key={tag} className="uppercase font-bold tracking-[0.1em] rounded-[100vw] px-[1em] py-[0.4em]"
+                  style={{ fontFamily: "var(--font)", fontSize: "clamp(0.6rem, 0.75vw, 0.8rem)", color: "rgba(130,80,255,0.9)", background: "rgba(100,50,255,0.12)", border: "1px solid rgba(100,50,255,0.25)" }}>
                   {tag}
                 </span>
               ))}

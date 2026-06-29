@@ -26,9 +26,8 @@ export default function Navbar({ visible }) {
     if (!navEl) return;
 
     const update = (theme) => {
-      const isPeach = theme === "peach";
       document.querySelectorAll(".nav-name-jm, .nav-link, .nav-social-link, .nav-link-mobile").forEach(el => {
-        el.classList.toggle("is-peach", isPeach);
+        el.classList.toggle("is-peach", theme === "peach");
       });
     };
 
