@@ -201,7 +201,7 @@ export default function StatsSection() {
                 fontSize: "7.82vw",
                 letterSpacing: "-0.35vw",
                 lineHeight: "105%",
-                color: "var(--grey)",
+                color: "var(--blue)",
                 fontFamily: "var(--font)",
               }}
             >
