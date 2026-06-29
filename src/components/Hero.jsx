@@ -99,17 +99,17 @@ export default function Hero({ visible }) {
 
       {/* ── Desktop layout: column (top label / bottom lottie+subtitle) ── */}
       {/* ── Mobile layout:  row   (left heading / right subtitle)       ── */}
-      <div className="relative z-[3] w-full h-full flex flex-row items-center justify-between md:flex-col md:justify-between p-[4vw]">
+      <div className="relative z-[3] w-full h-full flex flex-row xl:items-center justify-between md:flex-col md:justify-between p-[4vw]">
 
         {/* Top label — left on mobile, top on desktop */}
         <div className="hero-top-label w-[50%] md:w-auto" style={{ marginTop: "0", paddingTop: "clamp(0px, 7vw, 7vw)" }}>
-          <h1 className="m-0 font-semibold leading-[110%]" style={{ fontSize: "clamp(1rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
+          <h1 className="xl:m-0 md:mt-[18vh] font-semibold leading-[110%]" style={{ fontSize: "clamp(1rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
             Brand &amp; Web<br />Design Specialist
           </h1>
         </div>
 
         {/* Bottom — right on mobile (no Lottie), bottom on desktop (with Lottie) */}
-        <div className="hero-bottom-label flex flex-col items-end w-[35%] md:w-full">
+        <div className="hero-bottom-label flex flex-col items-end justify-center w-[35%] md:w-full">
 
           {/* Lottie — hidden on mobile */}
           <div className="hidden md:block w-full" style={{ height: "12.16vw" }}>
@@ -120,7 +120,7 @@ export default function Hero({ visible }) {
             />
           </div>
 
-          <p className="m-0 text-right font-semibold leading-[110%]" style={{ marginTop: "1vw", fontSize: "clamp(0.75rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
+          <p className="md:m-[1vw] text-end font-semibold leading-[110%]" style={{ fontSize: "clamp(0.75rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
             Freelance Design Director
           </p>
         </div>

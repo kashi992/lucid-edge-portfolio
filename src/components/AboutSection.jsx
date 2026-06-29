@@ -435,11 +435,11 @@ export default function AboutSection() {
         <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible">
 
           {/* wrapper-cont-50._70: 49% wide, relative */}
-          <div className="relative w-[49%]">
+          <div className="about-hero-inner relative w-[49%]">
 
             {/* pill-hero-about-wrapper: absolute, icon + blue dot */}
             <div
-              className="flex items-center gap-[1.4vw] absolute"
+              className="about-pill flex items-center gap-[1.4vw] absolute"
               style={{ top: "0.4vw", left: "0.7vw" }}
             >
               <img
@@ -456,7 +456,7 @@ export default function AboutSection() {
             {/* text-headline-about */}
             <h1
               ref={el => heroWordRefs.current[0] = el}
-              className="m-0 font-semibold flex flex-wrap"
+              className="about-headline m-0 font-semibold flex flex-wrap"
               style={{
                 color: "var(--blue)",
                 fontFamily: "var(--font)",
@@ -487,7 +487,7 @@ export default function AboutSection() {
       >
         <div
           ref={scrollRef}
-          className="relative flex justify-center items-start w-screen z-[1]"
+          className="about-scroll-section relative flex justify-center items-start w-screen z-[1]"
           style={{ height: "300vh", overflow: "visible" }}
         >
           {/* .sticky-cont-about */}
@@ -561,11 +561,11 @@ export default function AboutSection() {
         {BIO.map((item, i) => (
           <div key={i} className="w-[92vw]">
             <div
-              className="grid w-full pt-16 pb-16 items-start"
+              className="about-bio-grid about-bio-row grid w-full pt-16 pb-16 items-start"
               style={{ gridTemplateColumns: "50% 50%" }}
             >
               {/* left: label */}
-              <div className="flex justify-end pr-16">
+              <div className="about-bio-label flex justify-end pr-16">
                 <h3
                   ref={el => labelRefs.current[i] = el}
                   className="m-0 font-semibold text-right leading-[110%] text-[2rem] whitespace-pre-line"
@@ -583,7 +583,7 @@ export default function AboutSection() {
               <div>
                 <p
                   ref={el => bodyRefs.current[i] = el}
-                  className="m-0 font-semibold leading-[140%] tracking-[0.03rem] text-[0.9rem] whitespace-pre-line"
+                  className="about-bio-body m-0 font-semibold leading-[140%] tracking-[0.03rem] text-[0.9rem] whitespace-pre-line"
                   style={{
                     color: "var(--grey)",
                     fontFamily: "var(--font)",
@@ -653,11 +653,11 @@ export default function AboutSection() {
               {/* background number */}
               <span
                 className="absolute font-semibold pointer-events-none text-[4vw] leading-[95%] opacity-[0.12]"
-                style={{ color: "var(--orange1)" }}
                 style={{
                   top: "2vw", right: "4vw",
                   letterSpacing: "-0.2vw",
                   fontFamily: "var(--font)",
+                  color: "var(--orange1)"
                 }}
               >
                 {item.num}
@@ -665,12 +665,12 @@ export default function AboutSection() {
 
               {/* 3-col grid: headline / body / button */}
               <div
-                className="grid w-full gap-4 place-items-end mt-[2vw]"
+                className="news-grid grid w-full gap-4 place-items-end mt-[2vw]"
                 style={{ gridTemplateColumns: "1fr 0.5fr 0.5fr" }}
               >
                 <h3
                   ref={el => newsHeadlineRefs.current[i] = el}
-                  className="m-0 font-semibold leading-[100%] w-full"
+                  className="news-headline m-0 font-semibold leading-[100%] w-full"
                   style={{
                     color: "var(--orange1)",
                     fontFamily: "var(--font)",
@@ -690,7 +690,7 @@ export default function AboutSection() {
                 </h3>
                 <p
                   ref={el => newsBodyRefs.current[i] = el}
-                  className="m-0 font-semibold leading-[140%] text-[0.9rem] w-full"
+                  className="news-body m-0 font-semibold leading-[140%] text-[0.9rem] w-full"
                   style={{ color: "var(--bg-warm)", fontFamily: "var(--font)", opacity: 0.75 }}
                 >
                   {item.body}
@@ -706,7 +706,7 @@ export default function AboutSection() {
               {i === 0 && (
                 <div
                   ref={el => newsPanelRefs.current[i] = el}
-                  className="w-full overflow-hidden rounded-lg"
+                  className="news-canvas w-full overflow-hidden rounded-lg"
                   style={{ height: "50vw" }}
                 >
                   <StudioPanel />

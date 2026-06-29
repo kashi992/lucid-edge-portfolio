@@ -305,14 +305,13 @@ export default function BenefitsSection() {
           />
 
           {/* ── step1 — text overlaid on dark photo ── */}
-          <div className="absolute inset-0 flex flex-col justify-end z-[2]" style={{ padding: "0 6vw 8vw" }}>
+          <div className="absolute inset-0 flex flex-col xl:justify-end z-[2] px-[6vw] pb-[8vw] xl:pt-0 pt-[8vw]">
 
             <div ref={h1LeftWrapRef} className="will-change-transform">
               <h2
-                className="m-0 font-black tracking-[-0.04em] leading-[88%]"
+                className="m-0 font-black tracking-[-0.04em] leading-[88%] xl:text-[150px] text-[110px]"
                 style={{
                   fontFamily: "var(--font)",
-                  fontSize: "clamp(3rem, 11vw, 14rem)",
                   color: "var(--bg-warm)",
                 }}
               >
@@ -322,10 +321,9 @@ export default function BenefitsSection() {
 
             <div ref={h1RightWrapRef} className="will-change-transform flex justify-end">
               <h2
-                className="m-0 font-black tracking-[-0.04em] leading-[88%]"
+                className="m-0 font-black tracking-[-0.04em] leading-[88%] xl:text-[150px] text-[110px]"
                 style={{
                   fontFamily: "var(--font)",
-                  fontSize: "clamp(3rem, 11vw, 14rem)",
                   color: "var(--orange1)",
                 }}
               >
@@ -360,7 +358,7 @@ export default function BenefitsSection() {
           {/* ── step2 — no overlay, all dark text ── */}
           <div className="absolute inset-0 flex flex-col justify-center z-[3]" style={{ padding: "0 8vw" }}>
 
-            <div ref={step2HdrRef} style={{ maxWidth: "50vw" }}>
+            <div ref={step2HdrRef} className="md:max-w-[50vw]">
               <h2
                 className="m-0 mb-[0.25em] font-semibold tracking-[-0.01em] leading-[130%]"
                 style={{
@@ -385,9 +383,8 @@ export default function BenefitsSection() {
 
             {/* line-step2 */}
             <div
-              className="w-full h-[1px] opacity-[0.12]"
+              className="w-full h-[1px] opacity-[0.12] md:max-w-[50vw]"
               style={{
-                maxWidth: "50vw",
                 background: "var(--bg-warm)",
                 margin: "3vw 0 2.5vw",
               }}
@@ -396,8 +393,7 @@ export default function BenefitsSection() {
             {/* list-benefits */}
             <ul
               ref={listRef}
-              className="list-none p-0 m-0 flex flex-col"
-              style={{ maxWidth: "50vw" }}
+              className="list-none p-0 m-0 flex flex-col md:max-w-[50vw]"
             >
               {BENEFITS_LIST.map((item, i) => (
                 <li key={i}>
@@ -433,7 +429,7 @@ export default function BenefitsSection() {
         </div>{/* end wrapperRef (sticky) */}
 
         {/* ── benefits-height-1step ── */}
-        <div ref={step1SpacerRef} className="h-[250vh]" />
+        <div ref={step1SpacerRef} className="benefits-step1 h-[250vh]" />
 
         {/* ── benefits-height-2step ── */}
         <div ref={step2SpacerRef} className="h-[250vh]" />

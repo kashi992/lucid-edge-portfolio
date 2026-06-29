@@ -153,13 +153,13 @@ export default function Footer() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 flex flex-col justify-end items-center w-[92vw] h-full pb-[4vw]">
+      <div className="footer-content relative z-20 flex flex-col justify-end items-center w-[92vw] h-full pb-[4vw]">
 
         {/* Top row */}
-        <div className="flex flex-row-reverse justify-between items-start w-full mb-[4vw] flex-wrap">
+        <div className="footer-top-row flex flex-row-reverse justify-between items-start w-full mb-[4vw] flex-wrap">
 
           {/* Tools column */}
-          <div className="flex flex-col gap-10 justify-end items-end w-[30%]">
+          <div className="footer-col flex flex-col gap-10 justify-end items-end w-[30%]">
             {/* divider line */}
             <div
               ref={toolsDividerRef}
@@ -189,7 +189,7 @@ export default function Footer() {
           </div>
 
           {/* Socials column */}
-          <div className="flex flex-col gap-10 justify-end items-end w-[30%]">
+          <div className="footer-col flex flex-col gap-10 justify-end items-end w-[30%]">
             <div
               ref={socialsDividerRef}
               className="w-full h-[1px] mb-2"
@@ -210,7 +210,7 @@ export default function Footer() {
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="block no-underline cursor-pointer text-[0.8rem] font-semibold leading-[100%] text-right"
+                    className="footer-social-link block no-underline cursor-pointer text-[0.8rem] font-semibold leading-[100%] text-right"
                     style={{ color: "var(--orange1)", fontFamily: "var(--font)", opacity: 0.65 }}
                   >
                     {label}
@@ -222,10 +222,10 @@ export default function Footer() {
         </div>
 
         {/* Giant name */}
-        <div className="flex justify-center gap-5 items-center mb-[0.5vw] w-[85vw]">
+        <div className="footer-name-row flex justify-center gap-5 items-center mb-[0.5vw] w-[85vw]">
           <h2
             ref={lucidRef}
-            className="m-0 text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
+            className="footer-name m-0 text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)", willChange: "transform" }}
           >
             LUCID
@@ -240,7 +240,7 @@ export default function Footer() {
           />
           <h2
             ref={edgeRef}
-            className="m-0 text-right text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
+            className="footer-name m-0 text-right text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)", willChange: "transform" }}
           >
             EDGE
@@ -248,17 +248,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex justify-between items-center w-full">
+        <div className="footer-bottom-bar flex justify-between items-center w-full">
           <h3
             ref={bottomLeftRef}
-            className="m-0 text-[1.2rem] font-semibold leading-[100%]"
+            className="footer-bottom-text m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
             Brand &amp; Web Design Studio &nbsp;<span className="opacity-50">2026</span>
           </h3>
           <h3
             ref={bottomRightRef}
-            className="m-0 text-[1.2rem] font-semibold leading-[100%]"
+            className="footer-bottom-text m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
             Lucid Edge Studio &nbsp;<span className="opacity-50">[Coming Soon]</span>

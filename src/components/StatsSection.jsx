@@ -196,7 +196,7 @@ export default function StatsSection() {
           <div ref={headingInnerRef} className="will-change-transform">
             <h2
               ref={headlineRef}
-              className="stats-heading m-0 font-semibold"
+              className="stats-heading m-0 font-semibold text-center"
               style={{
                 fontSize: "7.82vw",
                 letterSpacing: "-0.35vw",

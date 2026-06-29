@@ -149,7 +149,7 @@ export default function WorkSection() {
     >
       {/* ── Sticky sidebar navigation ── */}
       <nav
-        className="sticky top-0 flex flex-col justify-center overflow-y-auto"
+        className="work-sidebar sticky top-0 flex flex-col justify-center overflow-y-auto"
         style={{ width: "14vw", height: "100vh", paddingLeft: "4vw", zIndex: 50, flexShrink: 0 }}
       >
         <ul className="flex flex-col list-none m-0 p-0" style={{ gap: "0.15rem" }}>
@@ -161,10 +161,9 @@ export default function WorkSection() {
                   onClick={() => scrollToProject(p.id)}
                   className="flex items-center text-left border-none bg-transparent cursor-pointer"
                   style={{
-                    opacity: isActive ? 1 : 0,
-                    gap: "1vw",
+                    gap: "0.6rem",
                     paddingLeft: "8px",
-                    paddingRight: "8px",
+                    paddingRight: isActive ? "8px" : "0",
                     marginLeft: "-8px",
                     background: isActive ? "rgba(0,0,0,0.05)" : "transparent",
                     borderRadius: "22px",
@@ -174,10 +173,8 @@ export default function WorkSection() {
                     color: "var(--grey)",
                     whiteSpace: "nowrap",
                     height: "100%",
-                    transition: "opacity 0.2s, background 0.2s",
+                    transition: "background 0.2s",
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.opacity = "1"; }}
-                  onMouseLeave={e => { if (!isActive) e.currentTarget.style.opacity = "0"; }}
                 >
                   {/* dot */}
                   <span
@@ -185,24 +182,11 @@ export default function WorkSection() {
                     style={{
                       width: "0.3rem", height: "0.3rem",
                       background: isActive ? "var(--blue)" : "var(--grey)",
-                      opacity: isActive ? 1 : 0.58,
+                      opacity: isActive ? 1 : 0.5,
                       flexShrink: 0,
                     }}
                   />
-                  <span>{p.title.split("\n")[0]}</span>
-                  {/* thumbnail — appears on hover via CSS opacity */}
-                  <img
-                    src={p.media[0]?.src}
-                    alt=""
-                    style={{
-                      width: "3vw",
-                      height: "2vw",
-                      objectFit: "cover",
-                      borderRadius: "0.2rem",
-                      display: isActive ? "block" : "none",
-                      flexShrink: 0,
-                    }}
-                  />
+                  {isActive && <span>{p.title.split("\n")[0]}</span>}
                 </button>
               </li>
             );
@@ -212,17 +196,17 @@ export default function WorkSection() {
 
       {/* ── Main content ── */}
       <div
-        className="flex flex-col"
+        className="work-main flex flex-col"
         style={{ width: "86vw", gap: "0", paddingRight: "4vw" }}
       >
         {/* Hero */}
         <div
-          className="flex flex-col justify-end relative"
+          className="work-hero flex flex-col justify-end relative"
           style={{ width: "71vw", height: "32vw", margin: "9vw 0" }}
         >
           <h1
             ref={headlineRef}
-            className="m-0"
+            className="work-headline m-0"
             style={{
               color: "var(--grey)",
               fontFamily: "var(--font)",
@@ -260,7 +244,7 @@ export default function WorkSection() {
               key={p.id}
               id={p.id}
               ref={el => { itemRefs.current[p.id] = el; }}
-              className="w-full flex flex-col relative"
+              className="work-card w-full flex flex-col relative"
               style={{
                 background: "#fff",
                 padding: "4rem 8px 8px",
@@ -280,7 +264,7 @@ export default function WorkSection() {
 
               {/* 4-col info grid */}
               <div
-                className="w-full"
+                className="work-info-grid w-full"
                 style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "16px", alignItems: "start" }}
               >
                 {/* col 1: title + year + CTA */}

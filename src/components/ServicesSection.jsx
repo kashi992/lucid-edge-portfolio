@@ -111,7 +111,7 @@ function ServiceRow({ service, index }) {
         <div className="overflow-hidden flex-1 pb-[0.06em]">
           <div ref={titleEl} className="flex items-center gap-[1.5vw]">
             <h2
-              className="m-0 font-bold tracking-[-0.03em] leading-[100%]"
+              className="m-0 font-bold tracking-[-0.03em] leading-[100%] md:text-start text-center w-full"
               style={{
                 fontFamily: "var(--font)",
                 fontSize: "clamp(1.8rem, 3.8vw, 4.5rem)",
@@ -132,7 +132,7 @@ function ServiceRow({ service, index }) {
       {/* Description */}
       <p
         ref={descRef}
-        className="m-0 font-medium leading-[160%] max-w-[38vw] pl-[3.8vw]"
+        className="m-0 font-medium md:text-start text-center leading-[160%] md:max-w-[38vw] md:pl-[3.8vw]"
         style={{
           fontFamily: "var(--font)",
           fontSize: "clamp(0.85rem, 1vw, 1rem)",
@@ -145,12 +145,12 @@ function ServiceRow({ service, index }) {
       {/* ── Media cards ── */}
       {!isWebflow && (
         <div className="w-full overflow-hidden pb-[6vw] pt-[1vw] [perspective:1200px]">
-          <div ref={stripRef} className="flex gap-[1vw]">
+          <div ref={stripRef} className="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-[1vw]">
             {mediaItems.map((item, i) => (
               <div
                 key={i}
                 ref={r => (cardInnerRefs.current[i] = r)}
-                className="flex-1 min-w-0 rounded-[10px] overflow-hidden will-change-transform h-[20vw]"
+                className="flex-1 min-w-0 rounded-[10px] overflow-hidden will-change-transform md:h-[20vw] h-[140px]"
                 style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.12)" }}
               >
                 {item.type === "img"
@@ -165,7 +165,7 @@ function ServiceRow({ service, index }) {
 
       {/* ── Webflow / Framer cards ── */}
       {isWebflow && (
-        <div className="flex box-border gap-[2vw] px-[3.8vw] pb-[5vw]">
+        <div className="flex box-border gap-[2vw] md:px-[3.8vw] pb-[5vw]">
 
           {/* ── Webflow card ── */}
           <div
@@ -435,14 +435,14 @@ function SectionHeading() {
     >
       <p
         ref={labelRef}
-        className="m-0 uppercase text-[0.72rem] font-bold tracking-[0.14em]"
+        className="m-0 uppercase text-[0.72rem] font-bold tracking-[0.14em] md:text-start text-center"
         style={{ color: "var(--grey)", fontFamily: "var(--font)" }}
       >
         Design Expert
       </p>
 
       <h2
-        className="m-0 flex flex-wrap font-extrabold tracking-[-0.04em] leading-[95%] gap-[0_0.25em]"
+        className="m-0 flex flex-wrap font-extrabold tracking-[-0.04em] leading-[95%] gap-[0_0.25em] md:text-start text-center md:justify-start justify-center"
         style={{
           fontFamily: "var(--font)",
           fontSize: "clamp(2rem, 7vw, 7.5rem)",
