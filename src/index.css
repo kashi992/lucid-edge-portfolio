@@ -291,23 +291,13 @@ ul, ol { list-style: none; }
 /* ── Utility ────────────────────────────────────────────────────────────────── */
 .overflow-clip { overflow: hidden; }
 
-/* ── Mobile bottom nav ───────────────────────────────────────────────────────── */
-.nav-menu-mobile {
-  display: none;
-  position: fixed;
-  bottom: 3vw;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 990;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  background-color: #22222299;
-  border-radius: 100px;
-  padding: 2vw 4vw;
-  gap: 4vw;
-  align-items: center;
-  justify-content: center;
+/* ── Nav center Lottie icon ─────────────────────────────────────────────────── */
+.jm-icon {
+  width: 38px;
+  margin-top: 0.4rem;
 }
+
+/* ── Mobile bottom nav ───────────────────────────────────────────────────────── */
 .nav-link-mobile {
   color: var(--bg-warm);
   font-family: var(--font);
@@ -317,6 +307,8 @@ ul, ol { list-style: none; }
   padding: 1.5vw 3vw;
   border-radius: 100px;
   transition: background-color 0.3s ease;
+  background-color: #00000050;
+  backdrop-filter: blur(14px);
 }
 .nav-link-mobile.is-peach { color: var(--orange1); }
 .nav-link-mobile:hover { background-color: #ffffff22; }
@@ -325,40 +317,10 @@ ul, ol { list-style: none; }
 @media (max-width: 991px) {
   .nav-name-jm { font-size: 1.1rem; }
 
-  /* StatsSection */
+  /* StatsSection — these can't use Tailwind (dynamically set via JS) */
   .stats-height { height: 150vw !important; padding-top: 18vw !important; }
   .stats-heading { font-size: 9vw !important; letter-spacing: -0.45vw !important; width: 100% !important; }
 
-  /* WorkCTA — hidden on tablet+ (reference: display:none at 991px) */
-  .work-cta-section { display: none !important; }
-
-  /* ContactCTA */
-  .cta-content-wrapper { width: 86vw !important; margin-top: 9vw !important; margin-bottom: 9vw !important; }
-  .cta-heading-main { font-size: 8vw !important; width: 90% !important; }
-  .cta-heading { font-size: 8vw !important; }
-  .cta-body { font-size: 2.5vw !important; }
-
-  /* Footer */
-  .footer-bottom-text { font-size: 1.2rem !important; }
-
-  /* Work page */
-  .work-sidebar { display: none !important; }
-  .work-main { width: 100% !important; padding-left: 4vw !important; padding-right: 4vw !important; }
-  .work-hero { width: 80% !important; height: 63vw !important; margin-bottom: 14vw !important; }
-  .work-headline { font-size: 10vw !important; text-align: center !important; }
-  .work-info-grid { grid-template-columns: 1fr 1fr !important; grid-template-rows: auto auto !important; }
-  .work-card { padding-top: 5vw !important; gap: 2vw !important; }
-  .proj-media { gap: 0.8vw !important; }
-
-  /* About page */
-  .about-headline { font-size: 10vw !important; }
-  .about-hero-inner { width: 70% !important; }
-  .about-pill img { height: 9vw !important; }
-  .about-bio-grid { grid-template-columns: 45% 55% !important; }
-  .about-bio-body { width: 80% !important; }
-  .about-scroll-section { height: 200vh !important; }
-  .news-grid { grid-template-columns: 1fr 0.4fr 0.4fr !important; }
-  .news-headline { font-size: 5vw !important; }
 }
 
 /* ── Responsive: Mobile (≤767px) ─────────────────────────────────────────────── */
@@ -368,13 +330,18 @@ ul, ol { list-style: none; }
   body { cursor: auto; }
 
   /* Navbar — center logo only */
-  nav.fixed { justify-content: center !important; }
-  .nav-wordmark { margin: 0 auto; }
   .nav-name-jm { font-size: 3vw; letter-spacing: 0; }
   .dot-jm { width: 0.7vw; height: 0.7vw; }
 
   /* Mobile bottom nav */
-  .nav-menu-mobile { display: flex; }
+  .nav-menu-mobile { 
+    display: flex; 
+  position: fixed;
+  bottom: 0;
+  transform: translate(-50%,-100%);
+  z-index: 99;
+  left: 50%;
+  }
 
   /* Hero */
   .hero-top-label { margin-top: 0 !important; padding-top: 0 !important; display: flex; flex-direction: column; justify-content: center; }
@@ -388,51 +355,7 @@ ul, ol { list-style: none; }
   }
   .stats-sticky { width: 85% !important; }
 
-  /* BenefitsSection step1 — hidden on mobile */
   .benefits-step1 { display: none !important; }
-
-  /* WorkCTA — hidden */
-  .work-cta-section { display: none !important; }
-
-  /* ContactCTA */
-  .cta-content-wrapper { width: 90vw !important; margin-top: 10vw !important; margin-bottom: 10vw !important; }
-  .cta-heading-main { font-size: 8vw !important; width: 100% !important; }
-  .cta-heading { font-size: 8vw !important; }
-  .cta-body { font-size: 2.5vw !important; font-weight: 500 !important; line-height: 120% !important; }
-
-  /* Footer */
-  .footer-content { width: 90vw !important; padding-bottom: 22vw !important; }
-  .footer-col { width: 40% !important; align-items: flex-start !important; }
-  .footer-name { display: none !important; }
-  .footer-name-row { display: none !important; }
-  .footer-bottom-text { font-size: 4vw !important; display: none !important; }
-  .footer-social-link { text-align: left !important; font-size: 2.5vw !important; }
-
-  /* Work page */
-  .work-sidebar { display: none !important; }
-  .work-main { width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; }
-  .work-hero { width: 76vw !important; height: 70vw !important; margin: 10vw auto 14vw !important; }
-  .work-headline { font-size: 10vw !important; text-align: center !important; }
-  .work-info-grid { display: flex !important; flex-direction: column !important; width: 90vw !important; padding-left: 3vw !important; }
-  .work-card { margin-bottom: 14vw !important; padding: 7vw 1vw 1vw !important; gap: 5vw !important; }
-  .proj-media { display: flex !important; flex-wrap: wrap !important; gap: 1vw !important; }
-  .proj-media > * { width: 48.5vw !important; }
-  .proj-col { margin-bottom: 5vw !important; width: 100% !important; }
-
-  /* About page */
-  .about-headline { font-size: 10vw !important; text-align: center !important; letter-spacing: -0.35vw !important; }
-  .about-hero-inner { width: 80% !important; }
-  .about-pill img { height: 12vw !important; }
-  .about-bio-grid { grid-template-columns: 1fr !important; }
-  .about-bio-label { justify-content: flex-start !important; padding-right: 0 !important; }
-  .about-bio-label h3 { text-align: left !important; font-size: 6vw !important; }
-  .about-bio-body { width: 100% !important; }
-  .about-bio-row { padding-top: 8vw !important; padding-bottom: 8vw !important; }
-  .about-scroll-section { height: 200vh !important; }
-  .news-grid { grid-template-columns: 1fr !important; gap: 6vw !important; }
-  .news-headline { font-size: 7vw !important; }
-  .news-body { font-size: 2.5vw !important; }
-  .news-canvas { height: 110vw !important; }
 }
 
 /* ── Responsive: Small mobile (≤479px) ───────────────────────────────────────── */
@@ -441,26 +364,4 @@ ul, ol { list-style: none; }
   .dot-jm { width: 1.7vw; height: 1.7vw; }
   .stats-heading { font-size: 10vw !important; }
   .nav-link-mobile { border-radius: 10vw; padding: 3.5vw 4.5vw; font-size: 3.5vw; }
-
-  /* ContactCTA */
-  .cta-content-wrapper { width: 90vw !important; margin-top: 10vw !important; margin-bottom: 10vw !important; }
-  .cta-heading-main { font-size: 9vw !important; letter-spacing: -0.35vw !important; line-height: 100% !important; }
-  .cta-heading { font-size: 9vw !important; letter-spacing: -0.35vw !important; }
-  .cta-body { font-size: 3.5vw !important; font-weight: 600 !important; letter-spacing: 0 !important; }
-
-  /* Footer */
-  .footer-col { width: 44% !important; }
-  .footer-social-link { font-size: 3.2vw !important; font-weight: 500 !important; }
-
-  /* Work page */
-  .work-hero { width: 75vw !important; height: 78vw !important; margin-bottom: 26vw !important; }
-  .work-headline { font-size: 10vw !important; }
-  .work-card { padding-top: 13vw !important; margin-bottom: 23vw !important; }
-  .work-info-grid { width: 80vw !important; padding-left: 0 !important; }
-
-  /* About page */
-  .about-headline { font-size: 10vw !important; letter-spacing: -0.35vw !important; }
-  .about-bio-label h3 { font-size: 6vw !important; }
-  .news-headline { font-size: 7vw !important; }
-  .news-canvas { height: 110vw !important; }
 }

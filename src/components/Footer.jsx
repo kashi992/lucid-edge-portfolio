@@ -153,22 +153,53 @@ export default function Footer() {
       </div>
 
       {/* Content */}
-      <div className="footer-content relative z-20 flex flex-col justify-end items-center w-[92vw] h-full pb-[4vw]">
+      <div className="relative z-20 flex flex-col justify-end items-center w-[90vw] md:w-[92vw] h-full pb-[22vw] md:pb-[4vw]">
 
         {/* Top row */}
-        <div className="footer-top-row flex flex-row-reverse justify-between items-start w-full mb-[4vw] flex-wrap">
+        <div className="grid grid-cols-2 gap-4 pt-[55vh] md:pt-0 mb-0 md:mb-[4vw] w-full">
+ {/* Socials column */}
+          <div className="flex flex-col gap-8 md:gap-10">
+            <div
+              ref={socialsDividerRef}
+              className="w-full h-[1px] mb-2 md:block hidden"
+              style={{ background: "var(--orange1)", opacity: 0.25 }}
+            />
+            <p
+              ref={socialsLabelRef}
+              className="m-0 text-[0.8rem] font-normal leading-[100%]"
+              style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
+            >
+              Contact:
+            </p>
+            <ul className="list-none p-0 m-0">
+              {SOCIALS.map(({ label, href }, i) => (
+                <li key={label} className="mb-4 overflow-hidden">
+                  <a
+                    ref={el => socialsRef.current[i] = el}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noreferrer"
+                    className="block no-underline cursor-pointer font-semibold leading-[100%] text-start text-[2.5vw] md:text-[0.8rem]"
+                    style={{ color: "var(--orange1)", fontFamily: "var(--font)", opacity: 0.65 }}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Tools column */}
-          <div className="footer-col flex flex-col gap-10 justify-end items-end w-[30%]">
+          <div className="flex flex-col gap-8 md:gap-10">
             {/* divider line */}
             <div
               ref={toolsDividerRef}
-              className="w-full h-[1px] mb-2"
+              className="w-full h-[1px] mb-2 md:block hidden"
               style={{ background: "var(--orange1)", opacity: 0.25 }}
             />
             <p
               ref={toolsLabelRef}
-              className="m-0 text-[0.8rem] font-normal leading-[100%]"
+              className="m-0 text-[0.8rem] font-normal leading-[100%] text-end"
               style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
             >
               Website made using:
@@ -188,44 +219,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Socials column */}
-          <div className="footer-col flex flex-col gap-10 justify-end items-end w-[30%]">
-            <div
-              ref={socialsDividerRef}
-              className="w-full h-[1px] mb-2"
-              style={{ background: "var(--orange1)", opacity: 0.25 }}
-            />
-            <p
-              ref={socialsLabelRef}
-              className="m-0 text-[0.8rem] font-normal leading-[100%]"
-              style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
-            >
-              Contact:
-            </p>
-            <ul className="list-none p-0 m-0">
-              {SOCIALS.map(({ label, href }, i) => (
-                <li key={label} className="mb-4 overflow-hidden">
-                  <a
-                    ref={el => socialsRef.current[i] = el}
-                    href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
-                    rel="noreferrer"
-                    className="footer-social-link block no-underline cursor-pointer text-[0.8rem] font-semibold leading-[100%] text-right"
-                    style={{ color: "var(--orange1)", fontFamily: "var(--font)", opacity: 0.65 }}
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+         
         </div>
 
         {/* Giant name */}
-        <div className="footer-name-row flex justify-center gap-5 items-center mb-[0.5vw] w-[85vw]">
+        <div className="hidden md:flex justify-center gap-5 items-center mb-[0.5vw] w-[85vw]">
           <h2
             ref={lucidRef}
-            className="footer-name m-0 text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
+            className="m-0 text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)", willChange: "transform" }}
           >
             LUCID
@@ -240,7 +241,7 @@ export default function Footer() {
           />
           <h2
             ref={edgeRef}
-            className="footer-name m-0 text-right text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
+            className="m-0 text-right text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)", willChange: "transform" }}
           >
             EDGE
@@ -251,14 +252,14 @@ export default function Footer() {
         <div className="footer-bottom-bar flex justify-between items-center w-full">
           <h3
             ref={bottomLeftRef}
-            className="footer-bottom-text m-0 text-[1.2rem] font-semibold leading-[100%]"
+            className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
             Brand &amp; Web Design Studio &nbsp;<span className="opacity-50">2026</span>
           </h3>
           <h3
             ref={bottomRightRef}
-            className="footer-bottom-text m-0 text-[1.2rem] font-semibold leading-[100%]"
+            className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
             Lucid Edge Studio &nbsp;<span className="opacity-50">[Coming Soon]</span>

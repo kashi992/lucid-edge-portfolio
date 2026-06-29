@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PROJECTS } from "../data/work";
+import "../assets/css/style.css";
 
 /* ── Lazy video — starts playing only when visible ────────────────────── */
 function LazyVideo({ src, className, style }) {
@@ -26,26 +27,33 @@ function LazyVideo({ src, className, style }) {
 
 /* ── Media grid — per-project layout ─────────────────────────────────── */
 function ProjectMedia({ project }) {
-  /* 2-col projects */
-  const is2col = project.cols === 2;
+  const cols = project.gridCols === 2 ? 2 : 4;
 
   return (
     <div
       className="proj-media w-full"
       style={{
         display: "grid",
-        gridTemplateColumns: is2col ? "1fr 1fr" : "1fr 1fr 1fr 1fr",
+        gridTemplateColumns: cols === 2 ? "1fr 1fr" : "1fr 1fr 1fr 1fr",
         gap: "8px",
       }}
     >
       {project.media.map((m, i) => {
-        /* For 1-col (4-col grid) projects, each item spans all 4 cols */
-        const spanStyle = !is2col ? { gridColumn: "1 / -1" } : {};
+        const span = m.span || cols;
+        const colSpan = Math.min(span, cols);
+        const itemStyle = {
+          gridColumn: `span ${colSpan}`,
+          borderRadius: "0.3rem",
+          width: "100%",
+        };
+        const hideClass = m.hide ? "hidden sm:block" : "";
+
         return m.type === "video" ? (
           <LazyVideo
             key={i}
             src={m.src}
-            style={{ ...spanStyle, borderRadius: "0.3rem", width: "100%" }}
+            className={`block ${hideClass}`}
+            style={itemStyle}
           />
         ) : (
           <img
@@ -53,8 +61,8 @@ function ProjectMedia({ project }) {
             src={m.src}
             alt=""
             loading="lazy"
-            className="w-full block"
-            style={{ borderRadius: "0.3rem", pointerEvents: "none", ...spanStyle }}
+            className={`w-full block ${hideClass}`}
+            style={{ ...itemStyle, pointerEvents: "none" }}
           />
         );
       })}
@@ -64,17 +72,21 @@ function ProjectMedia({ project }) {
 
 /* ── Main WorkSection ─────────────────────────────────────────────────── */
 export default function WorkSection() {
-  const [activeId, setActiveId] = useState(PROJECTS[0].id);
+  const [activeId, setActiveId] = useState(null);
   const itemRefs    = useRef({});
   const headlineRef = useRef(null);
 
   /* IntersectionObserver — track active project in sidebar */
   useEffect(() => {
+    const visible = new Set();
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach(e => {
-          if (e.isIntersecting) setActiveId(e.target.id);
+          if (e.isIntersecting) visible.add(e.target.id);
+          else visible.delete(e.target.id);
         });
+        if (visible.size === 0) setActiveId(null);
+        else setActiveId([...visible][0]);
       },
       { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
@@ -144,13 +156,13 @@ export default function WorkSection() {
   return (
     <div
       data-nav="grey"
-      className="flex w-screen"
+      className="flex w-screen gap-4"
       style={{ background: "var(--bg-grey)", alignItems: "flex-start" }}
     >
       {/* ── Sticky sidebar navigation ── */}
       <nav
-        className="work-sidebar sticky top-0 flex flex-col justify-center overflow-y-auto"
-        style={{ width: "14vw", height: "100vh", paddingLeft: "4vw", zIndex: 50, flexShrink: 0 }}
+        className="hidden lg:flex sticky top-0 flex-col justify-center overflow-y-auto flex-shrink-0 xl:pt-0 pt-[100px]"
+        style={{ width: "14vw", height: "100vh", paddingLeft: "4vw", zIndex: 50 }}
       >
         <ul className="flex flex-col list-none m-0 p-0" style={{ gap: "0.15rem" }}>
           {PROJECTS.map(p => {
@@ -195,29 +207,24 @@ export default function WorkSection() {
       </nav>
 
       {/* ── Main content ── */}
-      <div
-        className="work-main flex flex-col"
-        style={{ width: "86vw", gap: "0", paddingRight: "4vw" }}
-      >
+      <div className="flex flex-col w-full lg:w-[86vw] px-0 md:px-[4vw] lg:px-0 lg:pr-[4vw]">
         {/* Hero */}
         <div
-          className="work-hero flex flex-col justify-end relative"
-          style={{ width: "71vw", height: "32vw", margin: "9vw 0" }}
+          className="flex flex-col justify-end relative lg:w-[71vw] w-[80%] xl:my-[14vw] my-[20vw] md:mx-0 mx-auto"
         >
           <h1
             ref={headlineRef}
-            className="work-headline m-0"
+            className="m-0 text-[10vw] lg:text-[7vw] text-center lg:text-left"
             style={{
               color: "var(--grey)",
               fontFamily: "var(--font)",
-              fontSize: "7vw",
               fontWeight: 600,
               lineHeight: "105%",
               letterSpacing: "-0.3vw",
             }}
           >
             <span
-              className="t-span opacity-0 invisible"
+              className="t-span opacity-0 invisible leading-none xl:text-[90px] lg:text-[70px] text-[0px]"
               style={{ color: "var(--orange1)", marginRight: "0.15em" }}
             >---</span>
             {HEADLINE.split(" ").map((word, i) => (
@@ -232,8 +239,7 @@ export default function WorkSection() {
             src="/images/folder-juanmora.png"
             alt=""
             loading="lazy"
-            className="absolute pointer-events-none"
-            style={{ left: 0, top: "8.4vw", width: "7.6vw" }}
+            className="absolute pointer-events-none top-0 left-0 w-[7.6vw]"
           />
         </div>
 
@@ -244,31 +250,23 @@ export default function WorkSection() {
               key={p.id}
               id={p.id}
               ref={el => { itemRefs.current[p.id] = el; }}
-              className="work-card w-full flex flex-col relative"
-              style={{
-                background: "#fff",
-                padding: "4rem 8px 8px",
-                gap: "3rem",
-                marginBottom: "8vw",
-              }}
+              className="w-full flex flex-col relative mb-[14vw] lg:mb-[8vw] px-5 pb-2 pt-[10vw] lg:pt-16 gap-[5vw] lg:gap-[3rem]"
+              style={{ background: "#fff", }}
             >
               {/* accent dot */}
               <div
-                className="absolute rounded-[10px]"
+                className="absolute rounded-[10px] w-[0.3rem] h-[0.3rem] md:left-[-20px] md:top-[80px] top-[50px] left-[10px]"
                 style={{
-                  width: "0.3rem", height: "0.3rem",
-                  background: "var(--orange1)",
-                  top: "1.6rem", left: "1rem",
+                  background: "var(--blue)",
                 }}
               />
 
               {/* 4-col info grid */}
               <div
-                className="work-info-grid w-full"
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "16px", alignItems: "start" }}
+                className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 items-start"
               >
                 {/* col 1: title + year + CTA */}
-                <div className="proj-col flex flex-col" data-col="0" style={{ gap: "1rem", paddingLeft: "1rem", width: "95%" }}>
+                <div className="proj-col flex flex-col mb-[5vw] lg:mb-0 w-full lg:w-[90%]  md:row-span-3 lg:row-span-1 md:ps-[1rem] gap-[1rem]" data-col="0">
                   <h3
                     className="m-0 whitespace-pre-line"
                     style={{
@@ -319,7 +317,7 @@ export default function WorkSection() {
                 </div>
 
                 {/* col 2: challenge */}
-                <div className="proj-col flex flex-col" data-col="1" style={{ gap: "1rem", width: "90%" }}>
+                <div className="proj-col flex flex-col mb-[5vw] lg:mb-0 w-full lg:w-[90%]" data-col="1" style={{ gap: "1rem" }}>
                   <p
                     className="m-0"
                     style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--grey)", fontFamily: "var(--font)", opacity: 0.7 }}
@@ -335,7 +333,7 @@ export default function WorkSection() {
                 </div>
 
                 {/* col 3: services */}
-                <div className="proj-col flex flex-col" data-col="2" style={{ gap: "1rem", width: "90%" }}>
+                <div className="proj-col flex flex-col mb-[5vw] lg:mb-0 w-full lg:w-[90%]" data-col="2" style={{ gap: "1rem" }}>
                   <p
                     className="m-0"
                     style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--grey)", fontFamily: "var(--font)", opacity: 0.7 }}
@@ -365,7 +363,7 @@ export default function WorkSection() {
                 </div>
 
                 {/* col 4: role */}
-                <div className="proj-col flex flex-col" data-col="3" style={{ gap: "1rem", width: "90%" }}>
+                <div className="proj-col flex flex-col mb-[5vw] lg:mb-0 w-full lg:w-[90%]" data-col="3" style={{ gap: "1rem" }}>
                   <p
                     className="m-0"
                     style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--grey)", fontFamily: "var(--font)", opacity: 0.7 }}

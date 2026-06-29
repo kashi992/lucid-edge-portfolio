@@ -434,18 +434,19 @@ export default function AboutSection() {
         {/* hero-about-wrapper: full viewport, centered */}
         <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible">
 
-          {/* wrapper-cont-50._70: 49% wide, relative */}
-          <div className="about-hero-inner relative w-[49%]">
+          {/* wrapper-cont-50._70: responsive width */}
+          <div className="relative w-[80%] lg:w-[55%]">
 
             {/* pill-hero-about-wrapper: absolute, icon + blue dot */}
             <div
-              className="about-pill flex items-center gap-[1.4vw] absolute"
+              className="flex items-center gap-[1.4vw] absolute"
               style={{ top: "0.4vw", left: "0.7vw" }}
             >
               <img
                 src="/images/le-mark-lime.jpeg"
                 alt="Lucid Edge"
-                style={{ height: "6vw", mixBlendMode: "darken", }}
+                className="h-[12vw] md:h-[8vw] xl:h-[6vw]"
+                style={{ mixBlendMode: "darken" }}
               />
               <div
                 ref={blueDotRef}
@@ -456,18 +457,15 @@ export default function AboutSection() {
             {/* text-headline-about */}
             <h1
               ref={el => heroWordRefs.current[0] = el}
-              className="about-headline m-0 font-semibold flex flex-wrap"
+              className="m-0 flex flex-wrap text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw] font-semibold pl-5"
               style={{
                 color: "var(--blue)",
                 fontFamily: "var(--font)",
-                fontSize: "7vw",
-                fontWeight: 600,
                 lineHeight: "101%",
-                letterSpacing: "-0.3vw",
               }}
             >
               {/* text-span-5: invisible placeholder so "Designer..." starts after pill */}
-              <span style={{ opacity: 0.01, pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
+              <span className="opacity-0 xl:w-[115px] xl:h-[80px] md:w-[85px] md:h-[65px] w-[45px] h-[45px]" style={{ pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
               {HERO_HEADLINE.split(" ").map((word, i) => (
                 <span key={i} className="hw" style={{ display: "inline" }}>
                   {word}{i < HERO_HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
@@ -509,13 +507,8 @@ export default function AboutSection() {
             {/* .cont-shine-mask — position absolute, z-8 */}
             <div
               ref={shineMaskRef}
-              className="overflow-hidden flex justify-center items-center"
+              className="overflow-hidden flex justify-center items-center w-[100vw] xl:h-[180vw] md:h-[200vw] h-[250vw] absolute top-[-24.2vw] left-0"
               style={{
-                position: "absolute",
-                top: "-24.2vw",
-                left: 0,
-                width: "100vw",
-                height: "180vw",
                 zIndex: 8,
               }}
             >
@@ -555,20 +548,19 @@ export default function AboutSection() {
       {/* ═══════════════════════════════════════════════════════ BIO */}
       <section
         data-nav="grey"
-        className="relative w-screen flex flex-col items-center z-10 pt-32 pb-60"
+        className="relative w-screen flex flex-col items-center z-10 xl:pt-32 xl:pb-60 md:pt-14 md:pb-32 py-12"
         style={{ background: "var(--bg-warm)" }}
       >
         {BIO.map((item, i) => (
           <div key={i} className="w-[92vw]">
             <div
-              className="about-bio-grid about-bio-row grid w-full pt-16 pb-16 items-start"
-              style={{ gridTemplateColumns: "50% 50%" }}
+              className="grid w-full grid-cols-1 md:grid-cols-2 pt-[8vw] md:pt-16 pb-[8vw] md:pb-16 items-start md:gap-0 gap-4"
             >
               {/* left: label */}
-              <div className="about-bio-label flex justify-end pr-16">
+              <div className="flex justify-start md:justify-end pr-0 md:pr-16">
                 <h3
                   ref={el => labelRefs.current[i] = el}
-                  className="m-0 font-semibold text-right leading-[110%] text-[2rem] whitespace-pre-line"
+                  className="m-0 font-semibold leading-[110%] whitespace-pre-line text-[6vw] md:text-[2rem] text-left md:text-right"
                   style={{
                     color: "var(--blue)",
                     fontFamily: "var(--font)",
@@ -583,11 +575,10 @@ export default function AboutSection() {
               <div>
                 <p
                   ref={el => bodyRefs.current[i] = el}
-                  className="about-bio-body m-0 font-semibold leading-[140%] tracking-[0.03rem] text-[0.9rem] whitespace-pre-line"
+                  className="m-0 font-semibold leading-[140%] tracking-[0.03rem] text-[0.9rem] whitespace-pre-line w-full xl:w-[58%]"
                   style={{
                     color: "var(--grey)",
                     fontFamily: "var(--font)",
-                    width: "58%",
                   }}
                 >
                   {item.body}
@@ -665,16 +656,14 @@ export default function AboutSection() {
 
               {/* 3-col grid: headline / body / button */}
               <div
-                className="news-grid grid w-full gap-4 place-items-end mt-[2vw]"
-                style={{ gridTemplateColumns: "1fr 0.5fr 0.5fr" }}
+                className="grid w-full xl:gap-4 gap-6 place-items-end mt-[2vw] grid-cols-1 xl:grid-cols-[1fr_0.5fr_0.5fr]"
               >
                 <h3
                   ref={el => newsHeadlineRefs.current[i] = el}
-                  className="news-headline m-0 font-semibold leading-[100%] w-full"
+                  className="m-0 font-semibold leading-[100%] w-full text-[7vw] md:text-[4vw]"
                   style={{
                     color: "var(--orange1)",
                     fontFamily: "var(--font)",
-                    fontSize: "4vw",
                     letterSpacing: "-0.12vw",
                   }}
                 >
@@ -690,12 +679,12 @@ export default function AboutSection() {
                 </h3>
                 <p
                   ref={el => newsBodyRefs.current[i] = el}
-                  className="news-body m-0 font-semibold leading-[140%] text-[0.9rem] w-full"
+                  className="m-0 font-semibold leading-[140%] w-full text-[2.5vw] md:text-[0.9rem]"
                   style={{ color: "var(--bg-warm)", fontFamily: "var(--font)", opacity: 0.75 }}
                 >
                   {item.body}
                 </p>
-                <div ref={el => newsBtnRefs.current[i] = el} className="flex justify-end items-end w-full">
+                <div ref={el => newsBtnRefs.current[i] = el} className="flex xl:justify-end items-end w-full">
                   <LearnMoreBtn href={item.href} />
                 </div>
               </div>
@@ -706,15 +695,14 @@ export default function AboutSection() {
               {i === 0 && (
                 <div
                   ref={el => newsPanelRefs.current[i] = el}
-                  className="news-canvas w-full overflow-hidden rounded-lg"
-                  style={{ height: "50vw" }}
+                  className="w-full overflow-hidden rounded-lg h-[110vw] md:h-[50vw]"
                 >
                   <StudioPanel />
                 </div>
               )}
 
               {i > 0 && item.images.length > 0 && (
-                <div ref={el => newsPanelRefs.current[i] = el} className="grid w-full grid-cols-2 gap-x-2 gap-y-1">
+                <div ref={el => newsPanelRefs.current[i] = el} className="grid w-full md:grid-cols-2 xl:gap-x-2 xl:gap-y-1 gap-4">
                   {item.images.map((src, j) => (
                     <img key={j} src={src} loading="lazy" alt="" className="w-full block object-cover rounded-lg" />
                   ))}

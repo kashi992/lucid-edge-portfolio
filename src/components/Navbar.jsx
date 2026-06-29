@@ -165,8 +165,8 @@ export default function Navbar({ visible }) {
       className="z-[990] flex justify-between items-center w-screen fixed inset-x-0 top-0"
       style={{ marginTop: "2rem", paddingLeft: "4vw", paddingRight: "2vw" }}
     >
-      {/* LEFT — wordmark */}
-      <div style={{ width: "33%", display: "flex", alignItems: "center" }}>
+      {/* LEFT — wordmark (full width centered on mobile, 33% left on desktop) */}
+      <div className="flex items-center md:w-[33%] w-full justify-center md:justify-start">
         <Link
           to="/"
           className="nav-wordmark no-underline flex items-center"
@@ -180,7 +180,7 @@ export default function Navbar({ visible }) {
 
       {/* CENTER — About | icon | Work (hidden on mobile) */}
       <ul
-        className="m-0 p-0 list-none hidden md:flex items-center justify-center"
+        className="m-0 p-0 list-none md:flex hidden items-center justify-center"
         style={{ width: "33%", gap: 0 }}
       >
         <li style={{ flex: "none" }}>
@@ -219,10 +219,16 @@ export default function Navbar({ visible }) {
     </nav>
 
     {/* Mobile bottom nav */}
-    <div className="nav-menu-mobile">
-      {NAV_LINKS.map(({ label, to }) => (
-        <Link key={label} to={to} className="nav-link-mobile">{label}</Link>
-      ))}
+    <div className="nav-menu-mobile md:hidden">
+      <Link to="/about" className="nav-link-mobile">About</Link>
+      <Link to="/" className="no-underline flex items-center justify-center">
+        <img
+          src="/images/le-mark-lime.jpeg"
+          alt="Lucid Edge"
+          style={{ width: 38, marginTop: "0.4rem", display: "block" }}
+        />
+      </Link>
+      <Link to="/work" className="nav-link-mobile">Work</Link>
     </div>
     </>
   );

@@ -188,7 +188,7 @@ export default function WorkCTA() {
     <section
       data-nav="grey"
       ref={wrapRef}
-      className="work-cta-section flex justify-center items-center w-screen relative overflow-hidden z-[5] h-[63vw] pb-[3vw]"
+      className="hidden lg:flex justify-center items-center w-screen relative overflow-hidden z-[5] h-[63vw] pb-[3vw]"
       style={{ background: "var(--bg-cold)" }}
     >
       {/* W */}

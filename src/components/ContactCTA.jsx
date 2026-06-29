@@ -126,7 +126,7 @@ export default function ContactCTA() {
     >
       <div
         ref={wrapRef}
-        className="cta-content-wrapper w-[92vw] rounded-[5vw] overflow-hidden mt-[5vw] mb-[5vw] relative"
+        className="w-[90vw] md:w-[92vw] rounded-[5vw] overflow-hidden mt-[10vw] md:mt-[5vw] mb-[10vw] md:mb-[5vw] relative"
         style={{ border: "1px solid rgba(220,255,0,0.18)", background: "var(--blue)" }}
       >
         {/* Text block */}
@@ -136,7 +136,7 @@ export default function ContactCTA() {
         >
           {/* heading — word split */}
           <h2
-            className="cta-heading-main relative w-[60%] m-0 z-[3] text-[6vw] leading-[115%] tracking-[-0.3vw] overflow-hidden"
+            className="relative w-full md:w-[60%] m-0 z-[3] text-[8vw] md:text-[6vw] leading-[115%] tracking-[-0.3vw] overflow-hidden"
             style={{ color: "var(--bg-warm)", fontFamily: "var(--font)" }}
             aria-label="Let's build something people remember"
           >
@@ -154,7 +154,7 @@ export default function ContactCTA() {
 
           {/* subtitle — word split */}
           <p
-            className="cta-body m-0 text-[1.5vw] font-semibold leading-[160%] tracking-[0.03rem] overflow-hidden"
+            className="m-0 text-[2.5vw] md:text-[1.5vw] font-semibold leading-[160%] tracking-[0.03rem] overflow-hidden"
             style={{ color: "rgba(239,239,239,0.5)", fontFamily: "var(--font)" }}
             aria-label="from global tech companies to growing startups."
           >
@@ -208,7 +208,7 @@ export default function ContactCTA() {
 
           {/* "Let's talk" — word split, slides out on hover */}
           <h2
-            className="cta-heading relative m-0 z-[5] text-[6vw] leading-[93%] tracking-[-0.3vw] flex-1 flex justify-center gap-[1.5vw] overflow-hidden"
+            className="relative m-0 z-[5] text-[8vw] md:text-[6vw] leading-[93%] tracking-[-0.3vw] flex-1 flex justify-center gap-[1.5vw] overflow-hidden"
             style={{ color: "var(--blue)", fontFamily: "var(--font)" }}
             aria-label="Let's talk"
           >
@@ -227,7 +227,7 @@ export default function ContactCTA() {
 
           {/* email — letter split, fades in on hover */}
           <h2
-            className="absolute m-0 z-[7] text-[6vw] leading-[93%] tracking-[-0.3vw]"
+            className="absolute m-0 z-[7] text-[8vw] md:text-[6vw] leading-[93%] tracking-[-0.3vw]"
             style={{
               color: "var(--orange1)",
               fontFamily: "var(--font)",
