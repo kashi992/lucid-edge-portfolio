@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useLayoutEffect } from "react";
 
 /* ─── data ─────────────────────────────────────────────────────────────── */
 const BIO = [
@@ -236,6 +236,14 @@ export default function AboutSection() {
   const newsBtnRefs      = useRef([]); // button wrapper per item
   const newsPanelRefs    = useRef([]); // morable/image panel per item
 
+  /* Hide hero h1 before paint — prevents flash before async GSAP loads */
+  useLayoutEffect(() => {
+    const el = heroWordRefs.current[0];
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(50px)";
+  }, []);
+
   useEffect(() => {
     (async () => {
       const { default: gsap } = await import("gsap");
@@ -249,7 +257,7 @@ export default function AboutSection() {
       // Start h1 fully invisible (prevents flash before GSAP takes over)
       gsap.set(h1El, { opacity: 0, y: 50 });
       // ta-4c5ab861: words start at #ffbc95 (peach)
-      gsap.set(words, { color: "#ffbc95" });
+      gsap.set(words, { color: "#dcff00" });
       // blue dot starts at y:0
       gsap.set(blueDotRef.current, { y: 0 });
 
@@ -471,7 +479,6 @@ export default function AboutSection() {
                 color: "var(--grey)",
                 fontFamily: "var(--font)",
                 lineHeight: "101%",
-                opacity: 0,
               }}
             >
               {/* text-span-5: opacity .01, pointer-events none — spacer for pill icon */}

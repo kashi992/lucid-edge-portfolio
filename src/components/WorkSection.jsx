@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PROJECTS } from "../data/work";
 import "../assets/css/style.css";
 
@@ -95,6 +95,14 @@ export default function WorkSection() {
       if (el) obs.observe(el);
     });
     return () => obs.disconnect();
+  }, []);
+
+  /* Hide headline before paint — prevents flash before async GSAP loads */
+  useLayoutEffect(() => {
+    const el = headlineRef.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(50px)";
   }, []);
 
   /* GSAP animations */
