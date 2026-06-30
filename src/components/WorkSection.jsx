@@ -104,21 +104,23 @@ export default function WorkSection() {
       const { ScrollTrigger }  = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
-      /* headline word reveal */
-      const words = headlineRef.current?.querySelectorAll(".ww");
-      const tSpan = headlineRef.current?.querySelector(".t-span");
+      /* headline — same entrance as About hero (IX2 exact match) */
+      const h1El = headlineRef.current;
+      const words = h1El?.querySelectorAll(".ww");
+
+      gsap.set(h1El, { opacity: 0, y: 50 });
+      if (words) gsap.set(words, { color: "#ffbc95" });
+
+      const tl = gsap.timeline();
+      // slide up from dim: opacity 0.2→1, y 50→0
+      tl.fromTo(h1El,
+        { opacity: 0.2, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        1.07
+      );
+      // word color sweep: peach → grey, stagger 0.1 per word
       if (words) {
-        gsap.set(words, { yPercent: 110 });
-        gsap.to(words, {
-          yPercent: 0, duration: 1, ease: "power3.out",
-          stagger: 0.05, delay: 0.2,
-        });
-      }
-      if (tSpan) {
-        gsap.fromTo(tSpan,
-          { opacity: 0.01, x: -10 },
-          { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", delay: 0.1 }
-        );
+        tl.to(words, { color: "var(--grey)", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
       }
 
       /* project info cols slide in on scroll */
@@ -214,22 +216,17 @@ export default function WorkSection() {
         >
           <h1
             ref={headlineRef}
-            className="m-0 text-[10vw] lg:text-[7vw] text-center lg:text-left"
+            className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
             style={{
               color: "var(--grey)",
               fontFamily: "var(--font)",
-              fontWeight: 600,
               lineHeight: "105%",
-              letterSpacing: "-0.3vw",
+              opacity: 0,
             }}
           >
-            <span
-              className="t-span opacity-0 invisible leading-none xl:text-[90px] lg:text-[70px] text-[0px]"
-              style={{ color: "var(--orange1)", marginRight: "0.15em" }}
-            >---</span>
             {HEADLINE.split(" ").map((word, i) => (
-              <span key={i} className="inline-block overflow-hidden align-bottom" style={{ paddingBottom: "0.05em" }}>
-                <span className="ww inline-block">{word}{i < HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}</span>
+              <span key={i} className="ww" style={{ display: "inline" }}>
+                {word}{i < HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
               </span>
             ))}
           </h1>
