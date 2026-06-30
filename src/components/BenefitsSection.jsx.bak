@@ -146,7 +146,7 @@ export default function BenefitsSection() {
         {/* Studio badge */}
         <div style={{ position: "absolute", top: "4vh", left: "5vw", zIndex: 2 }}>
           <p style={{ fontFamily: "var(--font)", fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", margin: 0 }}>
-            Lucid Edge · Est. 2008
+            Malcolm Beddows · Est. 2008
           </p>
         </div>
       </div>

@@ -190,7 +190,7 @@ export default function Navbar({ visible }) {
           <Link to="/" className="no-underline inline-flex items-center justify-center">
             <img
               src="/images/le-mark-lime.jpeg"
-              alt="Lucid Edge"
+              alt="Malcolm Beddows"
               style={{ width: 38, marginTop: "0.4rem", display: "block" }}
             />
           </Link>
@@ -224,7 +224,7 @@ export default function Navbar({ visible }) {
       <Link to="/" className="no-underline flex items-center justify-center">
         <img
           src="/images/le-mark-lime.jpeg"
-          alt="Lucid Edge"
+          alt="Malcolm Beddows"
           style={{ width: 38, marginTop: "0.4rem", display: "block" }}
         />
       </Link>

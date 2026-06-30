@@ -92,10 +92,10 @@ export default function Hero({ visible }) {
       <div
         ref={photoRef}
         className="absolute top-0 left-0 w-full z-[1] h-[120%] bg-cover"
-        style={{ backgroundImage: `url('/images/hero-photo-test2.jpg')`, backgroundPosition: "50% 30%" }}
+        style={{ backgroundImage: `url('/images/DUSK SHOT - HR_v02.webp')`, backgroundPosition: "50% 30%" }}
       />
-      <div className="absolute inset-0 z-[2]" style={{ opacity: 0.82, backgroundImage: "linear-gradient(5deg, transparent 81%, #000)" }} />
-      <div className="absolute inset-0 z-[2]" style={{ opacity: 0.56, backgroundImage: "linear-gradient(190deg, transparent 54%, #000)" }} />
+      <div className="absolute inset-0 z-[2]" style={{ opacity: 0.82, backgroundImage: "linear-gradient(5deg, transparent 50%, #000)" }} />
+      <div className="absolute inset-0 z-[2]" style={{ opacity: 0.56, backgroundImage: "linear-gradient(190deg, transparent 82%, #000)" }} />
 
       {/* ── Desktop layout: column (top label / bottom lottie+subtitle) ── */}
       {/* ── Mobile layout:  row   (left heading / right subtitle)       ── */}

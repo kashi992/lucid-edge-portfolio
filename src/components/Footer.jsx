@@ -262,7 +262,7 @@ export default function Footer() {
             className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
-            Lucid Edge Studio &nbsp;<span className="opacity-50">[Coming Soon]</span>
+            Malcolm Beddows Studio &nbsp;<span className="opacity-50">[Coming Soon]</span>
           </h3>
         </div>
       </div>

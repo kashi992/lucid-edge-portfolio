@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 const BIO = [
   {
     label: "Who We Are",
-    body: "Lucid Edge is a multi-award-winning Animation and Film Production studio based in Paddington, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 18 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
+    body: "Malcolm Beddows is a multi-award-winning Animation and Film Production studio based in Paddington, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 18 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
   },
   {
     label: "Our Approach",
@@ -12,7 +12,7 @@ const BIO = [
   },
   {
     label: "Background",
-    body: "Malcolm Beddows brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, he established the studio as one of Sydney's leading creative production companies.",
+    body: "Malcolm Beddows brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Malcolm Beddows in 2005, he established the studio as one of Sydney's leading creative production companies.",
   },
   {
     label: "Awards &\nRecognitions",
@@ -24,7 +24,7 @@ const NEWS = [
   {
     num: "1",
     headline: "18 Years\nof Production",
-    body: "Lucid Edge has been delivering award-winning animation and film production for over 18 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
+    body: "Malcolm Beddows has been delivering award-winning animation and film production for over 18 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
     href: "#",
     images: [],
   },
@@ -79,7 +79,7 @@ function StudioPanel() {
         filePath: "/morable-lucid.json",
         fps: 60,
         scale: 1,
-        altText: "Lucid Edge Studio",
+        altText: "Malcolm Beddows Studio",
       });
       if (cancelled) { scene?.destroy?.(); return; }
       el.__usScene = scene;
@@ -113,7 +113,7 @@ function StudioPanel() {
           zIndex: 10,
         }}
       >
-        Lucid Edge
+        Malcolm Beddows
       </p>
     </div>
   );
@@ -450,7 +450,7 @@ export default function AboutSection() {
             >
               <img
                 src="/images/le-mark-lime.jpeg"
-                alt="Lucid Edge"
+                alt="Malcolm Beddows"
                 className="h-[12vw] md:h-[8vw] xl:h-[6vw]"
                 style={{ mixBlendMode: "darken" }}
               />

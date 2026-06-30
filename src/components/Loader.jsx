@@ -32,9 +32,9 @@ export default function Loader({ onComplete }) {
     <div ref={containerRef} className="container-loader">
       <div className="orange-intro">
         <div ref={nameRef} className="cont-juan-intro">
-          <span className="nav-name-jm" style={{ color: "#D4FF00" }}>LUCID</span>
+          <span className="nav-name-jm" style={{ color: "#D4FF00" }}>Malcolm</span>
           <div className="dot-jm" style={{ backgroundColor: "#D4FF00" }} />
-          <span className="nav-name-jm" style={{ color: "#D4FF00" }}>EDGE</span>
+          <span className="nav-name-jm" style={{ color: "#D4FF00" }}>Beddows</span>
         </div>
       </div>
       <div ref={lineRef} className="grow-line" />
