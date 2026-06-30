@@ -221,7 +221,6 @@ export default function WorkSection() {
               color: "var(--grey)",
               fontFamily: "var(--font)",
               lineHeight: "105%",
-              opacity: 0,
             }}
           >
             {HEADLINE.split(" ").map((word, i) => (
