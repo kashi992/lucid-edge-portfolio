@@ -246,19 +246,23 @@ export default function AboutSection() {
       const h1El = heroWordRefs.current[0];
       const words = h1El ? h1El.querySelectorAll(".hw") : [];
 
-      // ta-597f7bbe: headline opacity 20%→100%, y 50px→0 (lines stagger, total 0.2s)
-      gsap.set(h1El, { opacity: 0.2, y: 50 });
-      // ta-4c5ab861: words start at #ffbc95 (peach) → animate to #96908c (grey)
+      // Start h1 fully invisible (prevents flash before GSAP takes over)
+      gsap.set(h1El, { opacity: 0, y: 50 });
+      // ta-4c5ab861: words start at #ffbc95 (peach)
       gsap.set(words, { color: "#ffbc95" });
       // blue dot starts at y:0
       gsap.set(blueDotRef.current, { y: 0 });
 
       const playHero = () => {
         const tl = gsap.timeline();
-        // ta-597f7bbe @ pos 1.07s, dur 0.8s, ease power3.out — lines stagger amount 0.2
-        tl.to(h1El, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 1.07);
-        // ta-4c5ab861 @ pos 1.29s, dur 1s, stagger each 0.1 — peach → grey
-        tl.to(words, { color: "#96908c", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
+        // ta-597f7bbe @ pos 1.07s — fromTo so opacity goes 20%→100% (not 0%→100%)
+        tl.fromTo(h1El,
+          { opacity: 0.2, y: 50 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+          1.07
+        );
+        // ta-4c5ab861 @ pos 1.29s, dur 1s, stagger each 0.1 — peach → project grey
+        tl.to(words, { color: "var(--grey)", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
         // ta-743bd50e @ pos 1.16s, dur 0.33s — dot flies up
         tl.to(blueDotRef.current, { y: -30, duration: 0.33, ease: "power3.out" }, 1.16);
         // ta-d158a74d @ pos 1.49s, dur 1s — elastic back
@@ -441,7 +445,7 @@ export default function AboutSection() {
         <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible">
 
           {/* wrapper-cont-50._70: 49% on desktop, 80% on mobile */}
-          <div className="relative w-[80%] lg:w-[49%]">
+          <div className="relative w-[80%]">
 
             {/* pill-hero-about-wrapper: absolute, inset .4vw auto auto .7vw */}
             <div
@@ -467,6 +471,7 @@ export default function AboutSection() {
                 color: "var(--grey)",
                 fontFamily: "var(--font)",
                 lineHeight: "101%",
+                opacity: 0,
               }}
             >
               {/* text-span-5: opacity .01, pointer-events none — spacer for pill icon */}
