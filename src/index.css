@@ -19,6 +19,18 @@
   --font:      'Space Grotesk', Arial, sans-serif;
 }
 
+/* ── Hero title entrance — triggered after loader completes ──────────────── */
+@keyframes heroSlideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+/* Class added by JS after loader onComplete fires */
+.hero-slide-up {
+  animation: heroSlideUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.15s both;
+}
+/* Hidden until class is added */
+.hero-wrap-hidden { opacity: 0; }
+
 /* ── Reset ─────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html  { scroll-behavior: auto; }

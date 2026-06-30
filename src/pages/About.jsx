@@ -17,7 +17,7 @@ export default function About() {
       {!loaded && <Loader onComplete={() => setLoaded(true)} />}
       <Navbar visible={loaded} />
       <main>
-        <AboutSection />
+        <AboutSection loaded={loaded} />
         <ContactCTA />
       </main>
       <Footer />

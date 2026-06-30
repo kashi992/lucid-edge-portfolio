@@ -17,7 +17,7 @@ export default function Work() {
       {!loaded && <Loader onComplete={() => setLoaded(true)} />}
       <Navbar visible={loaded} />
       <main>
-        <WorkSection />
+        <WorkSection loaded={loaded} />
         <ContactCTA />
       </main>
       <Footer />

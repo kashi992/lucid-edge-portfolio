@@ -1,4 +1,5 @@
-import { useRef, useEffect, useLayoutEffect } from "react";
+import { useRef, useEffect } from "react";
+import CTAButton from "./CTAButton";
 
 /* ─── data ─────────────────────────────────────────────────────────────── */
 const BIO = [
@@ -119,86 +120,11 @@ function StudioPanel() {
   );
 }
 
-/* ─── Learn More button — exact match to reference main-cont-button ─────── */
-function LearnMoreBtn({ href }) {
-  const firstRef = useRef(null);
-  const lastRef  = useRef(null);
-  const gsapRef  = useRef(null);
-
-  useEffect(() => {
-    (async () => {
-      const { default: gsap } = await import("gsap");
-      gsapRef.current = gsap;
-      gsap.set(firstRef.current, { width: 0, rotation: -90, opacity: 0 });
-    })();
-  }, []);
-
-  const onEnter = () => {
-    const g = gsapRef.current; if (!g) return;
-    g.to(firstRef.current, { width: "2.8rem", rotation: 0, opacity: 1, duration: 0.8, ease: "elastic.out(0.5,0.3)", overwrite: true });
-    g.to(lastRef.current,  { width: 0, rotation: -90, opacity: 0, duration: 0.2, ease: "power2.out", overwrite: true });
-  };
-  const onLeave = () => {
-    const g = gsapRef.current; if (!g) return;
-    g.to(firstRef.current, { width: 0, rotation: -90, opacity: 0, duration: 0.3, ease: "power2.inOut", overwrite: true });
-    g.to(lastRef.current,  { width: "2.8rem", rotation: 0, opacity: 1, duration: 0.8, ease: "elastic.out(0.6,0.3)", overwrite: true });
-  };
-
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel="noreferrer"
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      className="no-underline inline-flex items-center justify-center cursor-pointer"
-      style={{ color: "var(--orange1)" }}
-    >
-      {/* first icon — hidden, appears on hover */}
-      <div
-        ref={firstRef}
-        className="inline-flex items-center justify-center shrink-0 relative overflow-hidden"
-        style={{ width: 0, height: "2.8rem", borderRadius: "5rem", background: "var(--orange1)" }}
-      >
-        <img src="/images/arrow-grey-out.svg" alt="" style={{ height: "0.8rem", position: "absolute" }} />
-      </div>
-
-      {/* text pill — dark glass */}
-      <div
-        className="shrink-0"
-        style={{
-          backdropFilter: "blur(9px)",
-          WebkitBackdropFilter: "blur(9px)",
-          background: "#25252557",
-          borderRadius: "5rem",
-          padding: "1rem 1.5rem",
-          fontFamily: "var(--font)",
-          fontSize: "0.9rem",
-          fontWeight: 600,
-          lineHeight: "100%",
-          color: "var(--orange1)",
-          whiteSpace: "nowrap",
-        }}
-      >
-        Learn more
-      </div>
-
-      {/* last icon — lime circle, visible by default */}
-      <div
-        ref={lastRef}
-        className="inline-flex items-center justify-center shrink-0 relative overflow-hidden"
-        style={{ width: "2.8rem", height: "2.8rem", borderRadius: "5rem", background: "var(--orange1)" }}
-      >
-        <img src="/images/arrow-grey-out.svg" alt="" style={{ height: "0.8rem", position: "absolute" }} />
-      </div>
-    </a>
-  );
-}
 
 const HERO_HEADLINE = "Award-winning animation and film production, based in Sydney";
 
 /* ─── Main component ────────────────────────────────────────────────────── */
-export default function AboutSection() {
+export default function AboutSection({ loaded }) {
   /* refs — hero */
   const heroRef       = useRef(null);
   const heroTagRef    = useRef(null);
@@ -210,6 +136,7 @@ export default function AboutSection() {
   const heroYearsRef  = useRef(null);
   const heroDivRef    = useRef(null);
 
+  const heroWrapRef = useRef(null);
   const blueDotRef  = useRef(null);
 
   /* refs — scroll photo */
@@ -236,47 +163,41 @@ export default function AboutSection() {
   const newsBtnRefs      = useRef([]); // button wrapper per item
   const newsPanelRefs    = useRef([]); // morable/image panel per item
 
-  /* Hide hero h1 before paint — prevents flash before async GSAP loads */
-  useLayoutEffect(() => {
-    const el = heroWordRefs.current[0];
-    if (!el) return;
-    el.style.opacity = "0";
-  }, []);
+  /* Hero entrance — fires after loader completes */
+  useEffect(() => {
+    if (!loaded) return;
+    const wrapEl  = heroWrapRef.current;
+    const h1El    = heroWordRefs.current[0];
+    const wordEls = h1El ? [...h1El.querySelectorAll(".hw")] : [];
+
+    // Trigger CSS slide-up
+    if (wrapEl) {
+      wrapEl.classList.remove("hero-wrap-hidden");
+      wrapEl.classList.add("hero-slide-up");
+    }
+
+    // Color sweep + dot after slide starts
+    (async () => {
+      const { default: gsap } = await import("gsap");
+      gsap.set(wordEls, { color: "#ffbc95" });
+      gsap.to(wordEls, {
+        color: "var(--grey)",
+        duration: 1, ease: "power3.out",
+        stagger: { each: 0.1 },
+        delay: 0.35,
+      });
+      gsap.set(blueDotRef.current, { y: 0 });
+      gsap.to(blueDotRef.current, { y: -30, duration: 0.33, ease: "power3.out", delay: 0.22 });
+      gsap.to(blueDotRef.current, { y: 0, duration: 1, ease: "elastic.out(0.8, 0.3)", delay: 0.55 });
+    })();
+  }, [loaded]);
 
   useEffect(() => {
+    if (!loaded) return;
     (async () => {
       const { default: gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
-      /* ── HERO entrance — exact IX2 t-7e60330e ── */
-      const h1El = heroWordRefs.current[0];
-      const words = h1El ? h1El.querySelectorAll(".hw") : [];
-
-      // Start h1 fully invisible (prevents flash before GSAP takes over)
-      gsap.set(h1El, { opacity: 0, y: 50 });
-      // ta-4c5ab861: words start at #ffbc95 (peach)
-      gsap.set(words, { color: "#dcff00" });
-      // blue dot starts at y:0
-      gsap.set(blueDotRef.current, { y: 0 });
-
-      const playHero = () => {
-        const tl = gsap.timeline();
-        // ta-597f7bbe @ pos 1.07s — fromTo so opacity goes 20%→100% (not 0%→100%)
-        tl.fromTo(h1El,
-          { opacity: 0.2, y: 50 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-          1.07
-        );
-        // ta-4c5ab861 @ pos 1.29s, dur 1s, stagger each 0.1 — peach → project grey
-        tl.to(words, { color: "var(--grey)", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
-        // ta-743bd50e @ pos 1.16s, dur 0.33s — dot flies up
-        tl.to(blueDotRef.current, { y: -30, duration: 0.33, ease: "power3.out" }, 1.16);
-        // ta-d158a74d @ pos 1.49s, dur 1s — elastic back
-        tl.to(blueDotRef.current, { y: 0, duration: 1, ease: "elastic.out(0.8, 0.3)" }, 1.49);
-      };
-
-      requestAnimationFrame(() => requestAnimationFrame(playHero));
 
       /* ── Scroll section — exact IX2 t-4b300411 ── */
       gsap.set(photoRef.current, { opacity: 0 });
@@ -345,21 +266,28 @@ export default function AboutSection() {
         const line  = lineRefs.current[i];
         if (!label) return;
 
-        const runBio = () => {
-          gsap.timeline()
-            .fromTo(label, { x: -30, opacity: 0 }, { x: 0, opacity: 0.6, duration: 0.7, ease: "power3.out" })
-            .fromTo(body,  { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" }, "-=0.5")
-            .fromTo(line,
-              { scaleX: 0, transformOrigin: "left center" },
-              { scaleX: 1, duration: 0.6, ease: "power2.inOut" },
-              "-=0.55"
-            );
-        };
-        const rect = label.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-          runBio();
-        } else {
-          ScrollTrigger.create({ trigger: label, start: "top 90%", once: true, onEnter: runBio });
+        // Label slide in
+        gsap.fromTo(label, { x: -30, opacity: 0 }, {
+          x: 0, opacity: 0.6, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: label, start: "top 88%", once: true },
+        });
+
+        // Divider line draw
+        if (line) {
+          gsap.fromTo(line, { scaleX: 0, transformOrigin: "left center" }, {
+            scaleX: 1, duration: 0.6, ease: "power2.inOut",
+            scrollTrigger: { trigger: label, start: "top 88%", once: true },
+          });
+        }
+
+        // Character-by-character reveal — matches juanmora.co reference
+        if (body) {
+          const chars = body.querySelectorAll(".bio-char");
+          gsap.fromTo(chars,
+            { opacity: 0 },
+            { opacity: 1, duration: 0.3, stagger: 0.018, ease: "power2.out",
+              scrollTrigger: { trigger: body, start: "top 85%", once: true } }
+          );
         }
       });
 
@@ -401,12 +329,14 @@ export default function AboutSection() {
           });
         }
 
-        // Body fade + slide up
+        // Body — character reveal matching reference
         if (body) {
-          gsap.set(body, { opacity: 0, y: 22 });
-          onceInView(wrapper, "top 86%", () => {
-            gsap.to(body, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out", delay: 0.15 });
-          });
+          const chars = body.querySelectorAll(".news-char");
+          gsap.fromTo(chars,
+            { opacity: 0 },
+            { opacity: 1, duration: 0.3, stagger: 0.018, ease: "power2.out",
+              scrollTrigger: { trigger: body, start: "top 85%", once: true } }
+          );
         }
 
         // Button fade
@@ -436,7 +366,7 @@ export default function AboutSection() {
         }
       });
     })();
-  }, []);
+  }, [loaded]);
 
   return (
     <>
@@ -471,23 +401,25 @@ export default function AboutSection() {
             </div>
 
             {/* text-headline-about: color var(--grey), 7vw, tracking -0.3vw, lh 101% */}
-            <h1
-              ref={el => heroWordRefs.current[0] = el}
-              className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
-              style={{
-                color: "var(--grey)",
-                fontFamily: "var(--font)",
-                lineHeight: "101%",
-              }}
-            >
-              {/* text-span-5: opacity .01, pointer-events none — spacer for pill icon */}
-              <span style={{ opacity: 0.01, pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
-              {HERO_HEADLINE.split(" ").map((word, i) => (
-                <span key={i} className="hw" style={{ display: "inline" }}>
-                  {word}{i < HERO_HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
-                </span>
-              ))}
-            </h1>
+            <div ref={heroWrapRef} className="hero-wrap-hidden">
+              <h1
+                ref={el => heroWordRefs.current[0] = el}
+                className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
+                style={{
+                  color: "var(--grey)",
+                  fontFamily: "var(--font)",
+                  lineHeight: "101%",
+                }}
+              >
+                {/* text-span-5: opacity .01, pointer-events none — spacer for pill icon */}
+                <span style={{ opacity: 0.01, pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
+                {HERO_HEADLINE.split(" ").map((word, i) => (
+                  <span key={i} className="hw" style={{ display: "inline" }}>
+                    {word}{i < HERO_HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
+                  </span>
+                ))}
+              </h1>
+            </div>
           </div>
         </div>
       </section>
@@ -591,13 +523,19 @@ export default function AboutSection() {
               <div>
                 <p
                   ref={el => bodyRefs.current[i] = el}
-                  className="m-0 font-semibold leading-[140%] tracking-[0.03rem] text-[0.9rem] whitespace-pre-line w-full xl:w-[58%]"
-                  style={{
-                    color: "var(--grey)",
-                    fontFamily: "var(--font)",
-                  }}
+                  className="m-0 font-semibold leading-[140%] tracking-[0.03rem] text-[0.9rem] w-full xl:w-[58%]"
+                  style={{ color: "var(--grey)", fontFamily: "var(--font)" }}
                 >
-                  {item.body}
+                  {item.body.split("\n").map((line, li, arr) => (
+                    <span key={li}>
+                      {line.split("").map((ch, ci) =>
+                        ch === " "
+                          ? <span key={ci} className="bio-char" style={{ display: "inline-block", width: "0.25em" }}>&nbsp;</span>
+                          : <span key={ci} className="bio-char">{ch}</span>
+                      )}
+                      {li < arr.length - 1 && <br />}
+                    </span>
+                  ))}
                 </p>
               </div>
             </div>
@@ -698,10 +636,14 @@ export default function AboutSection() {
                   className="m-0 font-semibold leading-[140%] w-full text-[2.5vw] md:text-[0.9rem]"
                   style={{ color: "var(--bg-warm)", fontFamily: "var(--font)", opacity: 0.75 }}
                 >
-                  {item.body}
+                  {item.body.split("").map((ch, ci) =>
+                    ch === " "
+                      ? <span key={ci} className="news-char" style={{ display: "inline-block", width: "0.25em" }}>&nbsp;</span>
+                      : <span key={ci} className="news-char">{ch}</span>
+                  )}
                 </p>
                 <div ref={el => newsBtnRefs.current[i] = el} className="flex xl:justify-end items-end w-full">
-                  <LearnMoreBtn href={item.href} />
+                  <CTAButton href={item.href} label="Learn more" />
                 </div>
               </div>
             </div>

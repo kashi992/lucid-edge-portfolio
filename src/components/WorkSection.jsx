@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PROJECTS } from "../data/work";
 import "../assets/css/style.css";
+import CTAButton from "./CTAButton";
 
 /* ── Lazy video — starts playing only when visible ────────────────────── */
 function LazyVideo({ src, className, style }) {
@@ -71,10 +72,11 @@ function ProjectMedia({ project }) {
 }
 
 /* ── Main WorkSection ─────────────────────────────────────────────────── */
-export default function WorkSection() {
+export default function WorkSection({ loaded }) {
   const [activeId, setActiveId] = useState(null);
-  const itemRefs    = useRef({});
-  const headlineRef = useRef(null);
+  const itemRefs       = useRef({});
+  const headlineRef    = useRef(null);
+  const headlineWrapRef = useRef(null);
 
   /* IntersectionObserver — track active project in sidebar */
   useEffect(() => {
@@ -97,38 +99,39 @@ export default function WorkSection() {
     return () => obs.disconnect();
   }, []);
 
-  /* Hide headline before paint — prevents flash before async GSAP loads */
-  useLayoutEffect(() => {
-    const el = headlineRef.current;
-    if (!el) return;
-    el.style.opacity = "0";
-  }, []);
-
-  /* GSAP animations */
+  /* Headline entrance — fires after loader completes */
   useEffect(() => {
+    if (!loaded) return;
+    const wrapEl  = headlineWrapRef.current;
+    const h1El    = headlineRef.current;
+    const wordEls = h1El ? [...h1El.querySelectorAll(".ww")] : [];
+
+    // Trigger CSS slide-up
+    if (wrapEl) {
+      wrapEl.classList.remove("hero-wrap-hidden");
+      wrapEl.classList.add("hero-slide-up");
+    }
+
+    // Color sweep after slide starts (0.15s slide delay + small offset)
+    (async () => {
+      const { default: gsap } = await import("gsap");
+      gsap.set(wordEls, { color: "#ffbc95" });
+      gsap.to(wordEls, {
+        color: "var(--grey)",
+        duration: 1, ease: "power3.out",
+        stagger: { each: 0.1 },
+        delay: 0.35,
+      });
+    })();
+  }, [loaded]);
+
+  /* GSAP scroll animations */
+  useEffect(() => {
+    if (!loaded) return;
     (async () => {
       const { default: gsap } = await import("gsap");
       const { ScrollTrigger }  = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
-
-      /* headline — same entrance as About hero (IX2 exact match) */
-      const h1El = headlineRef.current;
-      const words = h1El?.querySelectorAll(".ww");
-
-      gsap.set(h1El, { opacity: 0, y: 50 });
-      if (words) gsap.set(words, { color: "#ffbc95" });
-
-      const tl = gsap.timeline();
-      // slide up from dim: opacity 0.2→1, y 50→0
-      tl.fromTo(h1El,
-        { opacity: 0.2, y: 50 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-        1.07
-      );
-      // word color sweep: peach → grey, stagger 0.1 per word
-      if (words) {
-        tl.to(words, { color: "var(--grey)", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
-      }
 
       /* project info cols slide in on scroll */
       document.querySelectorAll(".proj-col").forEach(el => {
@@ -153,7 +156,7 @@ export default function WorkSection() {
         );
       });
     })();
-  }, []);
+  }, [loaded]);
 
   const scrollToProject = (id) => {
     const el = itemRefs.current[id];
@@ -170,8 +173,7 @@ export default function WorkSection() {
     >
       {/* ── Sticky sidebar navigation ── */}
       <nav
-        className="hidden lg:flex sticky top-0 flex-col justify-center overflow-y-auto flex-shrink-0 xl:pt-0 pt-[100px]"
-        style={{ width: "14vw", height: "100vh", paddingLeft: "4vw", zIndex: 50 }}
+        className="hidden lg:flex sticky top-0 flex-col justify-center overflow-y-auto flex-shrink-0 xl:pt-0 pt-[100px] ps-[3vw] w-[14vw] h-screen z-50"
       >
         <ul className="flex flex-col list-none m-0 p-0" style={{ gap: "0.15rem" }}>
           {PROJECTS.map(p => {
@@ -221,21 +223,25 @@ export default function WorkSection() {
         <div
           className="flex flex-col justify-end relative lg:w-[71vw] w-[80%] xl:my-[14vw] my-[20vw] md:mx-0 mx-auto"
         >
-          <h1
-            ref={headlineRef}
-            className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
-            style={{
-              color: "var(--grey)",
-              fontFamily: "var(--font)",
-              lineHeight: "105%",
-            }}
-          >
-            {HEADLINE.split(" ").map((word, i) => (
-              <span key={i} className="ww" style={{ display: "inline" }}>
-                {word}{i < HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
-              </span>
-            ))}
-          </h1>
+          <div ref={headlineWrapRef} className="hero-wrap-hidden">
+            <h1
+              ref={headlineRef}
+              className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
+              style={{
+                color: "var(--grey)",
+                fontFamily: "var(--font)",
+                lineHeight: "105%",
+              }}
+            >
+              {/* invisible spacer so text clears the folder icon */}
+              <span className="opacity-0 text-[75%]" style={{ pointerEvents: "none" }}>{"——\u00A0"}</span>
+              {HEADLINE.split(" ").map((word, i) => (
+                <span key={i} className="ww" style={{ display: "inline" }}>
+                  {word}{i < HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
+                </span>
+              ))}
+            </h1>
+          </div>
 
           {/* Folder — bottom-left, small, reference exact */}
           <img
@@ -298,25 +304,7 @@ export default function WorkSection() {
                   >
                     {p.year}
                   </div>
-                  {p.liveUrl && p.liveUrl !== "#" && (
-                    <a
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="main-cont-button self-start"
-                      style={{ fontSize: "0.8rem" }}
-                    >
-                      <div className="icon-wrapper-cta-first">
-                        <img src="/images/arrow-grey-out.svg" alt="" className="w-[14px] block" />
-                      </div>
-                      <div className="text-wrapper-cta" style={{ padding: "0.6rem 1rem", fontSize: "0.8rem" }}>
-                        See it live
-                      </div>
-                      <div className="icon-wrapper-cta">
-                        <img src="/images/arrow-grey-out.svg" alt="" className="w-[14px] block" />
-                      </div>
-                    </a>
-                  )}
+                  <CTAButton href="https://lucidedge.com.au" label="See it live" />
                 </div>
 
                 {/* col 2: challenge */}
