@@ -102,7 +102,6 @@ export default function WorkSection() {
     const el = headlineRef.current;
     if (!el) return;
     el.style.opacity = "0";
-    el.style.transform = "translateY(50px)";
   }, []);
 
   /* GSAP animations */

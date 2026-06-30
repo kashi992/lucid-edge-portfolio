@@ -241,7 +241,6 @@ export default function AboutSection() {
     const el = heroWordRefs.current[0];
     if (!el) return;
     el.style.opacity = "0";
-    el.style.transform = "translateY(50px)";
   }, []);
 
   useEffect(() => {
