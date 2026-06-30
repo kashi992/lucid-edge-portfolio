@@ -73,7 +73,7 @@ function LearnMoreBtn() {
           color: "var(--blue)",
         }}
       >
-        Learn more about me
+        Learn more about us
       </div>
       <div
         ref={lastRef}
@@ -315,7 +315,7 @@ export default function BenefitsSection() {
                   color: "var(--bg-warm)",
                 }}
               >
-                <Words text="Good design" />
+                <Words text="Great projects" />
               </h2>
             </div>
 
@@ -327,7 +327,7 @@ export default function BenefitsSection() {
                   color: "var(--orange1)",
                 }}
               >
-                <Words text="takes time." />
+                <Words text="take vision." />
               </h2>
             </div>
 
@@ -351,7 +351,7 @@ export default function BenefitsSection() {
                 color: "rgba(255,255,255,0.7)",
               }}
             >
-              <Words text="and working with me saves it" />
+              <Words text="and we bring it to life" />
             </h2>
           </div>
 
@@ -367,7 +367,7 @@ export default function BenefitsSection() {
                   color: "var(--bg-warm)",
                 }}
               >
-                <Words text="Companies partner with me because of my" />
+                <Words text="Industry leaders choose us because of our" />
               </h2>
               <h2
                 className="m-0 font-black tracking-[-0.04em] leading-[88%]"
@@ -377,7 +377,7 @@ export default function BenefitsSection() {
                   color: "var(--white)",
                 }}
               >
-                <Words text="perspective + sharp instincts" />
+                <Words text="18 years + award-winning results" />
               </h2>
             </div>
 
