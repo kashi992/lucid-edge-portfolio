@@ -195,7 +195,7 @@ function LearnMoreBtn({ href }) {
   );
 }
 
-const HERO_HEADLINE = "Designer based in Miami, working globally";
+const HERO_HEADLINE = "Award-winning animation and film production, based in Sydney";
 
 /* ─── Main component ────────────────────────────────────────────────────── */
 export default function AboutSection() {

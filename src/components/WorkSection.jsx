@@ -151,7 +151,7 @@ export default function WorkSection() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const HEADLINE = "Passionate about the craft and little details";
+  const HEADLINE = "Two decades of productions that win bids and deliver impact";
 
   return (
     <div

@@ -114,9 +114,11 @@ export default function Navbar({ visible }) {
           .join("");
 
         const chars = [...link.querySelectorAll(".nav-char")];
+        let tl = null;
 
         const onEnter = () => {
-          const tl = gsap.timeline({ overwrite: true });
+          if (tl) tl.kill();
+          tl = gsap.timeline();
           // Stage 1: fade out + drift up
           tl.to(chars, {
             opacity: 0,
@@ -140,7 +142,7 @@ export default function Navbar({ visible }) {
         };
 
         const onLeave = () => {
-          gsap.killTweensOf(chars);
+          if (tl) tl.kill();
           gsap.set(chars, { opacity: 1, y: 0 });
         };
 
