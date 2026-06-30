@@ -32,9 +32,12 @@ const FPS         = original.fr; // 30
 const TOTAL_FRAMES = original.op; // 60
 
 // ── Font size ─────────────────────────────────────────────────────────────
-// Reduced from 155 → 100 to fit 7+7 letters (Malcolm + Beddows) across 1916px canvas.
-// At 150% scaleX (neutral), capital letters are ~70px tall at this size.
-const FONT_SIZE = 100;
+// Reduced from 155 → 120 to fit 7+7 letters (Malcolm + Beddows) across 1916px canvas.
+// Measured advance widths at 155px then scaled by 120/155:
+//   M=106, a=70, l=32, c=71, o=74, l=32, m=102  → Malcolm neutral total ~730px
+//   B=80,  e=69, d=77, d=77, o=74, w=95, s=63   → Beddows  neutral total ~804px
+//   Gap for projects image: ~300px. Grand total: ~1834px (fits in 1916px canvas).
+const FONT_SIZE = 120;
 
 // ── Path converter: opentype commands → Lottie {v, i, o, c} ───────────────
 function pathToLottie(opPath) {
@@ -104,15 +107,18 @@ function getLetterPath(char) {
 const Y_POS = 170;
 
 // Malcolm (7 letters) — scales up as cursor moves right
+// Neutral (frame30) x positions = cumulative advance widths at FONT_SIZE=120, scaleX=150%
+// Advance widths at 120px: M=106, a=70, l=32, c=71, o=74, l=32, m=102
+// At 150% scaleX: M=159, a=105, l=48, c=107, o=111, l=48, m=153
 // Positions [x@frame0, x@frame30, x@frame60]
 const MALCOLM_POSITIONS = [
-  [0,   0,    0   ],  // M — left-anchored (never moves)
-  [18,  100,  250 ],  // a
-  [34,  197,  480 ],  // l
-  [46,  242,  600 ],  // c
-  [60,  335,  740 ],  // o
-  [73,  428,  880 ],  // l
-  [83,  473,  960 ],  // m
+  [0,   0,    0    ],  // M — left-anchored (never moves)
+  [32,  159,  382  ],  // a
+  [59,  264,  606  ],  // l
+  [74,  312,  694  ],  // c
+  [115, 419,  864  ],  // o
+  [163, 530,  1019 ],  // l
+  [186, 578,  1078 ],  // m
 ];
 const MALCOLM_SCALES = [
   // [scaleX@0, scaleX@30, scaleX@60]  — scaleY fixed at 150
@@ -126,14 +132,17 @@ const MALCOLM_SCALES = [
 ];
 
 // Beddows (7 letters) — scales down as cursor moves right
+// Neutral (frame30) x positions start at 1031 (731px Malcolm end + ~300px gap for image)
+// Advance widths at 120px: B=80, e=69, d=77, d=77, o=74, w=95, s=63
+// At 150% scaleX: B=120, e=104, d=116, d=116, o=111, w=142, s=95
 const BEDDOWS_POSITIONS = [
-  [500,  900,  1050],  // B
-  [700,  995,  1140],  // e
-  [900,  1090, 1210],  // d
-  [1100, 1185, 1265],  // d
-  [1300, 1280, 1310],  // o
-  [1475, 1375, 1350],  // w
-  [1650, 1510, 1385],  // s
+  [700,  1031, 1550],  // B
+  [930,  1151, 1626],  // e
+  [1140, 1255, 1674],  // d
+  [1330, 1371, 1716],  // d
+  [1450, 1487, 1751],  // o
+  [1580, 1598, 1778],  // w
+  [1720, 1740, 1807],  // s
 ];
 const BEDDOWS_SCALES = [
   [190, 150, 95],  // B
