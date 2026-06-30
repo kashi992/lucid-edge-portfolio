@@ -4,43 +4,49 @@ import { useRef, useEffect } from "react";
 const BIO = [
   {
     label: "Who We Are",
-    body: "Lucid Edge is a design studio led by Lucid Edge — a Design Director focused on Web, Branding, and Product for the last 16 years.\n\nSince the beginning, we've been passionate about learning and refining the craft — exploring different styles, techniques, and ways to apply them depending on what each brand actually needs.\n\nNow we're building Lucid Edge — a studio focused on helping brands create work that feels more artistic, human, and intentional.",
+    body: "Lucid Edge is a multi-award-winning Animation and Film Production studio based in Paddington, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 18 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
   },
   {
-    label: "Approach",
-    body: "We start with little context. We look at your brand through the user's eyes first, then from the inside out — focusing on understanding the product, the audience, and the real problem behind the brief.\n\nFrom there, we help define the direction and bring ideas — not just to make things look better, but to make them work better.\n\nWe work closely across departments to align on goals. Our role is not just execution — it's bringing clarity, perspective, and elevating the outcome.",
+    label: "Our Approach",
+    body: "We work alongside Communications and Marketing teams to understand your visual requirements and deliver content that engages stakeholders at every level.\n\nFrom 3D animation to live-action film, VFX, and TimeLapse — we bring a full production capability to every project, no matter the scale.\n\nOur goal is always the same: the highest quality production, delivered with clarity and impact.",
   },
   {
-    label: "Philosophy",
-    body: "We don't follow trends blindly — we use them when they make sense. Our goal is always to create something distinctive, something people actually remember.\n\nEvery project, no matter the size, deserves the same level of care — something that feels thoughtful, well-crafted, and built to last.\n\nAnd yes, we believe humor is a design tool.",
+    label: "Background",
+    body: "Malcolm Beddows brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, he established the studio as one of Sydney's leading creative production companies.",
   },
   {
     label: "Awards &\nRecognitions",
-    body: "2x Webby Awards\n7x Awwwards\n5x FWA\n4x CSS Design Awards\n6x Behance Featured",
+    body: "Multi-Award-Winning Studio\n18+ Years in Production\n100+ TimeLapse Cameras Deployed\n60+ Major Projects Delivered",
   },
 ];
 
 const NEWS = [
   {
     num: "1",
-    headline: "Running our\nown Studio",
-    body: "Lucid Edge is a Design Studio with an artistic approach to brand building, using technology to push boundaries. We work with a network of the most talented freelancers to tackle ambitious projects.",
+    headline: "18 Years\nof Production",
+    body: "Lucid Edge has been delivering award-winning animation and film production for over 18 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
     href: "#",
     images: [],
   },
   {
     num: "2",
-    headline: "Enjoy the\nonline course",
-    body: "We partnered with Domestika to teach designers and marketers how to create landing pages that stand out through storytelling.",
-    href: "https://www.domestika.org/en/courses/4542-ux-ui-design-for-landing-pages-tell-an-original-story/juanmora_mdg",
-    images: ["/images/domestika-juan-mora-1.png", "/images/domestika-juan-mora-3.png"],
+    headline: "Australia's\nTop TimeLapse",
+    body: "We are one of Australia's leading TimeLapse Camera providers for construction projects, operating over 100 cameras with a seamless pipeline for projects of any scale.",
+    href: "#",
+    images: [
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/line-wide-works.png",
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png",
+    ],
   },
   {
     num: "3",
-    headline: "Don't\nScroll Down",
-    body: "An award-winning reverse-psychology experience created to play with humor and share a deep reflection learned during the darkest days.",
+    headline: "Award-Winning\nBid Videos",
+    body: "From the Sydney Metro to Northern Beaches Hospital and major PPP bid submissions — our animation and film productions have helped teams across Australia secure landmark projects.",
     href: "#",
-    images: ["/images/dont-scroll-down-juanmora1.png", "/images/dont-scroll-down-juanmora2.png"],
+    images: [
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/Westmead_construction_sequence.png",
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/sydney-metro-central-station.png",
+    ],
   },
 ];
 

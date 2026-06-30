@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 
 const TICKER_ITEMS = [
-  "Brand Design", "Web Design", "UI/UX Design", "Product Design",
-  "Visual Direction", "Design Systems", "Branding", "Motion Design",
+  "3D Animation", "Film Production", "Creative Direction", "Visual Effects",
+  "TimeLapse", "Motion Graphics", "Arch Viz", "Corporate Video",
 ];
 
 const BENEFITS_LIST = [
-  "I bring a premium and unique visual direction that makes your brand stand out.",
-  "I care about the craft, from concept to final product.",
-  "I define scalable design systems that keep your brand consistent.",
-  "I align your goals with my experience to make the right design decisions for your brand.",
+  "We bring 18+ years of multi-award-winning animation and film production experience.",
+  "We specialise in helping construction teams win major project bids with compelling visuals.",
+  "We create captivating narratives that engage stakeholders and deliver results.",
+  "We deliver the highest quality animation, design, and film production on every project.",
 ];
 
 /* ── split text into .sw word spans ─────────────────────────────────────── */

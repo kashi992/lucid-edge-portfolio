@@ -27,7 +27,7 @@ const SHAPES = [
   { src: "/images/blue-hexagon-scroll.svg", w: "3vw",  top: "75vw", right: "25vw", zIndex: 50, fromY: 0,    toY: -10,  fromR: -160, toR: 60  },
 ];
 
-const WORDS = ["16", "years", "making", "users", "click", "and", "scroll", "my", "designs"];
+const WORDS = ["18", "years", "delivering", "award-winning", "animation", "and", "film", "for", "major", "projects"];
 
 export default function StatsSection() {
   const sectionRef       = useRef(null);
@@ -211,7 +211,7 @@ export default function StatsSection() {
                   ref={r => wordsRef.current[i] = r}
                   className="inline-block mr-[0.18em]"
                 >
-                  {word === "click" ? (
+                  {word === "award-winning" ? (
                     <span
                       ref={pillRef}
                       onMouseEnter={() => setHovered(true)}
@@ -230,7 +230,7 @@ export default function StatsSection() {
                           transform: hovered ? "translateY(-60%)" : "translateY(0)",
                         }}
                       >
-                        click
+                        award-winning
                       </span>
                       <span
                         className="absolute inset-0 flex items-center justify-center whitespace-nowrap rounded-[100vw] text-[0.45em] font-semibold [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
@@ -244,7 +244,7 @@ export default function StatsSection() {
                       </span>
                     </span>
                   ) : (
-                    <span style={{ color: word === "scroll" ? "var(--blue)" : "var(--grey)" }}>
+                    <span style={{ color: word === "animation" ? "var(--blue)" : "var(--grey)" }}>
                       {word}
                     </span>
                   )}

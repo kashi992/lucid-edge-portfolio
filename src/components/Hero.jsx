@@ -104,7 +104,7 @@ export default function Hero({ visible }) {
         {/* Top label — left on mobile, top on desktop */}
         <div className="hero-top-label w-[50%] md:w-auto" style={{ marginTop: "0", paddingTop: "clamp(0px, 7vw, 7vw)" }}>
           <h1 className="xl:m-0 md:mt-[18vh] font-semibold leading-[110%]" style={{ fontSize: "clamp(1rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
-            Brand &amp; Web<br />Design Specialist
+            Animation &amp; Film<br />Production Studio
           </h1>
         </div>
 
@@ -121,7 +121,7 @@ export default function Hero({ visible }) {
           </div>
 
           <p className="md:m-[1vw] text-end font-semibold leading-[110%]" style={{ fontSize: "clamp(0.75rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
-            Freelance Design Director
+            Co-Founder &amp; Creative Director
           </p>
         </div>
 
