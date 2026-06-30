@@ -246,19 +246,19 @@ export default function AboutSection() {
       const h1El = heroWordRefs.current[0];
       const words = h1El ? h1El.querySelectorAll(".hw") : [];
 
-      // ta-597f7bbe: headline opacity 20%→100%, y 50px→0 (lines)
+      // ta-597f7bbe: headline opacity 20%→100%, y 50px→0 (lines stagger, total 0.2s)
       gsap.set(h1El, { opacity: 0.2, y: 50 });
-      // ta-4c5ab861: words start at #ffbc95
-      gsap.set(words, { color: "var(--bg-cold)" });
+      // ta-4c5ab861: words start at #ffbc95 (peach) → animate to #96908c (grey)
+      gsap.set(words, { color: "#ffbc95" });
       // blue dot starts at y:0
       gsap.set(blueDotRef.current, { y: 0 });
 
       const playHero = () => {
         const tl = gsap.timeline();
-        // ta-597f7bbe @ pos 1.07s, dur 0.8s, ease power3.out
+        // ta-597f7bbe @ pos 1.07s, dur 0.8s, ease power3.out — lines stagger amount 0.2
         tl.to(h1El, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 1.07);
-        // ta-4c5ab861 @ pos 1.29s, dur 1s, stagger each 0.1
-        tl.to(words, { color: "var(--blue)", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
+        // ta-4c5ab861 @ pos 1.29s, dur 1s, stagger each 0.1 — peach → grey
+        tl.to(words, { color: "#96908c", duration: 1, ease: "power3.out", stagger: { each: 0.1 } }, 1.29);
         // ta-743bd50e @ pos 1.16s, dur 0.33s — dot flies up
         tl.to(blueDotRef.current, { y: -30, duration: 0.33, ease: "power3.out" }, 1.16);
         // ta-d158a74d @ pos 1.49s, dur 1s — elastic back
@@ -434,25 +434,24 @@ export default function AboutSection() {
       <section
         ref={heroRef}
         data-nav="grey"
-        className="relative z-[5] flex flex-col justify-start items-center w-screen"
+        className="relative z-[5] w-screen"
         style={{ background: "var(--bg-warm)" }}
       >
-        {/* hero-about-wrapper: full viewport, centered */}
+        {/* hero-about-wrapper: full viewport, flex col centered — matches reference exactly */}
         <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible">
 
-          {/* wrapper-cont-50._70: responsive width */}
-          <div className="relative w-[80%] lg:w-[55%]">
+          {/* wrapper-cont-50._70: 49% on desktop, 80% on mobile */}
+          <div className="relative w-[80%] lg:w-[49%]">
 
-            {/* pill-hero-about-wrapper: absolute, icon + blue dot */}
+            {/* pill-hero-about-wrapper: absolute, inset .4vw auto auto .7vw */}
             <div
-              className="flex items-center gap-[1.4vw] absolute"
-              style={{ top: "0.4vw", left: "0.7vw" }}
+              className="flex items-center absolute"
+              style={{ gap: "1.4vw", top: "0.4vw", left: "0.7vw" }}
             >
               <img
                 src="/images/le-mark-lime.jpeg"
                 alt="Malcolm Beddows"
-                className="h-[12vw] md:h-[8vw] xl:h-[6vw]"
-                style={{ mixBlendMode: "darken" }}
+                style={{ height: "6vw" }}
               />
               <div
                 ref={blueDotRef}
@@ -460,18 +459,18 @@ export default function AboutSection() {
               />
             </div>
 
-            {/* text-headline-about */}
+            {/* text-headline-about: color var(--grey), 7vw, tracking -0.3vw, lh 101% */}
             <h1
               ref={el => heroWordRefs.current[0] = el}
-              className="m-0 flex flex-wrap text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw] font-semibold pl-5"
+              className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
               style={{
-                color: "var(--blue)",
+                color: "var(--grey)",
                 fontFamily: "var(--font)",
                 lineHeight: "101%",
               }}
             >
-              {/* text-span-5: invisible placeholder so "Designer..." starts after pill */}
-              <span className="opacity-0 xl:w-[115px] xl:h-[80px] md:w-[85px] md:h-[65px] w-[45px] h-[45px]" style={{ pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
+              {/* text-span-5: opacity .01, pointer-events none — spacer for pill icon */}
+              <span style={{ opacity: 0.01, pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
               {HERO_HEADLINE.split(" ").map((word, i) => (
                 <span key={i} className="hw" style={{ display: "inline" }}>
                   {word}{i < HERO_HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
