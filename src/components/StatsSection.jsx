@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 /*
   Shape animation values taken directly from reference site Webflow IX2 data.
@@ -212,11 +213,12 @@ export default function StatsSection() {
                   className="inline-block mr-[0.18em]"
                 >
                   {word === "award-winning" ? (
-                    <span
+                    <Link
+                      to="/work"
                       ref={pillRef}
                       onMouseEnter={() => setHovered(true)}
                       onMouseLeave={() => setHovered(false)}
-                      className="inline-flex items-center justify-center relative overflow-hidden cursor-pointer align-baseline rounded-[100vw] px-[0.45em] py-[0.05em] [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
+                      className="inline-flex items-center justify-center relative overflow-hidden no-underline align-baseline rounded-[100vw] px-[0.45em] py-[0.05em] [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
                       style={{
                         background: "var(--orange1)",
                         transform: hovered ? "scale(0.95)" : "scale(1)",
@@ -233,16 +235,20 @@ export default function StatsSection() {
                         award-winning
                       </span>
                       <span
-                        className="absolute inset-0 flex items-center justify-center whitespace-nowrap rounded-[100vw] text-[0.45em] font-semibold [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
+                        className="absolute inset-0 flex items-center justify-center gap-[0.3em] whitespace-nowrap rounded-[100vw] text-[0.42em] font-semibold tracking-[0.04em] uppercase [transition:transform_0.3s_cubic-bezier(0.165,0.84,0.44,1)]"
                         style={{
                           background: "var(--blue)",
                           color: "var(--orange1)",
                           transform: hovered ? "translateY(0)" : "translateY(110%)",
+                          letterSpacing: "0.06em",
                         }}
                       >
-                        Let&apos;s go
+                        View our work
+                        <svg width="0.9em" height="0.9em" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+                          <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                       </span>
-                    </span>
+                    </Link>
                   ) : (
                     <span style={{ color: word === "animation" ? "var(--blue)" : "var(--grey)" }}>
                       {word}
