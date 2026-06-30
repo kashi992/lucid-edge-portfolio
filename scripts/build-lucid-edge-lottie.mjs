@@ -32,9 +32,9 @@ const FPS         = original.fr; // 30
 const TOTAL_FRAMES = original.op; // 60
 
 // ── Font size ─────────────────────────────────────────────────────────────
-// At 150% scaleX (neutral), capital letters are ~108px tall.
-// At Y_POS=120, top of 'L' (−108) lands at canvas y=12. Fits in 0-233.
-const FONT_SIZE = 155;
+// Reduced from 155 → 100 to fit 7+7 letters (Malcolm + Beddows) across 1916px canvas.
+// At 150% scaleX (neutral), capital letters are ~70px tall at this size.
+const FONT_SIZE = 100;
 
 // ── Path converter: opentype commands → Lottie {v, i, o, c} ───────────────
 function pathToLottie(opPath) {
@@ -103,36 +103,46 @@ function getLetterPath(char) {
 // Descender bottom = 170 + (31×1.5) = 216.5px — inside 233px canvas. ✓
 const Y_POS = 170;
 
-// Lucid (5 letters) — same role as "Juan" (scales up as cursor moves right)
+// Malcolm (7 letters) — scales up as cursor moves right
 // Positions [x@frame0, x@frame30, x@frame60]
-const LUCID_POSITIONS = [
-  [0,   0,    0   ],  // L — left-anchored (never moves)
-  [28,  155,  220 ],  // u
-  [58,  306,  440 ],  // c
-  [92,  450,  700 ],  // i
-  [118, 520,  870 ],  // d
+const MALCOLM_POSITIONS = [
+  [0,   0,    0   ],  // M — left-anchored (never moves)
+  [18,  100,  250 ],  // a
+  [34,  197,  480 ],  // l
+  [46,  242,  600 ],  // c
+  [60,  335,  740 ],  // o
+  [73,  428,  880 ],  // l
+  [83,  473,  960 ],  // m
 ];
-const LUCID_SCALES = [
+const MALCOLM_SCALES = [
   // [scaleX@0, scaleX@30, scaleX@60]  — scaleY fixed at 150
-  [35,  150, 339],  // L
-  [45,  150, 307],  // u
-  [60,  150, 260],  // c
-  [70,  150, 210],  // i
-  [80,  130, 170],  // d
+  [30,  150, 360],  // M
+  [38,  150, 320],  // a
+  [48,  150, 275],  // l
+  [58,  150, 240],  // c
+  [65,  150, 210],  // o
+  [72,  150, 185],  // l
+  [82,  150, 155],  // m
 ];
 
-// Edge (4 letters) — same role as "Mora" (scales down as cursor moves right)
-const EDGE_POSITIONS = [
-  [870,  1320, 1600],  // E
-  [1200, 1465, 1720],  // d
-  [1480, 1622, 1810],  // g
-  [1750, 1780, 1870],  // e
+// Beddows (7 letters) — scales down as cursor moves right
+const BEDDOWS_POSITIONS = [
+  [500,  900,  1050],  // B
+  [700,  995,  1140],  // e
+  [900,  1090, 1210],  // d
+  [1100, 1185, 1265],  // d
+  [1300, 1280, 1310],  // o
+  [1475, 1375, 1350],  // w
+  [1650, 1510, 1385],  // s
 ];
-const EDGE_SCALES = [
-  [194, 150, 91],  // E
-  [267, 150, 60],  // d
-  [315, 150, 48],  // g
-  [380, 150, 35],  // e
+const BEDDOWS_SCALES = [
+  [190, 150, 95],  // B
+  [240, 150, 70],  // e
+  [285, 150, 55],  // d
+  [320, 150, 45],  // d
+  [350, 150, 37],  // o
+  [375, 150, 30],  // w
+  [395, 150, 25],  // s
 ];
 
 // ── Easing (from original — near-linear) ──────────────────────────────────
@@ -200,13 +210,13 @@ function buildLayer(char, idx, pos, sc, total) {
 }
 
 // ── Assemble layers ────────────────────────────────────────────────────────
-const LUCID = ['L', 'u', 'c', 'i', 'd'];
-const EDGE  = ['E', 'd', 'g', 'e'];
-const TOTAL = LUCID.length + EDGE.length + 2; // +2 for mask + projects
+const MALCOLM = ['M', 'a', 'l', 'c', 'o', 'l', 'm'];
+const BEDDOWS = ['B', 'e', 'd', 'd', 'o', 'w', 's'];
+const TOTAL = MALCOLM.length + BEDDOWS.length + 2; // +2 for mask + projects
 
 const layers = [
-  ...LUCID.map((ch, i) => buildLayer(ch, i, LUCID_POSITIONS[i], LUCID_SCALES[i], TOTAL)),
-  ...EDGE.map((ch, i) => buildLayer(ch, i + LUCID.length, EDGE_POSITIONS[i], EDGE_SCALES[i], TOTAL)),
+  ...MALCOLM.map((ch, i) => buildLayer(ch, i, MALCOLM_POSITIONS[i], MALCOLM_SCALES[i], TOTAL)),
+  ...BEDDOWS.map((ch, i) => buildLayer(ch, i + MALCOLM.length, BEDDOWS_POSITIONS[i], BEDDOWS_SCALES[i], TOTAL)),
   original.layers.find(l => l.nm === 'Mask'),     // track matte source (td:1) for projects
   original.layers.find(l => l.nm === 'projects'),  // uses Mask as track matte (tt:1)
 ].filter(Boolean);
