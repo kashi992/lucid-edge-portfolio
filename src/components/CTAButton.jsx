@@ -47,14 +47,14 @@ export default function CTAButton({ href, label = "Learn more", target }) {
       <div
         className="shrink-0"
         style={{
-          background: "var(--orange1)",
+          background: "#25252582",
           borderRadius: "5rem",
           padding: "1rem 1.5rem",
           fontFamily: "var(--font)",
           fontSize: "0.9rem",
           fontWeight: 600,
           lineHeight: "100%",
-          color: "var(--blue)",
+          color: "var(--white)",
           whiteSpace: "nowrap",
         }}
       >

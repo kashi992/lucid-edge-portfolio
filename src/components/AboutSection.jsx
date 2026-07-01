@@ -280,16 +280,35 @@ export default function AboutSection({ loaded }) {
           });
         }
 
-        // Character-by-character reveal — matches juanmora.co reference
-        if (body) {
-          const chars = body.querySelectorAll(".bio-char");
-          gsap.fromTo(chars,
-            { opacity: 0 },
-            { opacity: 1, duration: 0.3, stagger: 0.018, ease: "power2.out",
-              scrollTrigger: { trigger: body, start: "top 85%", once: true } }
-          );
-        }
       });
+
+      // Hide all bio chars upfront so paragraphs 2-4 don't show before animation
+      BIO.forEach((_, i) => {
+        const body = bodyRefs.current[i];
+        if (body) gsap.set(body.querySelectorAll(".bio-char"), { opacity: 0 });
+      });
+
+      // Sequential body reveal — each paragraph waits for the previous to finish
+      const animateBioBody = (index) => {
+        if (index >= BIO.length) return;
+        const body = bodyRefs.current[index];
+        if (!body) { animateBioBody(index + 1); return; }
+        const chars = body.querySelectorAll(".bio-char");
+        gsap.to(chars, {
+          opacity: 1, duration: 0.06, stagger: 0.004, ease: "power2.out",
+          onComplete: () => animateBioBody(index + 1),
+        });
+      };
+
+      const firstBody = bodyRefs.current[0];
+      if (firstBody) {
+        ScrollTrigger.create({
+          trigger: firstBody,
+          start: "top 85%",
+          once: true,
+          onEnter: () => animateBioBody(0),
+        });
+      }
 
       /* helper: create a once-only ScrollTrigger that also fires immediately
          if the trigger element is already in the viewport on page load */
@@ -496,7 +515,7 @@ export default function AboutSection({ loaded }) {
       {/* ═══════════════════════════════════════════════════════ BIO */}
       <section
         data-nav="grey"
-        className="relative w-screen flex flex-col items-center z-10 xl:pt-32 xl:pb-60 md:pt-14 md:pb-32 py-12"
+        className="relative w-screen flex flex-col items-center z-10 md:py-32 md:pt-14 py-12"
         style={{ background: "var(--bg-warm)" }}
       >
         {BIO.map((item, i) => (
