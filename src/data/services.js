@@ -22,6 +22,17 @@ export const SERVICES = [
     videos: [],
   },
   {
+    id: "creative-direction",
+    title: "Creative Direction",
+    description: "Working with other producers and directors, LUCID EDGE provides creative consultancy on any animation or video production — at any stage of the project.",
+    images: [
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/LUCID-EDGE-2.png",
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/MASH-the-winning-design-competition-video.png",
+      "https://lucidedge.com.au/wp-content/uploads/2020/07/State_Library.jpg",
+    ],
+    videos: [],
+  },
+  {
     id: "visual-effects",
     title: "Visual Effects for TV & Film",
     description: "Seamless VFX for TV and film with onset supervision — camera tracking, CG integration, greenscreen compositing, rotoscoping, and project branding.",
@@ -52,13 +63,13 @@ export const BENEFITS = [
   "We deliver the highest quality animation, design, and film production on every project.",
 ];
 
-export const TOOLS = ["After Effects", "Cinema 4D", "Premiere Pro", "Unreal Engine", "3DS Max"];
+export const TOOLS = ["Cinema 4D", "3DS Max", "After Effects", "Premiere Pro", "Unreal Engine", "DaVinci Resolve"];
 
 export const SOCIALS = [
-  { label: "Email",     href: "mailto:malcolm@lucidedge.com.au?subject=Hey%20Lucid%20Edge!" },
+  { label: "Email",     href: "mailto:mbeddows@lucidedge.com.au?subject=Hey%20Lucid%20Edge!" },
   { label: "Facebook",  href: "https://www.facebook.com/lucidedge" },
   { label: "Instagram", href: "https://www.instagram.com/lucidedge" },
-  { label: "Twitter",   href: "https://twitter.com/lucidedge" },
+  { label: "Phone",     href: "tel:+61414088037" },
 ];
 
 export const IMAGES = {

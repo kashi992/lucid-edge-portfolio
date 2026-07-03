@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
 
-const HEADING_WORDS  = ["Let's", "create", "something", "award-winning", "together"];
-const SUBTITLE_WORDS = ["animation,", "film", "production,", "VFX", "&", "timelapse."];
+const HEADING_WORDS  = ["Let's", "create", "something", "award-winning", "together."];
+const SUBTITLE_WORDS = ["3D", "animation,", "film", "production,", "VFX", "&", "timelapse."];
 const TALK_WORDS     = ["Let's", "talk"];
-const EMAIL_CHARS    = "malcolm@lucidedge.com.au".split("");
+const EMAIL_CHARS    = "mbeddows@lucidedge.com.au".split("");
 
 export default function ContactCTA() {
   const wrapRef         = useRef(null);
@@ -180,8 +180,8 @@ export default function ContactCTA() {
 
         {/* CTA button */}
         <a
-          href="mailto:malcolm@lucidedge.com.au?subject=Hey%20Lucid%20Edge!"
-          data-copy-email="malcolm@lucidedge.com.au"
+          href="mailto:mbeddows@lucidedge.com.au?subject=Hey%20Lucid%20Edge!"
+          data-copy-email="mbeddows@lucidedge.com.au"
           data-cursor-skip
           onMouseEnter={onEnter}
           onMouseLeave={onLeave}

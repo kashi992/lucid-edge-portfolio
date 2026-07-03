@@ -13,7 +13,7 @@ const BIO = [
   },
   {
     label: "Background",
-    body: "Malcolm Beddows brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Malcolm Beddows in 2005, he established the studio as one of Sydney's leading creative production companies.",
+    body: "Malcolm Beddows brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, he established the studio as one of Sydney's leading creative production companies.",
   },
   {
     label: "Awards &\nRecognitions",
@@ -121,7 +121,7 @@ function StudioPanel() {
 }
 
 
-const HERO_HEADLINE = "Award-winning animation and film production, based in Sydney";
+const HERO_HEADLINE = "Multi-award-winning animation and film production, based in Paddington, Sydney";
 
 /* ─── Main component ────────────────────────────────────────────────────── */
 export default function AboutSection({ loaded }) {

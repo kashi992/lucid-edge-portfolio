@@ -2,20 +2,20 @@ import { useRef, useEffect } from "react";
 import { TOOLS, SOCIALS } from "../data/services";
 
 export default function Footer() {
-  const footerRef       = useRef(null);
-  const videoRef        = useRef(null);
-  const lucidRef        = useRef(null);
-  const edgeRef         = useRef(null);
-  const logoRef         = useRef(null);
-  const toolsLabelRef   = useRef(null);
+  const footerRef = useRef(null);
+  const videoRef = useRef(null);
+  const lucidRef = useRef(null);
+  const edgeRef = useRef(null);
+  const logoRef = useRef(null);
+  const toolsLabelRef = useRef(null);
   const socialsLabelRef = useRef(null);
   const toolsDividerRef = useRef(null);
   const socialsDividerRef = useRef(null);
-  const toolsRef        = useRef([]);
-  const socialsRef      = useRef([]);
-  const bottomLeftRef   = useRef(null);
-  const bottomRightRef  = useRef(null);
-  const gsapRef         = useRef(null);
+  const toolsRef = useRef([]);
+  const socialsRef = useRef([]);
+  const bottomLeftRef = useRef(null);
+  const bottomRightRef = useRef(null);
+  const gsapRef = useRef(null);
 
   useEffect(() => {
     (async () => {
@@ -25,18 +25,18 @@ export default function Footer() {
       gsapRef.current = gsap;
 
       /* ── initial states ── */
-      gsap.set(videoRef.current,          { scale: 1.06, opacity: 0 });
-      gsap.set(lucidRef.current,          { xPercent: -18, opacity: 0 });
-      gsap.set(edgeRef.current,           { xPercent:  18, opacity: 0 });
-      gsap.set(logoRef.current,           { scale: 0.5, opacity: 0, rotate: -30 });
-      gsap.set(toolsLabelRef.current,     { opacity: 0, y: 10 });
-      gsap.set(socialsLabelRef.current,   { opacity: 0, y: 10 });
-      gsap.set(toolsDividerRef.current,   { scaleX: 0, transformOrigin: "right center" });
+      gsap.set(videoRef.current, { scale: 1.06, opacity: 0 });
+      gsap.set(lucidRef.current, { xPercent: -18, opacity: 0 });
+      gsap.set(edgeRef.current, { xPercent: 18, opacity: 0 });
+      gsap.set(logoRef.current, { scale: 0.5, opacity: 0, rotate: -30 });
+      gsap.set(toolsLabelRef.current, { opacity: 0, y: 10 });
+      gsap.set(socialsLabelRef.current, { opacity: 0, y: 10 });
+      gsap.set(toolsDividerRef.current, { scaleX: 0, transformOrigin: "right center" });
       gsap.set(socialsDividerRef.current, { scaleX: 0, transformOrigin: "right center" });
-      gsap.set(toolsRef.current,          { opacity: 0, yPercent: 60 });
-      gsap.set(socialsRef.current,        { opacity: 0, yPercent: 60 });
-      gsap.set(bottomLeftRef.current,     { opacity: 0, y: 14 });
-      gsap.set(bottomRightRef.current,    { opacity: 0, y: 14 });
+      gsap.set(toolsRef.current, { opacity: 0, yPercent: 60 });
+      gsap.set(socialsRef.current, { opacity: 0, yPercent: 60 });
+      gsap.set(bottomLeftRef.current, { opacity: 0, y: 14 });
+      gsap.set(bottomRightRef.current, { opacity: 0, y: 14 });
 
       /* ── entrance timeline ── */
       const tl = gsap.timeline({
@@ -141,15 +141,19 @@ export default function Footer() {
       className="relative w-screen h-screen flex justify-center items-center overflow-hidden z-[4]"
     >
       {/* Background video */}
-      <div className="absolute inset-0 z-10 pointer-events-none w-screen h-screen overflow-hidden flex justify-center items-center">
-        <video
-          ref={videoRef}
-          className="object-cover w-full h-full"
-          style={{ willChange: "transform" }}
-          muted autoPlay loop playsInline
-        >
-          <source src="/videos-work/desk_jm3.mp4" type="video/mp4" />
-        </video>
+      <div
+        ref={videoRef}
+        className="absolute inset-0 z-10 pointer-events-none w-screen h-screen overflow-hidden flex justify-center items-center"
+        style={{ willChange: "transform" }}
+      >
+        <iframe
+          src="https://player.vimeo.com/video/473380561?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1"
+          allow="autoplay; fullscreen; picture-in-picture"
+          style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)" }}
+          title="showreel_2020_b"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>
 
       {/* Content */}
@@ -157,7 +161,7 @@ export default function Footer() {
 
         {/* Top row */}
         <div className="grid grid-cols-2 gap-4 pt-[55vh] md:pt-0 mb-0 md:mb-[4vw] w-full">
- {/* Socials column */}
+          {/* Socials column */}
           <div className="flex flex-col gap-8 md:gap-10">
             <div
               ref={socialsDividerRef}
@@ -219,7 +223,7 @@ export default function Footer() {
             </ul>
           </div>
 
-         
+
         </div>
 
         {/* Giant name */}
@@ -255,14 +259,14 @@ export default function Footer() {
             className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
-            Brand &amp; Web Design Studio &nbsp;<span className="opacity-50">2026</span>
+            Animation &amp; Film Production &nbsp;<span className="opacity-50">2026</span>
           </h3>
           <h3
             ref={bottomRightRef}
             className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
             style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
           >
-            Malcolm Beddows Studio &nbsp;<span className="opacity-50">[Coming Soon]</span>
+            Paddington, Sydney NSW 2021 &nbsp;<span className="opacity-50">Australia</span>
           </h3>
         </div>
       </div>

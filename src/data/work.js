@@ -41,7 +41,8 @@ export const PROJECTS = [
     gridCols: 2,
     media: [
       { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBH.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBHconst.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBHadj.jpg", span: 1 },
     ],
   },
   {
@@ -59,6 +60,21 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "north-west-rail-link",
+    title: "North West\nRail Link",
+    year: "2017",
+    challenge: "Produce architectural visualisation and a high-energy sizzle reel for the North West Rail Link bid, helping the consortium communicate their vision to government stakeholders.",
+    services: ["3D Animation", "Arch Viz", "Live Action"],
+    role: "Full production — architectural animation, sizzle reel direction, and post-production.",
+    liveUrl: null,
+    gridCols: 2,
+    media: [
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NWRL.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/nwrl_sizzle.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NWRLsting.jpg", span: 1 },
+    ],
+  },
+  {
     id: "star-casino",
     title: "The Star Casino\nConstruction Sequence",
     year: "2016",
@@ -69,7 +85,23 @@ export const PROJECTS = [
     gridCols: 2,
     media: [
       { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/the-star-casino-construction-sequence.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/MASH-the-winning-design-competition-video.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png", span: 2 },
+    ],
+  },
+  {
+    id: "apia-future",
+    title: "Apia — The Future\nof Over 50s",
+    year: "2016",
+    challenge: "Create a four-part animation series for Apia Insurance visualising the future of over-50s living — spanning house, office, transport hub, and city environments.",
+    services: ["3D Animation", "Arch Viz", "CG", "Corporate Video"],
+    role: "Lead animator — concept, 3D modelling, animation, and post-production across all four episodes.",
+    liveUrl: null,
+    gridCols: 2,
+    media: [
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/08-Apia-The-Future-of-Over-50s-House.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/09-Apia-The-Future-of-Over-50s-Office.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/10-Apia-The-Future-of-Over-50s-Transport-Hub.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/11-Apia-The-Future-of-Over-50s-City.jpg", span: 1 },
     ],
   },
   {
@@ -83,7 +115,22 @@ export const PROJECTS = [
     gridCols: 2,
     media: [
       { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/south-australian-schools-PPP-bid-submission-video.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/northlink-puhoi-to-warkworth-PPP-bid-submission-video.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SA_SportsPark.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SA_RegencyPark.jpg", span: 1 },
+    ],
+  },
+  {
+    id: "learning-communities-victoria",
+    title: "Learning Communities\nVictoria",
+    year: "2015",
+    challenge: "Deliver architectural visualisation for the Learning Communities Victoria school PPP programme, helping the consortium present their design vision to government stakeholders.",
+    services: ["3D Animation", "Arch Viz"],
+    role: "Lead animator — full architectural animation and visualisation production.",
+    liveUrl: null,
+    gridCols: 2,
+    media: [
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/LCV_Schools.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/VIC_Schools.jpg", span: 2 },
     ],
   },
   {
@@ -91,13 +138,27 @@ export const PROJECTS = [
     title: "State Library of NSW\nRestoring the Mitchell",
     year: "2014",
     challenge: "Document and communicate the restoration of the State Library of NSW's Mitchell Wing through compelling film production for public audiences.",
-    services: ["Film Production", "Live Action", "Documentary"],
+    services: ["Film Production", "Live Action", "CG", "Documentary"],
     role: "Director and producer — live-action documentary filming, interview production, and post-production.",
     liveUrl: null,
     gridCols: 2,
     media: [
       { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/State_Library.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/Randwick_Hospital_Interview_Ron.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/19-State-Library-of-NSW.jpg", span: 2 },
+    ],
+  },
+  {
+    id: "northlink-ppp",
+    title: "Northlink Puhoi to\nWarkworth PPP",
+    year: "2014",
+    challenge: "Create a bid submission video for the Northlink Puhoi to Warkworth PPP road project in New Zealand, communicating the consortium's design and delivery approach.",
+    services: ["3D Animation", "Arch Viz", "Bid Submission Video"],
+    role: "Lead animator and director — full production of the bid submission video.",
+    liveUrl: null,
+    gridCols: 2,
+    media: [
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/northlink-puhoi-to-warkworth-PPP-bid-submission-video.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/PLink.jpg", span: 2 },
     ],
   },
   {
@@ -111,7 +172,7 @@ export const PROJECTS = [
     gridCols: 2,
     media: [
       { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/paulini_clip.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/pictureDRIFT.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/part_wonder.jpg", span: 2 },
     ],
   },
   {
@@ -125,7 +186,7 @@ export const PROJECTS = [
     gridCols: 2,
     media: [
       { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/AEGIS_LAPD.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/Screen-Shot-2020-09-03-at-10.43.25-AM.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/pictureDRIFT.jpg", span: 2 },
     ],
   },
 ];
