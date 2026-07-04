@@ -179,7 +179,7 @@ export default function AboutSection({ loaded }) {
     // Color sweep + dot after slide starts
     (async () => {
       const { default: gsap } = await import("gsap");
-      gsap.set(wordEls, { color: "#ffbc95" });
+      gsap.set(wordEls, { color: "#c8e800" });
       gsap.to(wordEls, {
         color: "var(--grey)",
         duration: 1, ease: "power3.out",

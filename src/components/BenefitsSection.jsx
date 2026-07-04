@@ -93,11 +93,13 @@ export default function BenefitsSection() {
   const step1SpacerRef  = useRef(null);
   const step2SpacerRef  = useRef(null);
 
+  const step1WrapRef    = useRef(null);
   const h1LeftWrapRef   = useRef(null);
   const h1RightWrapRef  = useRef(null);
   const lineRef         = useRef(null);
   const taglineRef      = useRef(null);
 
+  const step2WrapRef    = useRef(null);
   const step2HdrRef     = useRef(null);
   const listRef         = useRef(null);
   const ctaRef          = useRef(null);
@@ -131,21 +133,24 @@ export default function BenefitsSection() {
       const checkIcons = listRef.current     ? [...listRef.current.querySelectorAll(".check-icon")] : [];
 
       /* ─ Initial states ─ */
+      gsap.set(step2WrapRef.current, { opacity: 0 });
       gsap.set([...hdrWords, ...listWords, ...checkIcons], { opacity: 0 });
       gsap.set(ctaRef.current, { opacity: 0, y: 16 });
       gsap.set(lightImgRef.current, { opacity: 0 });
 
-      /* ══ TIMELINE 2 — scrub entrance animations ══ */
+      const mobile = window.innerWidth < 1024;
+
+      /* ══ TIMELINE 2 — step1 parallax entrance ══ */
       const tl2 = gsap.timeline({ paused: true });
 
       tl2
         .fromTo(h1LeftWrapRef.current,
-          { x: "18%" },
-          { x: "-22%", ease: "none", duration: 9.97 },
+          { x: mobile ? "5%" : "18%" },
+          { x: mobile ? "-5%" : "-22%", ease: "none", duration: 9.97 },
           0
         )
         .fromTo(h1RightWrapRef.current,
-          { x: "-33%" },
+          { x: mobile ? "-8%" : "-33%" },
           { x: "0%", ease: "none", duration: 9.97 },
           0
         )
@@ -168,28 +173,41 @@ export default function BenefitsSection() {
         animation: tl2,
       });
 
-      /* ══ TIMELINE 1 — scrub step1 exit + light photo enter ══ */
-      const step1ExitTargets = [
-        ...leftWords,
-        ...rightWords,
-        ...taglineWords,
-        lineRef.current,
-      ].filter(Boolean);
-
+      /* ══ TIMELINE 1 — step1 exit + light photo ══ */
       const tl1 = gsap.timeline({ paused: true });
 
-      tl1
-        .fromTo(step1ExitTargets,
-          { opacity: 1 },
-          { opacity: 0, ease: "power1.inOut", duration: 0.2,
-            stagger: { amount: 0.8, from: "start" } },
-          0
-        )
-        .fromTo(lightImgRef.current,
-          { opacity: 0 },
-          { opacity: 1, ease: "power1.inOut", duration: 0.83 },
-          0.17
-        );
+      if (mobile) {
+        /* Mobile: fade the whole step1 div as one unit — no word-level conflict */
+        tl1
+          .fromTo(step1WrapRef.current,
+            { opacity: 1 },
+            { opacity: 0, ease: "power1.inOut", duration: 0.8 },
+            0
+          )
+          .fromTo(lightImgRef.current,
+            { opacity: 0 },
+            { opacity: 1, ease: "power1.inOut", duration: 0.83 },
+            0.17
+          );
+      } else {
+        /* Desktop: original word-by-word fade */
+        const step1ExitTargets = [
+          ...leftWords, ...rightWords, ...taglineWords, lineRef.current,
+        ].filter(Boolean);
+
+        tl1
+          .fromTo(step1ExitTargets,
+            { opacity: 1 },
+            { opacity: 0, ease: "power1.inOut", duration: 0.2,
+              stagger: { amount: 0.8, from: "start" } },
+            0
+          )
+          .fromTo(lightImgRef.current,
+            { opacity: 0 },
+            { opacity: 1, ease: "power1.inOut", duration: 0.83 },
+            0.17
+          );
+      }
 
       ScrollTrigger.create({
         trigger: step1SpacerRef.current,
@@ -199,22 +217,26 @@ export default function BenefitsSection() {
         animation: tl1,
       });
 
-      /* ══ TIMELINE 3 — scrub step2 enter ══ */
+      /* ══ TIMELINE 3 — step2 entrance ══ */
       const tl3 = gsap.timeline({ paused: true });
 
-      // Header words first
+      tl3.fromTo(
+        step2WrapRef.current,
+        { opacity: 0 },
+        { opacity: 1, ease: "none", duration: 0.5 },
+        0
+      );
       tl3.fromTo(
         hdrWords,
         { opacity: 0 },
         { opacity: 1, ease: "none", duration: 0.2, stagger: { each: 0.2, from: "start" } },
-        0
+        0.4
       );
 
-      // Per list item: tick icon → its words
       listItems.forEach((li) => {
         const icon  = li.querySelector(".check-icon");
         const words = [...li.querySelectorAll(".sw")];
-        if (icon)        tl3.fromTo(icon,  { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.2 }, ">");
+        if (icon)         tl3.fromTo(icon,  { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.2 }, ">");
         if (words.length) tl3.fromTo(words, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.2, stagger: { each: 0.15, from: "start" } }, ">");
       });
 
@@ -227,8 +249,10 @@ export default function BenefitsSection() {
 
       ScrollTrigger.create({
         trigger: step2SpacerRef.current,
-        start: "top 125%",
-        end: "bottom 110%",
+        /* Mobile: start only after step1Spacer fully exits (no overlap).
+           Desktop: "top 125%" gives the original slight pre-load overlap. */
+        start: mobile ? "top bottom" : "top 125%",
+        end:   mobile ? "bottom bottom" : "bottom 110%",
         scrub: 0.8,
         animation: tl3,
       });
@@ -305,11 +329,11 @@ export default function BenefitsSection() {
           />
 
           {/* ── step1 — text overlaid on dark photo ── */}
-          <div className="absolute inset-0 flex flex-col xl:justify-end z-[2] px-[6vw] pb-[8vw] xl:pt-0 pt-[8vw]">
+          <div ref={step1WrapRef} className="absolute inset-0 flex flex-col xl:justify-end z-[2] px-[6vw] pb-[8vw] xl:pt-0 pt-[8vw]">
 
             <div ref={h1LeftWrapRef} className="will-change-transform">
               <h2
-                className="m-0 font-black tracking-[-0.04em] leading-[88%] xl:text-[150px] text-[110px]"
+                className="m-0 font-black tracking-[-0.04em] leading-[88%] xl:text-[150px] lg:text-[110px] text-[90px]"
                 style={{
                   fontFamily: "var(--font)",
                   color: "var(--bg-warm)",
@@ -321,7 +345,7 @@ export default function BenefitsSection() {
 
             <div ref={h1RightWrapRef} className="will-change-transform flex justify-end">
               <h2
-                className="m-0 font-black tracking-[-0.04em] leading-[88%] xl:text-[150px] text-[110px]"
+                className="m-0 font-black tracking-[-0.04em] leading-[88%] xl:text-[150px] lg:text-[110px] text-[90px]"
                 style={{
                   fontFamily: "var(--font)",
                   color: "var(--orange1)",
@@ -356,7 +380,7 @@ export default function BenefitsSection() {
           </div>
 
           {/* ── step2 — no overlay, all dark text ── */}
-          <div className="absolute inset-0 flex flex-col justify-center z-[3]" style={{ padding: "0 8vw" }}>
+          <div ref={step2WrapRef} className="absolute inset-0 flex flex-col justify-center z-[3] px-[8vw] my-12">
 
             <div ref={step2HdrRef} className="md:max-w-[50vw]">
               <h2
@@ -397,7 +421,7 @@ export default function BenefitsSection() {
             >
               {BENEFITS_LIST.map((item, i) => (
                 <li key={i}>
-                  <div className="flex items-start gap-4" style={{ padding: "1vw 0" }}>
+                  <div className="flex items-start gap-4 py-1">
                     <img
                       src="/images/check-mark-icon.svg"
                       loading="lazy"

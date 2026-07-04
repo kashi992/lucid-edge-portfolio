@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { IMAGES } from "../data/services";
+import { Link } from "react-router-dom";
 
 const FILES = [
   { color: "#7B6EF6", rotate: -12, x: -22 },
@@ -217,8 +218,8 @@ export default function WorkCTA() {
 
         {/* Folder */}
         <div style={{ perspective: "600px" }}>
-          <a
-            href="#work"
+          <Link
+            to="/work"
             ref={folderRef}
             data-cursor-skip
             className="folder-wrapper no-underline block relative cursor-pointer"
@@ -250,7 +251,7 @@ export default function WorkCTA() {
               ref={flapRef}
               className="absolute inset-0 z-[5] w-full h-full [transform-origin:bottom_center]"
             />
-          </a>
+          </Link>
         </div>
 
         <p

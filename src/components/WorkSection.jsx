@@ -117,7 +117,7 @@ export default function WorkSection({ loaded }) {
     // Color sweep after slide starts (0.15s slide delay + small offset)
     (async () => {
       const { default: gsap } = await import("gsap");
-      gsap.set(wordEls, { color: "#ffbc95" });
+      gsap.set(wordEls, { color: "#c8e800" });
       gsap.to(wordEls, {
         color: "var(--grey)",
         duration: 1, ease: "power3.out",
