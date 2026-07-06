@@ -329,7 +329,7 @@ export default function BenefitsSection() {
           />
 
           {/* ── step1 — text overlaid on dark photo ── */}
-          <div ref={step1WrapRef} className="absolute inset-0 flex flex-col xl:justify-end z-[2] px-[6vw] pb-[8vw] xl:pt-0 pt-[8vw]">
+          <div ref={step1WrapRef} className="absolute inset-0 flex flex-col xl:justify-end z-[2] px-[6vw] pb-[8vw] xl:pt-0 pt-[8vw] max-[575px]:opacity-0">
 
             <div ref={h1LeftWrapRef} className="will-change-transform">
               <h2
