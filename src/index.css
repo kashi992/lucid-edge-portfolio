@@ -87,7 +87,8 @@ ul, ol { list-style: none; }
   color: var(--blue);
   letter-spacing: -0.04rem;
   font-family: var(--font);
-  font-size: 1.1rem;
+  /* font-size: 1.1rem; */
+  font-size: 2rem;
   font-weight: 600;
   transition: color 0.3s;
 }
@@ -95,8 +96,8 @@ ul, ol { list-style: none; }
 .dot-jm {
   background-color: var(--blue);
   border-radius: 10px;
-  width: 0.3rem;
-  height: 0.3rem;
+  width: 0.5rem;
+  height: 0.5rem;
   flex-shrink: 0;
 }
 .nav-link {
@@ -120,7 +121,8 @@ ul, ol { list-style: none; }
   background-color: #50505087;
   transform: scale(0.9);
 }
-.nav-link.is-peach { color: var(--orange1); background-color: #5050504f; }
+.nav-link.is-peach { color: var(--orange1); background-color: #7a7777; }
+/* .nav-link.is-peach { color: var(--orange1); background-color: #5050504f; } */
 .nav-link.is-peach:hover { color: var(--bg-warm); background-color: #20202063; }
 .nav-social-link {
   -webkit-backdrop-filter: blur(11px);
