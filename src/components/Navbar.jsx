@@ -201,10 +201,10 @@ export default function Navbar({ visible }) {
           <Link to="/work" className="nav-link">Our Work</Link>
         </li>
         <li style={{ flex: "none" }}>
-          <Link to="" className="nav-link">Services</Link>
+          <Link to="/services" className="nav-link">Services</Link>
         </li>
         <li style={{ flex: "none" }}>
-          <Link to="" className="nav-link">Contact</Link>
+          <Link to="/contact" className="nav-link">Contact</Link>
         </li>
       </ul>
 
@@ -228,15 +228,10 @@ export default function Navbar({ visible }) {
 
     {/* Mobile bottom nav */}
     <div className="nav-menu-mobile md:hidden">
-      <Link to="/about" className="nav-link-mobile">About</Link>
-      <Link to="/" className="no-underline flex items-center justify-center">
-        <img
-          src="/images/le-mark-lime.jpeg"
-          alt="Malcolm Beddows"
-          style={{ width: 38, marginTop: "0.4rem", display: "block" }}
-        />
-      </Link>
-      <Link to="/work" className="nav-link-mobile">Work</Link>
+      <Link to="/about"    className="nav-link-mobile">About</Link>
+      <Link to="/work"     className="nav-link-mobile">Work</Link>
+      <Link to="/services" className="nav-link-mobile">Services</Link>
+      <Link to="/contact"  className="nav-link-mobile">Contact</Link>
     </div>
     </>
   );
