@@ -171,8 +171,8 @@ export default function Navbar({ visible }) {
       <div className="flex items-center md:w-[33%] w-full justify-center md:justify-start">
         <Link
           to="/"
-          className="nav-wordmark no-underline flex items-center"
-          style={{ gap: "0.2rem", paddingTop: "0.5rem", paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
+          className="nav-wordmark no-underline flex items-center gap-2"
+          style={{paddingTop: "0.5rem", paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
         >
           <span className="nav-name-jm">Lucid</span>
           <div className="dot-jm" />
@@ -182,13 +182,13 @@ export default function Navbar({ visible }) {
 
       {/* CENTER — About | icon | Work (hidden on mobile) */}
       <ul
-        className="m-0 p-0 list-none md:flex hidden items-center justify-center"
-        style={{ width: "33%", gap: 0 }}
+        className="m-0 p-0 list-none md:flex hidden items-center justify-center gap-3"
+        style={{ width: "33%",}}
       >
         <li style={{ flex: "none" }}>
-          <Link to="/about" className="nav-link">About</Link>
+          <Link to="/about" className="nav-link">About Us</Link>
         </li>
-        <li style={{ flex: "none" }}>
+        {/* <li style={{ flex: "none" }}>
           <Link to="/" className="no-underline inline-flex items-center justify-center">
             <img
               src="/images/le-mark-lime.jpeg"
@@ -196,9 +196,15 @@ export default function Navbar({ visible }) {
               style={{ width: 38, marginTop: "0.4rem", display: "block" }}
             />
           </Link>
+        </li> */}
+        <li style={{ flex: "none" }}>
+          <Link to="/work" className="nav-link">Our Work</Link>
         </li>
         <li style={{ flex: "none" }}>
-          <Link to="/work" className="nav-link">Work</Link>
+          <Link to="" className="nav-link">Services</Link>
+        </li>
+        <li style={{ flex: "none" }}>
+          <Link to="" className="nav-link">Contact</Link>
         </li>
       </ul>
 
