@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SOCIALS } from "../data/services";
 
 const NAV_LINKS = [
@@ -7,8 +7,16 @@ const NAV_LINKS = [
   { label: "Work",  to: "/work"  },
 ];
 
+const NAV_ITEMS = [
+  { label: "About Us",  to: "/about"    },
+  { label: "Our Work",  to: "/work"     },
+  { label: "Services",  to: "/services" },
+  { label: "Contact",   to: "/contact"  },
+];
+
 export default function Navbar({ visible }) {
-  const navRef = useRef(null);
+  const navRef   = useRef(null);
+  const { pathname } = useLocation();
 
   /* ── Entrance animation ── */
   useEffect(() => {
@@ -167,21 +175,8 @@ export default function Navbar({ visible }) {
       className="z-[990] flex justify-between items-center w-screen fixed inset-x-0 top-0"
       style={{ marginTop: "2rem", paddingLeft: "2vw", paddingRight: "2vw" }}
     >
-      {/* LEFT — featured project tag */}
-      <div className="hidden md:flex items-center" style={{ flex: "0 0 33%", minWidth: 0 }}>
-        <p className="nav-social-link text-base is-peach" style={{ margin: 0, fontFamily: "var(--font)", letterSpacing: "0.03em", cursor: "default" }}>
-          Project: Northland Corridor PPP. for more{" "}
-          <Link
-            to="/work"
-            style={{ textDecoration: "underline", textUnderlineOffset: "3px", color: "inherit" }}
-          >
-            click here
-          </Link>
-        </p>
-      </div>
-
-      {/* CENTER — wordmark */}
-      <div className="flex items-center justify-center w-full" style={{ flex: "0 0 33%" }}>
+      {/* LEFT — wordmark */}
+      <div className="flex items-center" style={{ flex: "0 0 33%", minWidth: 0 }}>
         <Link
           to="/"
           className="nav-wordmark no-underline flex items-center gap-2"
@@ -193,23 +188,24 @@ export default function Navbar({ visible }) {
         </Link>
       </div>
 
+      {/* CENTER — spacer */}
+      <div style={{ flex: "0 0 33%" }} />
+
       {/* RIGHT — nav links (hidden on mobile) */}
       <ul
         className="m-0 p-0 list-none hidden md:flex items-center justify-end gap-3"
         style={{ flex: "0 0 33%", minWidth: 0 }}
       >
-        <li style={{ flex: "none" }}>
-          <Link to="/about" className="nav-link is-peach">About Us</Link>
-        </li>
-        <li style={{ flex: "none" }}>
-          <Link to="/work" className="nav-link is-peach">Our Work</Link>
-        </li>
-        <li style={{ flex: "none" }}>
-          <Link to="/services" className="nav-link is-peach">Services</Link>
-        </li>
-        <li style={{ flex: "none" }}>
-          <Link to="/contact" className="nav-link is-peach">Contact</Link>
-        </li>
+        {NAV_ITEMS.map(({ label, to }) => (
+          <li key={to} style={{ flex: "none" }}>
+            <Link
+              to={to}
+              className={`nav-link is-peach${pathname === to ? " is-active" : ""}`}
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
       </ul>
 
       {/* COMMENTED OUT — social links (Email, Facebook, Instagram, Phone) */}
@@ -232,10 +228,15 @@ export default function Navbar({ visible }) {
 
     {/* Mobile bottom nav */}
     <div className="nav-menu-mobile md:hidden">
-      <Link to="/about"    className="nav-link-mobile">About</Link>
-      <Link to="/work"     className="nav-link-mobile">Work</Link>
-      <Link to="/services" className="nav-link-mobile">Services</Link>
-      <Link to="/contact"  className="nav-link-mobile">Contact</Link>
+      {NAV_ITEMS.map(({ label, to }) => (
+        <Link
+          key={to}
+          to={to}
+          className={`nav-link-mobile${pathname === to ? " is-active" : ""}`}
+        >
+          {label}
+        </Link>
+      ))}
     </div>
     </>
   );

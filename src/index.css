@@ -136,6 +136,9 @@ ul, ol { list-style: none; }
 .nav-link.is-peach { color: var(--orange1); background-color: #7a7777; }
 /* .nav-link.is-peach { color: var(--orange1); background-color: #5050504f; } */
 .nav-link.is-peach:hover { color: var(--bg-warm); background-color: #20202063; }
+.nav-link.is-active { color: var(--blue) !important; background-color: var(--orange1) !important; }
+.nav-link.is-active:hover { color: var(--blue) !important; background-color: var(--orange1) !important; transform: scale(0.9); }
+.nav-link-mobile.is-active { color: var(--orange1); background-color: #ffffff22; }
 .nav-social-link {
   -webkit-backdrop-filter: blur(11px);
   backdrop-filter: blur(11px);

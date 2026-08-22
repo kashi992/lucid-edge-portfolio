@@ -99,9 +99,9 @@ export default function ServicesBanner() {
               color: "var(--grey)",
             }}
           >
-            From award-winning 3D animation to timelapse cameras, film production,
-            VFX, and creative direction — we bring the full creative toolkit to every
-            major project.
+            From award-winning 3D animation and 4D construction sequencing to interactive portals,
+            films, vox pops, project delivery digital content, and timelapse documentation —
+            we bring the full creative toolkit to every major project.
           </p>
 
           {/* Service tags */}

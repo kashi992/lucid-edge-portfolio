@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
 const TICKER_ITEMS = [
-  "3D Animation", "Film Production", "Creative Direction", "Visual Effects",
-  "TimeLapse", "Motion Graphics", "Arch Viz", "Corporate Video",
+  "3D Animation", "4D Construction Sequencing", "Interactive Portals", "Films and Vox Pops",
+  "Project Delivery Digital Content", "TimeLapse for Construction Documentation",
 ];
 
 const BENEFITS_LIST = [
-  "We bring 18+ years of multi-award-winning animation and film production experience.",
+  "We bring 20 years of multi-award-winning animation and film production experience.",
   "We specialise in helping construction teams win major project bids with compelling visuals.",
   "We create captivating narratives that engage stakeholders and deliver results.",
   "We deliver the highest quality animation, design, and film production on every project.",
@@ -401,7 +401,7 @@ export default function BenefitsSection() {
                   color: "var(--white)",
                 }}
               >
-                <Words text="18 years + award-winning results" />
+                <Words text="20 years + award-winning results" />
               </h2>
             </div>
 

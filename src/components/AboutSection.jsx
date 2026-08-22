@@ -5,11 +5,11 @@ import CTAButton from "./CTAButton";
 const BIO = [
   {
     label: "Who We Are",
-    body: "Malcolm Beddows is a multi-award-winning Animation and Film Production studio based in Paddington, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 18 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
+    body: "Malcolm Beddows is a multi-award-winning Animation and Film Production studio based in Paddington, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 20 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
   },
   {
     label: "Our Approach",
-    body: "We work alongside Communications and Marketing teams to understand your visual requirements and deliver content that engages stakeholders at every level.\n\nFrom 3D animation to live-action film, VFX, and TimeLapse — we bring a full production capability to every project, no matter the scale.\n\nOur goal is always the same: the highest quality production, delivered with clarity and impact.",
+    body: "We work alongside Communications and Marketing teams to understand your visual requirements and deliver content that engages stakeholders at every level.\n\nFrom 3D animation and 4D construction sequencing to interactive portals, films, vox pops, project delivery digital content, and timelapse documentation — we bring a full production capability to every project, no matter the scale.\n\nOur goal is always the same: the highest quality production, delivered with clarity and impact.",
   },
   {
     label: "Background",
@@ -17,15 +17,15 @@ const BIO = [
   },
   {
     label: "Awards &\nRecognitions",
-    body: "Multi-Award-Winning Studio\n18+ Years in Production\n100+ TimeLapse Cameras Deployed\n60+ Major Projects Delivered",
+    body: "Multi-Award-Winning Studio\n20+ Years in Production\n100+ TimeLapse Cameras Deployed\n60+ Major Projects Delivered",
   },
 ];
 
 const NEWS = [
   {
     num: "1",
-    headline: "18 Years\nof Production",
-    body: "Malcolm Beddows has been delivering award-winning animation and film production for over 18 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
+    headline: "20 Years\nof Production",
+    body: "Malcolm Beddows has been delivering award-winning animation and film production for over 20 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
     href: "#",
     images: [],
   },
@@ -142,10 +142,6 @@ export default function AboutSection({ loaded }) {
   /* refs — scroll photo */
   const scrollRef     = useRef(null);
   const photoRef      = useRef(null);
-  const glowRef       = useRef(null);
-  const wavesRef      = useRef(null);
-  const shineMaskRef  = useRef(null);
-  const lottieRef     = useRef(null); // lottie-web instance
 
   /* refs — bio */
   const labelRefs = useRef([]);
@@ -199,65 +195,37 @@ export default function AboutSection({ loaded }) {
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
-      /* ── Scroll section — exact IX2 t-4b300411 ── */
-      gsap.set(photoRef.current, { opacity: 0 });
-      gsap.set(wavesRef.current, { opacity: 0 });
+      /* ── Scroll section — fade in on enter, then parallax + fade out on scroll ── */
+      gsap.set(photoRef.current, { opacity: 0, scale: 1.06 });
 
-      // Load lottie-web
-      const lottieWeb = await import("lottie-web");
-      const anim = lottieWeb.default.loadAnimation({
-        container: wavesRef.current,
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        path: "/circles-about.json",
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid slice",
-          progressiveLoad: true,
+      // Fade + scale in when section enters viewport
+      gsap.to(photoRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: scrollRef.current,
+          start: "top 60%",
+          once: true,
         },
       });
-      lottieRef.current = anim;
 
-      const totalFrames = 153;
+      // While scrolling through 300vh: parallax throughout, fade only in last 20%
+      const scrollTl = gsap.timeline();
+      scrollTl
+        .to(photoRef.current, { y: "-18%", ease: "none" }, 0)          // parallax full duration
+        .to(photoRef.current, { opacity: 0, ease: "power1.in" }, 0.8); // fade only last 20%
 
-      anim.addEventListener("DOMLoaded", () => {
-        const svg = wavesRef.current?.querySelector("svg");
-        if (svg) {
-          svg.style.width = "100%";
-          svg.style.height = "100%";
-          svg.style.position = "absolute";
-          svg.style.inset = "0";
-        }
-        anim.goToAndStop(0, true);
-
-        // Build timeline matching IX2 proportions (total 5.1s)
-        const tl = gsap.timeline();
-
-        // lottie opacity 0→1: pos 0, dur 0.43
-        tl.fromTo(wavesRef.current, { opacity: 0 }, { opacity: 1, duration: 0.43, ease: "none" }, 0);
-
-        // shine mask y 0→-30vw: pos 0, dur 1.36
-        tl.fromTo(shineMaskRef.current, { y: "0vw" }, { y: "-30vw", duration: 1.36, ease: "none" }, 0);
-
-        // photo opacity 0→1: pos 2, dur 1.39
-        tl.fromTo(photoRef.current, { opacity: 0 }, { opacity: 1, duration: 1.39, ease: "none" }, 2);
-
-        // shine mask opacity 1→0: pos 3.83, dur 1.04
-        tl.to(shineMaskRef.current, { opacity: 0, duration: 1.04, ease: "none" }, 3.83);
-
-        ScrollTrigger.create({
-          trigger: scrollRef.current,
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: 0.8,
-          animation: tl,
-          onUpdate: (self) => {
-            anim.goToAndStop(self.progress * totalFrames, true);
-          },
-        });
-
-        ScrollTrigger.refresh();
+      ScrollTrigger.create({
+        trigger: scrollRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2,
+        animation: scrollTl,
       });
+
+      ScrollTrigger.refresh();
 
       /* ── Bio rows ── */
       BIO.forEach((_, i) => {
@@ -457,41 +425,6 @@ export default function AboutSection({ loaded }) {
         >
           {/* .sticky-cont-about */}
           <div className="sticky top-0" style={{ width: "100vw", height: "100vh", background: "var(--bg-warm)" }}>
-
-            {/* .circle-lottie-cont — full viewport, z-10 (above glow and photo) */}
-            <div
-              ref={wavesRef}
-              className="pointer-events-none overflow-hidden"
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100vw",
-                height: "100vh",
-                zIndex: 10,
-              }}
-            />
-
-            {/* .cont-shine-mask — position absolute, z-8 */}
-            <div
-              ref={shineMaskRef}
-              className="overflow-hidden flex justify-center items-center w-[100vw] xl:h-[180vw] md:h-[200vw] h-[250vw] absolute top-[-24.2vw] left-0"
-              style={{
-                zIndex: 8,
-              }}
-            >
-              {/* .glow-orange */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "15vw",
-                  width: "120%",
-                  height: "100%",
-                  background: "var(--orange1)",
-                  filter: "blur(6vw)",
-                  borderRadius: "50vw",
-                }}
-              />
-            </div>
 
             {/* .big-about-cont — photo, position relative, z-5 */}
             <div
