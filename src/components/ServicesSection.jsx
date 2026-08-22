@@ -405,7 +405,7 @@ function SectionHeading() {
   const labelRef = useRef(null);
   const wordRefs = useRef([]);
 
-  const words = ["I", "help", "companies", "to", "succeed", "on", "projects", "like:"];
+  const words = ["We", "help", "companies", "succeed", "on", "projects", "like:"];
 
   useEffect(() => {
     (async () => {

@@ -11,8 +11,8 @@ export default function ContactBanner() {
 
   const details = [
     { label: "Email",    value: "mbeddows@lucidedge.com.au", href: "mailto:mbeddows@lucidedge.com.au" },
-    { label: "Phone",    value: "+61 414 088 037",           href: "tel:+61414088037" },
-    { label: "Location", value: "Paddington, Sydney AU",     href: null },
+    { label: "Phone",    value: "+61 (0)414 088 037",        href: "tel:+61414088037" },
+    { label: "Location", value: "Suite 5.3, 2-4 Hill St, Surry Hills, Sydney NSW 2010", href: null },
   ];
 
   useEffect(() => {

@@ -28,7 +28,7 @@ const SHAPES = [
   { src: "/images/blue-hexagon-scroll.svg", w: "3vw",  top: "75vw", right: "25vw", zIndex: 50, fromY: 0,    toY: -10,  fromR: -160, toR: 60  },
 ];
 
-const WORDS = ["18", "years", "delivering", "award-winning", "animation", "and", "film", "for", "major", "projects"];
+const WORDS = ["20", "Years", "delivering", "award-winning", "bid", "submission", "animations,", "films", "and", "digital", "content", "documenting", "major", "projects", "across", "Australia", "and", "New", "Zealand."];
 
 export default function StatsSection() {
   const sectionRef       = useRef(null);
@@ -149,11 +149,11 @@ export default function StatsSection() {
     >
       <div
         className="stats-height relative overflow-hidden flex flex-col items-center"
-        style={{ height: "117vw", paddingTop: "13vw" }}
+        style={{ height: "100%", paddingTop: "13vw" }}
       >
 
-        {/* ── Scroll-drawn lines ── */}
-        <svg
+        {/* ── Scroll-drawn lines — hidden ── */}
+        {/* <svg
           className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
           preserveAspectRatio="none"
           viewBox="0 0 1000 2000"
@@ -171,10 +171,10 @@ export default function StatsSection() {
             fill="none" stroke="var(--blue)" strokeWidth="10"
             strokeLinecap="round" strokeLinejoin="round" opacity="0.35"
           />
-        </svg>
+        </svg> */}
 
-        {/* ── Floating shapes ── */}
-        {SHAPES.map((shape, i) => (
+        {/* ── Floating shapes — hidden ── */}
+        {/* {SHAPES.map((shape, i) => (
           <img
             key={i}
             ref={el => shapeRefs.current[i] = el}
@@ -190,16 +190,16 @@ export default function StatsSection() {
               zIndex: shape.zIndex,
             }}
           />
-        ))}
+        ))} */}
 
         {/* ── Sticky heading ── */}
-        <div className="stats-sticky sticky top-0 mb-[10vw]" style={{ width: "65%", zIndex: 55 }}>
+        <div className="stats-sticky sticky top-0 mb-[10vw]" style={{ width: "90%", zIndex: 55 }}>
           <div ref={headingInnerRef} className="will-change-transform">
             <h2
               ref={headlineRef}
               className="stats-heading m-0 font-semibold text-center"
               style={{
-                fontSize: "7.82vw",
+                fontSize: "6.3vw",
                 letterSpacing: "-0.35vw",
                 lineHeight: "105%",
                 color: "var(--blue)",
@@ -250,7 +250,7 @@ export default function StatsSection() {
                       </span>
                     </Link>
                   ) : (
-                    <span style={{ color: word === "animation" ? "var(--blue)" : "var(--grey)" }}>
+                    <span style={{ color: word === "animation" ? "var(--blue)" : "var(--blue)" }}>
                       {word}
                     </span>
                   )}

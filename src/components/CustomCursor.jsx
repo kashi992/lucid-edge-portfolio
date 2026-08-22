@@ -36,9 +36,7 @@ export default function CustomCursor() {
       text.style.left = `${cur.current.x}px`;
       text.style.top  = `${cur.current.y}px`;
 
-      // spin the gradient border
-      angle.current = (angle.current + 1.2) % 360;
-      ring.style.background = `conic-gradient(from ${angle.current}deg, #D4FF00 0%, #00e5ff 22%, #bf5af2 44%, #ff6b35 66%, #D4FF00 88%, #00e5ff 100%)`;
+      ring.style.background = "#D4FF00";
 
       raf.current = requestAnimationFrame(tick);
     };

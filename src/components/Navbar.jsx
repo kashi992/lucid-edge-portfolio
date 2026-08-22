@@ -165,14 +165,27 @@ export default function Navbar({ visible }) {
     <nav
       ref={navRef}
       className="z-[990] flex justify-between items-center w-screen fixed inset-x-0 top-0"
-      style={{ marginTop: "2rem", paddingLeft: "4vw", paddingRight: "2vw" }}
+      style={{ marginTop: "2rem", paddingLeft: "2vw", paddingRight: "2vw" }}
     >
-      {/* LEFT — wordmark (full width centered on mobile, 33% left on desktop) */}
-      <div className="flex items-center md:w-[33%] w-full justify-center md:justify-start">
+      {/* LEFT — featured project tag */}
+      <div className="hidden md:flex items-center" style={{ flex: "0 0 33%", minWidth: 0 }}>
+        <p className="nav-social-link text-base is-peach" style={{ margin: 0, fontFamily: "var(--font)", letterSpacing: "0.03em", cursor: "default" }}>
+          Project: Northland Corridor PPP. for more{" "}
+          <Link
+            to="/work"
+            style={{ textDecoration: "underline", textUnderlineOffset: "3px", color: "inherit" }}
+          >
+            click here
+          </Link>
+        </p>
+      </div>
+
+      {/* CENTER — wordmark */}
+      <div className="flex items-center justify-center w-full" style={{ flex: "0 0 33%" }}>
         <Link
           to="/"
           className="nav-wordmark no-underline flex items-center gap-2"
-          style={{paddingTop: "0.5rem", paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
+          style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
         >
           <span className="nav-name-jm">Lucid</span>
           <div className="dot-jm" />
@@ -180,36 +193,27 @@ export default function Navbar({ visible }) {
         </Link>
       </div>
 
-      {/* CENTER — About | icon | Work (hidden on mobile) */}
+      {/* RIGHT — nav links (hidden on mobile) */}
       <ul
-        className="m-0 p-0 list-none md:flex hidden items-center justify-center gap-3"
-        style={{ width: "33%",}}
+        className="m-0 p-0 list-none hidden md:flex items-center justify-end gap-3"
+        style={{ flex: "0 0 33%", minWidth: 0 }}
       >
         <li style={{ flex: "none" }}>
-          <Link to="/about" className="nav-link">About Us</Link>
-        </li>
-        {/* <li style={{ flex: "none" }}>
-          <Link to="/" className="no-underline inline-flex items-center justify-center">
-            <img
-              src="/images/le-mark-lime.jpeg"
-              alt="Malcolm Beddows"
-              style={{ width: 38, marginTop: "0.4rem", display: "block" }}
-            />
-          </Link>
-        </li> */}
-        <li style={{ flex: "none" }}>
-          <Link to="/work" className="nav-link">Our Work</Link>
+          <Link to="/about" className="nav-link is-peach">About Us</Link>
         </li>
         <li style={{ flex: "none" }}>
-          <Link to="/services" className="nav-link">Services</Link>
+          <Link to="/work" className="nav-link is-peach">Our Work</Link>
         </li>
         <li style={{ flex: "none" }}>
-          <Link to="/contact" className="nav-link">Contact</Link>
+          <Link to="/services" className="nav-link is-peach">Services</Link>
+        </li>
+        <li style={{ flex: "none" }}>
+          <Link to="/contact" className="nav-link is-peach">Contact</Link>
         </li>
       </ul>
 
-      {/* RIGHT — social links (hidden on mobile) */}
-      <ol
+      {/* COMMENTED OUT — social links (Email, Facebook, Instagram, Phone) */}
+      {/* <ol
         className="m-0 p-0 list-none hidden md:flex items-center justify-end"
         style={{ width: "33%" }}
       >
@@ -223,7 +227,7 @@ export default function Navbar({ visible }) {
             >{label}</a>
           </li>
         ))}
-      </ol>
+      </ol> */}
     </nav>
 
     {/* Mobile bottom nav */}

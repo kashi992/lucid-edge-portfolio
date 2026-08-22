@@ -261,13 +261,20 @@ export default function Footer() {
           >
             Animation &amp; Film Production &nbsp;<span className="opacity-50">2026</span>
           </h3>
-          <h3
-            ref={bottomRightRef}
-            className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
-            style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
-          >
-            Paddington, Sydney NSW 2021 &nbsp;<span className="opacity-50">Australia</span>
-          </h3>
+          <div ref={bottomRightRef} className="hidden md:flex flex-col items-end gap-1">
+            <h3
+              className="m-0 text-[1.2rem] font-semibold leading-[100%]"
+              style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
+            >
+              Suite 5.3, 2-4 Hill St, Surry Hills &nbsp;<span className="opacity-50">Sydney NSW 2010</span>
+            </h3>
+            <p
+              className="m-0 text-[0.85rem] font-normal leading-[100%] opacity-60"
+              style={{ color: "var(--orange1)", fontFamily: "var(--font)" }}
+            >
+              +61 (0)414 088 037
+            </p>
+          </div>
         </div>
       </div>
     </footer>
