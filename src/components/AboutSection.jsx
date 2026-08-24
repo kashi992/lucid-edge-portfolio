@@ -377,7 +377,7 @@ export default function AboutSection({ loaded }) {
               style={{ gap: "1.4vw", top: "0.4vw", left: "0.7vw" }}
             >
               <img
-                src="/images/le-mark-lime.jpeg"
+                src="/images/le-mark-lime.webp"
                 alt="LUCID EDGE"
                 style={{ height: "6vw" }}
               />

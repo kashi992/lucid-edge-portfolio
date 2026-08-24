@@ -153,15 +153,19 @@ export default function Footer() {
         style={{ willChange: "transform" }}
       >
         {ios ? (
-          /* iOS Safari — native video autoplays inline when muted + playsInline */
+          /* iOS Safari — place showreel.mp4 in /public/videos/ to enable autoplay.
+             Until then, shows a hero still image as background.              */
           <video
-            src="https://player.vimeo.com/progressive_redirect/playback/473380561/rendition/720p/file.mp4?loc=external"
             autoPlay
             loop
             muted
             playsInline
+            poster="/images/DUSK-SHOT-HR_v02.webp"
             style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" }}
-          />
+          >
+            <source src="/videos/showreel.mp4" type="video/mp4" />
+            {/* No <source> = shows poster image until showreel.mp4 is added */}
+          </video>
         ) : (
           /* All other browsers — Vimeo background iframe */
           <iframe
