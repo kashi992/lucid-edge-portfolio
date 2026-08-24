@@ -41,8 +41,8 @@ export default function ServicesBanner() {
     <section
       data-nav="grey"
       ref={sectionRef}
-      className="w-screen flex flex-col justify-end relative overflow-hidden"
-      style={{ background: "var(--bg-warm)", paddingTop: "10vw", paddingBottom: "5vw" }}
+      className="w-screen flex flex-col justify-end relative overflow-hidden lg:pt-[10vw] pt-[20vw]"
+      style={{ background: "var(--bg-warm)", paddingBottom: "5vw" }}
     >
       <div className="flex flex-col px-[5vw] gap-[2vw]">
 
@@ -92,7 +92,7 @@ export default function ServicesBanner() {
         <div className="flex flex-col md:flex-row md:items-end gap-[3vw] md:gap-0 justify-between">
           <p
             ref={subRef}
-            className="m-0 font-medium leading-[165%] max-w-[38vw]"
+            className="m-0 font-medium leading-[165%] md:max-w-[38vw]"
             style={{
               fontFamily: "var(--font)",
               fontSize: "clamp(0.9rem, 1.1vw, 1.15rem)",

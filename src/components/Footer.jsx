@@ -1,7 +1,13 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { TOOLS, SOCIALS } from "../data/services";
 
+// iOS Safari blocks third-party iframe autoplay — detect once at mount
+const isIOS = () =>
+  typeof navigator !== "undefined" &&
+  /iP(hone|ad|od)/.test(navigator.userAgent);
+
 export default function Footer() {
+  const [ios] = useState(isIOS);
   const footerRef = useRef(null);
   const videoRef = useRef(null);
   const lucidRef = useRef(null);
@@ -146,12 +152,25 @@ export default function Footer() {
         className="absolute inset-0 z-10 pointer-events-none w-screen h-screen overflow-hidden flex justify-center items-center"
         style={{ willChange: "transform" }}
       >
-        <iframe
-          src="https://player.vimeo.com/video/473380561?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1"
-          allow="autoplay; fullscreen; picture-in-picture"
-          style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)" }}
-          title="showreel_2020_b"
-        />
+        {ios ? (
+          /* iOS Safari — native video autoplays inline when muted + playsInline */
+          <video
+            src="https://player.vimeo.com/progressive_redirect/playback/473380561/rendition/720p/file.mp4?loc=external"
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" }}
+          />
+        ) : (
+          /* All other browsers — Vimeo background iframe */
+          <iframe
+            src="https://player.vimeo.com/video/473380561?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1"
+            allow="autoplay; fullscreen; picture-in-picture"
+            style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)" }}
+            title="showreel_2020_b"
+          />
+        )}
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>

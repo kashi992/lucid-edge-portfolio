@@ -1,6 +1,7 @@
 @media (max-width:575px) {
     .proj-media{
 grid-template-columns: 1fr !important;
+display: grid !important;
 }
     .proj-media img{
 grid-column: span 1 !important;

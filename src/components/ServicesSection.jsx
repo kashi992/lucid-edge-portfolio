@@ -145,13 +145,16 @@ function ServiceRow({ service, index }) {
       {/* ── Media cards ── */}
       {!isWebflow && (
         <div className="w-full overflow-hidden pb-[6vw] pt-[1vw] [perspective:1200px]">
-          <div ref={stripRef} className="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-[1vw]">
+          <div
+            ref={stripRef}
+            className={service.gridCols ? "gap-3 grid md:grid-cols-2" : "grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-3"}
+          >
             {mediaItems.map((item, i) => (
               <div
                 key={i}
                 ref={r => (cardInnerRefs.current[i] = r)}
-                className="flex-1 min-w-0 rounded-[10px] overflow-hidden will-change-transform md:h-[20vw] h-[140px]"
-                style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.12)" }}
+                className={`flex-1 min-w-0 rounded-[10px] overflow-hidden will-change-transform${service.gridCols ? "" : "md:h-[140px]"}`}
+                style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.12)", ...(service.gridCols ? { aspectRatio: "16/9" } : {}) }}
               >
                 {item.type === "img"
                   ? <img src={item.src} alt="" loading="lazy" className="w-full h-full object-cover block" />

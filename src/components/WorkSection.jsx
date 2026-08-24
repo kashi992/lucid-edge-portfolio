@@ -143,20 +143,37 @@ function MediaItem({ m, style, className, onClick }) {
 
 /* ── Media grid — per-project layout ─────────────────────────────────── */
 function ProjectMedia({ project, onOpen }) {
-  /* ── hero-left: big image left 50%, 2×3 grid right 50% ── */
+  /* ── hero-left: big image left 50%, smart grid right 50% ── */
   if (project.layout === "hero-left") {
-    const [hero, ...rest] = project.media;
+    const [hero, ...rawRest] = project.media;
+    const rest = rawRest.filter(m => m.src); // skip empty placeholder tiles
+
+    // Pick columns: 1 image → 1 col (full), 2+ → 2 cols
+    const rightCols = rest.length === 1 ? 1 : 2;
+
+    // If odd number of right items (and more than 1), last item spans full width
+    const isOddMany = rightCols === 2 && rest.length % 2 !== 0;
+
     return (
       <div className="proj-media w-full flex" style={{ gap: "8px" }}>
         {/* Left — hero image fills full height */}
-        <div style={{ flex: "0 0 50%", minHeight: "400px" }}>
+        <div className="lg:min-h-[400px]" style={{ flex: "0 0 50%" }}>
           <MediaItem m={hero} onClick={() => onOpen(0)} style={{ width: "100%", height: "100%", borderRadius: "0.3rem" }} />
         </div>
-        {/* Right — 2×3 grid */}
-        <div style={{ flex: "1 1 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-          {rest.map((m, i) => (
-            <MediaItem key={i} m={m} onClick={() => onOpen(i + 1)} style={{ width: "100%", height: "100%", borderRadius: "0.3rem" }} />
-          ))}
+        {/* Right — adaptive grid, no empty cells */}
+        <div style={{ flex: "1 1 0", display: "grid", gridTemplateColumns: `repeat(${rightCols}, 1fr)`, gap: "8px" }}>
+          {rest.map((m, i) => {
+            const isLast = i === rest.length - 1;
+            const spanAll = isOddMany && isLast;
+            return (
+              <MediaItem
+                key={i}
+                m={m}
+                onClick={() => onOpen(i + 1)}
+                style={{ width: "100%", height: "100%", borderRadius: "0.3rem", gridColumn: spanAll ? "1 / -1" : undefined }}
+              />
+            );
+          })}
         </div>
       </div>
     );
@@ -397,7 +414,7 @@ export default function WorkSection({ loaded }) {
               }}
             >
               {/* invisible spacer so text clears the folder icon */}
-              <span className="opacity-0 text-[75%]" style={{ pointerEvents: "none" }}>{"——\u00A0"}</span>
+              <span  className="opacity-0 text-[75%]" style={{ pointerEvents: "none" }}>{"——\u00A0"}</span>
               {HEADLINE.split(" ").map((word, i) => (
                 <span key={i} className="ww" style={{ display: "inline" }}>
                   {word}{i < HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}
@@ -546,7 +563,7 @@ export default function WorkSection({ loaded }) {
               {/* media grid */}
               <ProjectMedia
                 project={p}
-                onOpen={(idx) => setLightbox({ media: p.media, index: idx })}
+                onOpen={(idx) => setLightbox({ media: p.media.filter(m => m.src), index: idx })}
               />
             </div>
           ))}

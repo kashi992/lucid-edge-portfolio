@@ -20,9 +20,10 @@ export default function Hero({ visible }) {
   const intervalRef  = useRef(null);
   const isAnimating  = useRef(false);
 
-  const tgtProgress = useRef(0.5);
-  const curProgress = useRef(0.5);
-  const rafRef      = useRef(null);
+  const tgtProgress      = useRef(0.5);
+  const curProgress      = useRef(0.5);
+  const rafRef           = useRef(null);
+  const visibilityRef    = useRef(null);
 
   useEffect(() => {
     if (!visible) return;
@@ -36,31 +37,55 @@ export default function Hero({ visible }) {
       gsap.from(".hero-top-label",    { opacity: 0, y: 14, duration: 0.8, delay: 0.2,  ease: "power2.out" });
       gsap.from(".hero-bottom-label", { opacity: 0, y: 10, duration: 0.7, delay: 0.45, ease: "power2.out" });
 
-      // Preload all carousel images so decoding doesn't stutter on slide
-      CAROUSEL_IMAGES.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
+      // Decode all carousel images fully before starting — eliminates first-slide stutter
+      await Promise.all(
+        CAROUSEL_IMAGES.map((src) => {
+          const img = new Image();
+          img.src = src;
+          return img.decode().catch(() => {});
+        })
+      );
 
-      // Carousel — single track sliding horizontally
+      // Carousel — infinite one-direction loop using clone-first-slide trick
+      // Track has N real slides + 1 clone of slide[0] at the end.
+      // When we land on the clone (index N), we instantly snap back to real index 0.
       const slideWidth = sectionRef.current.offsetWidth;
+      const total      = CAROUSEL_IMAGES.length; // real slides count
 
       const advanceSlide = () => {
         if (isAnimating.current) return;
         isAnimating.current = true;
 
-        const next = (currentSlide.current + 1) % CAROUSEL_IMAGES.length;
+        const next = currentSlide.current + 1; // always go forward, never wrap with %
 
         gsap.to(trackRef.current, {
           x: -(next * slideWidth),
-          duration: 1.5,
+          duration: 1.4,
           ease: "power2.inOut",
+          force3D: true,
           onComplete: () => {
-            currentSlide.current = next;
-            isAnimating.current  = false;
+            if (next === total) {
+              // We just slid to the clone — instantly snap back to real slide 0
+              gsap.set(trackRef.current, { x: 0 });
+              currentSlide.current = 0;
+            } else {
+              currentSlide.current = next;
+            }
+            isAnimating.current = false;
           },
         });
       };
+
+      // Pause carousel when tab is hidden, resume when visible
+      visibilityRef.current = () => {
+        if (document.hidden) {
+          clearInterval(intervalRef.current);
+        } else {
+          clearInterval(intervalRef.current);
+          intervalRef.current = setInterval(advanceSlide, 5000);
+        }
+      };
+      document.addEventListener("visibilitychange", visibilityRef.current);
 
       intervalRef.current = setInterval(advanceSlide, 5000);
 
@@ -117,6 +142,7 @@ export default function Hero({ visible }) {
     return () => {
       el.removeEventListener("mousemove",  onMove);
       el.removeEventListener("mouseleave", onLeave);
+      if (visibilityRef.current) document.removeEventListener("visibilitychange", visibilityRef.current);
       cancelAnimationFrame(rafRef.current);
       if (animRef.current) { animRef.current.destroy(); animRef.current = null; }
       clearInterval(intervalRef.current);
@@ -137,14 +163,22 @@ export default function Hero({ visible }) {
         <div
           ref={trackRef}
           className="absolute top-0 left-0 h-full flex"
-          style={{ width: `${CAROUSEL_IMAGES.length * 100}vw`, willChange: "transform" }}
+          style={{ width: `${(CAROUSEL_IMAGES.length + 1) * 100}vw`, willChange: "transform", transform: "translateZ(0)" }}
         >
-          {CAROUSEL_IMAGES.map((src) => (
+          {/* Real slides + clone of first slide at the end for seamless infinite loop */}
+          {[...CAROUSEL_IMAGES, CAROUSEL_IMAGES[0]].map((src, i) => (
             <div
-              key={src}
-              className="h-full flex-shrink-0 bg-cover bg-center"
-              style={{ width: "100vw", backgroundImage: `url('${src}')`, backgroundPosition: "50% 30%" }}
-            />
+              key={i}
+              className="relative h-full flex-shrink-0 overflow-hidden"
+              style={{ width: "100vw", willChange: "transform", transform: "translateZ(0)" }}
+            >
+              <img
+                src={src}
+                alt=""
+                className="absolute inset-0 w-full h-full"
+                style={{ objectFit: "cover", objectPosition: "50% 30%", pointerEvents: "none", display: "block" }}
+              />
+            </div>
           ))}
         </div>
       </div>

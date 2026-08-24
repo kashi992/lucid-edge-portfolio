@@ -1,9 +1,5 @@
-// span: 4=full width, 2=half width, 1=quarter width (in 4-col grid)
-// hide: true = hidden on mobile (matches reference .img-project.hide)
-
 export const PROJECTS = [
   {
-    // ── REPLACE placeholder srcs with actual Northern Corridor PPP images/video ──
     id: "northern-corridor-ppp",
     title: "Northern Corridor\nPPP — New Zealand",
     year: "2018",
@@ -11,18 +7,15 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the Northern Corridor PPP bid submission.",
     liveUrl: null,
-    layout: "hero-left",  // left 50% = hero image, right 50% = 2×3 grid
+    layout: "hero-left",
     media: [
-      // index 0 — left hero image (tall, 50% width)
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
-      // index 1–5 — right grid images (2 cols × 3 rows)
       { type: "img", src: "/images/Hoteo_v02.webp" },
       { type: "img", src: "/images/PORTAL_HR_NORTH_v02.webp" },
       { type: "img", src: "/images/Te_Hana View_v001.webp" },
       { type: "img", src: "/images/Warkworth_v02.webp" },
       { type: "img", src: "/images/Wellsford_v02.webp" },
-      // index 6 — animation tile (bottom-right of grid)
-      { type: "video", src: "" },  // ← paste animation video URL here
+      { type: "video", src: "" }, // ← paste animation video URL here
     ],
   },
   {
@@ -33,10 +26,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Motion Graphics"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the campus visualisation.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/11/986678324.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/11/633872878.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/11/986678324.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/11/633872878.jpg" },
     ],
   },
   {
@@ -47,10 +40,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Construction Sequencing"],
     role: "Lead animator and director — full 3D production from concept through to final delivery for the infrastructure bid.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/sydney-metro-central-station.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/line-wide-works.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/sydney-metro-central-station.png" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/line-wide-works.png" },
     ],
   },
   {
@@ -61,11 +54,11 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Construction Sequencing", "Film Production"],
     role: "Full production studio — delivering architectural animation, clinical adjacency diagrams, and construction sequence videos across the project lifecycle.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBH.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBHconst.jpg", span: 1 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBHadj.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBH.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBHconst.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NBHadj.jpg" },
     ],
   },
   {
@@ -76,10 +69,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Construction Sequencing"],
     role: "Lead production — 3D animation, construction sequence visualisation, and post-production for the Westmead redevelopment.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/Screen-Shot-2020-09-03-at-10.43.25-AM.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/Westmead_construction_sequence.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/Screen-Shot-2020-09-03-at-10.43.25-AM.png" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/Westmead_construction_sequence.png" },
     ],
   },
   {
@@ -90,11 +83,11 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Live Action"],
     role: "Full production — architectural animation, sizzle reel direction, and post-production.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NWRL.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/nwrl_sizzle.jpg", span: 1 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NWRLsting.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NWRL.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/nwrl_sizzle.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/NWRLsting.jpg" },
     ],
   },
   {
@@ -105,10 +98,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Construction Sequencing", "Arch Viz"],
     role: "Full 3D production — modelling, animation, and sequencing for the construction visualisation package.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/the-star-casino-construction-sequence.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/the-star-casino-construction-sequence.png" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png" },
     ],
   },
   {
@@ -119,12 +112,12 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "CG", "Corporate Video"],
     role: "Lead animator — concept, 3D modelling, animation, and post-production across all four episodes.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/08-Apia-The-Future-of-Over-50s-House.jpg", span: 1 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/09-Apia-The-Future-of-Over-50s-Office.jpg", span: 1 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/10-Apia-The-Future-of-Over-50s-Transport-Hub.jpg", span: 1 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/11-Apia-The-Future-of-Over-50s-City.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/08-Apia-The-Future-of-Over-50s-House.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/09-Apia-The-Future-of-Over-50s-Office.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/10-Apia-The-Future-of-Over-50s-Transport-Hub.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/11-Apia-The-Future-of-Over-50s-City.jpg" },
     ],
   },
   {
@@ -135,11 +128,11 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video"],
     role: "Lead animator — full production of architectural animation and bid submission videos for multiple SA school sites.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/south-australian-schools-PPP-bid-submission-video.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SA_SportsPark.jpg", span: 1 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SA_RegencyPark.jpg", span: 1 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/south-australian-schools-PPP-bid-submission-video.png" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SA_SportsPark.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/SA_RegencyPark.jpg" },
     ],
   },
   {
@@ -150,10 +143,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz"],
     role: "Lead animator — full architectural animation and visualisation production.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/LCV_Schools.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/VIC_Schools.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/LCV_Schools.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/VIC_Schools.jpg" },
     ],
   },
   {
@@ -164,10 +157,10 @@ export const PROJECTS = [
     services: ["Film Production", "Live Action", "CG", "Documentary"],
     role: "Director and producer — live-action documentary filming, interview production, and post-production.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/State_Library.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/19-State-Library-of-NSW.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/State_Library.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/19-State-Library-of-NSW.jpg" },
     ],
   },
   {
@@ -178,10 +171,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video"],
     role: "Lead animator and director — full production of the bid submission video.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/northlink-puhoi-to-warkworth-PPP-bid-submission-video.png", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/PLink.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/northlink-puhoi-to-warkworth-PPP-bid-submission-video.png" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/PLink.jpg" },
     ],
   },
   {
@@ -192,10 +185,10 @@ export const PROJECTS = [
     services: ["Live Action", "Film Production", "VFX"],
     role: "Director and VFX supervisor — full production from pre-production through to final delivery of the official music video.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/paulini_clip.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/part_wonder.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/paulini_clip.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/part_wonder.jpg" },
     ],
   },
   {
@@ -206,10 +199,10 @@ export const PROJECTS = [
     services: ["3D Animation", "CG", "Corporate Video"],
     role: "Lead animator and director — 3D modelling, animation, and post-production for the LAPD training programme.",
     liveUrl: null,
-    gridCols: 2,
+    layout: "hero-left",
     media: [
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/AEGIS_LAPD.jpg", span: 2 },
-      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/pictureDRIFT.jpg", span: 2 },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/AEGIS_LAPD.jpg" },
+      { type: "img", src: "https://lucidedge.com.au/wp-content/uploads/2020/07/pictureDRIFT.jpg" },
     ],
   },
 ];

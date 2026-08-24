@@ -369,7 +369,7 @@ export default function AboutSection({ loaded }) {
         <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible">
 
           {/* wrapper-cont-50._70: 49% on desktop, 80% on mobile */}
-          <div className="relative w-[80%]">
+          <div className="relative w-[88%] lg:w-[80%]">
 
             {/* pill-hero-about-wrapper: absolute, inset .4vw auto auto .7vw */}
             <div
@@ -391,15 +391,18 @@ export default function AboutSection({ loaded }) {
             <div ref={heroWrapRef} className="hero-wrap-hidden">
               <h1
                 ref={el => heroWordRefs.current[0] = el}
-                className="m-0 flex flex-wrap font-semibold text-[10vw] lg:text-[7vw] text-center lg:text-left tracking-[-0.35vw] lg:tracking-[-0.3vw]"
+                className="m-0 flex flex-wrap font-semibold text-[8vw] md:text-[7.5vw] lg:text-[7vw] text-left tracking-[-0.25vw] lg:tracking-[-0.3vw]"
                 style={{
                   color: "var(--grey)",
                   fontFamily: "var(--font)",
-                  lineHeight: "101%",
+                  lineHeight: "105%",
+                  hyphens: "none",
+                  overflowWrap: "normal",
+                  wordBreak: "keep-all",
                 }}
               >
-                {/* text-span-5: opacity .01, pointer-events none — spacer for pill icon */}
-                <span style={{ opacity: 0.01, pointerEvents: "none", color: "var(--bg-warm)" }}>----</span>
+                {/* spacer — clears the pill icon on all screen sizes */}
+                <span className="opacity-0 inline-block" style={{ pointerEvents: "none", width: "10vw", height: "1px" }}>&nbsp;</span>
                 {HERO_HEADLINE.split(" ").map((word, i) => (
                   <span key={i} className="hw" style={{ display: "inline" }}>
                     {word}{i < HERO_HEADLINE.split(" ").length - 1 ? "\u00A0" : ""}

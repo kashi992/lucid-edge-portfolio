@@ -25,6 +25,7 @@ export const SERVICES = [
     id: "interactive-portals",
     title: "Interactive Portals",
     description: "Custom interactive digital portals that bring project data, 3D models, and construction progress to life — delivering immersive stakeholder experiences.",
+    gridCols: 2,
     images: [
       "/images/Northway.webp",
       "/images/CPMUGLJV.webp",
