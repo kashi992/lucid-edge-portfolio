@@ -1,35 +1,8 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { TOOLS, SOCIALS } from "../data/services";
 
-// iOS Safari blocks third-party iframe autoplay — detect once at mount
-const isIOS = () =>
-  typeof navigator !== "undefined" &&
-  /iP(hone|ad|od)/.test(navigator.userAgent);
-
-const COVER = { position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" };
-const VIDEO_SRC = "/videos/showreel.mp4";
-
-// Tries to play hosted MP4; if file is missing falls back to a still image (no play button)
-function IosVideo() {
-  const [hasVideo, setHasVideo] = useState(false);
-  useEffect(() => {
-    fetch(VIDEO_SRC, { method: "HEAD" })
-      .then(r => { if (r.ok) setHasVideo(true); })
-      .catch(() => {});
-  }, []);
-
-  if (hasVideo) {
-    return (
-      <video autoPlay loop muted playsInline style={COVER}>
-        <source src={VIDEO_SRC} type="video/mp4" />
-      </video>
-    );
-  }
-  return <img src="/images/DUSK-SHOT-HR_v02.webp" alt="" style={COVER} />;
-}
 
 export default function Footer() {
-  const [ios] = useState(isIOS);
   const footerRef = useRef(null);
   const videoRef = useRef(null);
   const lucidRef = useRef(null);
@@ -174,19 +147,16 @@ export default function Footer() {
         className="absolute inset-0 z-10 pointer-events-none w-screen h-screen overflow-hidden flex justify-center items-center"
         style={{ willChange: "transform" }}
       >
-        {ios ? (
-          /* iOS Safari — uses hosted MP4 if available, otherwise static image.
-             To enable video: place showreel.mp4 in /public/videos/            */
-          <IosVideo />
-        ) : (
-          /* All other browsers — Vimeo background iframe */
-          <iframe
-            src="https://player.vimeo.com/video/473380561?badge=0&autopause=0&player_id=0&app_id=58479&background=1&autoplay=1&loop=1&muted=1"
-            allow="autoplay; fullscreen; picture-in-picture"
-            style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)" }}
-            title="showreel_2020_b"
-          />
-        )}
+        {/* Works on all devices — iPhone, Android, Desktop */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" }}
+        >
+          <source src="/videos/showreel.mp4" type="video/mp4" />
+        </video>
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
       </div>
