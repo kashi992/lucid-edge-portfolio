@@ -138,7 +138,7 @@ ul, ol { list-style: none; }
 .nav-link.is-peach:hover { color: var(--bg-warm); background-color: #20202063; }
 .nav-link.is-active { color: var(--blue) !important; background-color: var(--orange1) !important; }
 .nav-link.is-active:hover { color: var(--blue) !important; background-color: var(--orange1) !important; transform: scale(0.9); }
-.nav-link-mobile.is-active { color: var(--orange1); background-color: #ffffff22; }
+.nav-link-mobile.is-active {color: var(--blue) !important; background-color: var(--orange1) !important; }
 .nav-social-link {
   -webkit-backdrop-filter: blur(11px);
   backdrop-filter: blur(11px);
@@ -358,6 +358,7 @@ ul, ol { list-style: none; }
   transform: translate(-50%,-100%);
   z-index: 99;
   left: 50%;
+  gap: 4px;
   }
 
   /* Hero */
@@ -380,5 +381,6 @@ ul, ol { list-style: none; }
   .nav-name-jm { font-size: 4.8vw; }
   .dot-jm { width: 1.7vw; height: 1.7vw; }
   .stats-heading { font-size: 10vw !important; }
-  .nav-link-mobile { border-radius: 10vw; padding: 3.5vw 4.5vw; font-size: 3.5vw; }
+  .nav-link-mobile { border-radius: 10vw;         padding: 8px 12px;
+        font-size: 11px; text-wrap: nowrap; }
 }

@@ -26,9 +26,8 @@ export const SERVICES = [
     title: "Interactive Portals",
     description: "Custom interactive digital portals that bring project data, 3D models, and construction progress to life — delivering immersive stakeholder experiences.",
     images: [
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/LUCID-EDGE-2.png",
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/MASH-the-winning-design-competition-video.png",
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/State_Library.jpg",
+      "/images/Northway.webp",
+      "/images/CPMUGLJV.webp",
     ],
     videos: [],
   },

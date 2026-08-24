@@ -102,7 +102,7 @@ function ServiceRow({ service, index }) {
       <div className="flex items-start gap-[3vw]">
         <span
           ref={numRef}
-          className="flex-shrink-0 text-[0.75rem] font-bold tracking-[0.12em] pt-[0.6em]"
+          className="flex-shrink-0 text-[0.75rem] font-bold tracking-[0.12em] xl:pt-[0.6em]"
           style={{ fontFamily: "var(--font)", color: "var(--grey)" }}
         >
           {num}
@@ -111,10 +111,10 @@ function ServiceRow({ service, index }) {
         <div className="overflow-hidden flex-1 pb-[0.06em]">
           <div ref={titleEl} className="flex items-center gap-[1.5vw]">
             <h2
-              className="m-0 font-bold tracking-[-0.03em] leading-[100%] md:text-start text-center w-full"
+              className="m-0 font-bold tracking-[-0.03em] leading-[100%] text-start w-full"
               style={{
                 fontFamily: "var(--font)",
-                fontSize: "clamp(1.8rem, 3.8vw, 4.5rem)",
+                fontSize: "clamp(1.3rem, 3.8vw, 4.5rem)",
                 color: "var(--blue)",
               }}
             >

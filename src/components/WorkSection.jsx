@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useCallback, useRef, useState } from "react";
 import { PROJECTS } from "../data/work";
 import "../assets/css/style.css";
 import CTAButton from "./CTAButton";
@@ -26,8 +26,143 @@ function LazyVideo({ src, className, style }) {
   );
 }
 
+/* ── Lightbox ─────────────────────────────────────────────────────────── */
+function Lightbox({ media, startIndex, onClose }) {
+  const [idx, setIdx] = useState(startIndex);
+  const total = media.length;
+  const current = media[idx];
+
+  const prev = useCallback(() => setIdx(i => (i - 1 + total) % total), [total]);
+  const next = useCallback(() => setIdx(i => (i + 1) % total), [total]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "ArrowLeft")  prev();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "Escape")     onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [prev, next, onClose]);
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 9999,
+        background: "rgba(0,0,0,0.92)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}
+    >
+      {/* Counter */}
+      <span style={{
+        position: "absolute", top: "1.5rem", left: "50%", transform: "translateX(-50%)",
+        color: "rgba(255,255,255,0.5)", fontFamily: "var(--font)", fontSize: "0.75rem", letterSpacing: "0.08em",
+      }}>
+        {idx + 1} / {total}
+      </span>
+
+      {/* Close */}
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute", top: "1.25rem", right: "1.5rem",
+          background: "none", border: "none", cursor: "pointer",
+          color: "#fff", fontSize: "1.5rem", lineHeight: 1, opacity: 0.7,
+        }}
+      >✕</button>
+
+      {/* Prev */}
+      {total > 1 && (
+        <button
+          onClick={e => { e.stopPropagation(); prev(); }}
+          style={{
+            position: "absolute", left: "1.5rem", top: "50%", transform: "translateY(-50%)",
+            background: "rgba(255,255,255,0.1)", border: "none", borderRadius: "50%",
+            width: "2.8rem", height: "2.8rem", cursor: "pointer",
+            color: "#fff", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >‹</button>
+      )}
+
+      {/* Media */}
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{ maxWidth: "90vw", maxHeight: "88vh", display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
+        {current.type === "video" && current.src ? (
+          <video
+            src={current.src}
+            controls autoPlay loop muted playsInline
+            style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.5rem" }}
+          />
+        ) : (
+          <img
+            src={current.src}
+            alt=""
+            style={{ maxWidth: "90vw", maxHeight: "88vh", objectFit: "contain", borderRadius: "0.5rem" }}
+          />
+        )}
+      </div>
+
+      {/* Next */}
+      {total > 1 && (
+        <button
+          onClick={e => { e.stopPropagation(); next(); }}
+          style={{
+            position: "absolute", right: "1.5rem", top: "50%", transform: "translateY(-50%)",
+            background: "rgba(255,255,255,0.1)", border: "none", borderRadius: "50%",
+            width: "2.8rem", height: "2.8rem", cursor: "pointer",
+            color: "#fff", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >›</button>
+      )}
+    </div>
+  );
+}
+
+/* ── Render a single media item (img or video) ───────────────────────── */
+function MediaItem({ m, style, className, onClick }) {
+  return m.type === "video" ? (
+    <LazyVideo src={m.src} className={className || "w-full h-full block"} style={{ objectFit: "cover", borderRadius: "0.3rem", cursor: "pointer", ...(style || {}) }} />
+  ) : (
+    <img
+      src={m.src}
+      alt=""
+      loading="lazy"
+      onClick={onClick}
+      className={`block ${className || "w-full h-full"}`}
+      style={{ objectFit: "cover", borderRadius: "0.3rem", cursor: "pointer", ...(style || {}) }}
+    />
+  );
+}
+
 /* ── Media grid — per-project layout ─────────────────────────────────── */
-function ProjectMedia({ project }) {
+function ProjectMedia({ project, onOpen }) {
+  /* ── hero-left: big image left 50%, 2×3 grid right 50% ── */
+  if (project.layout === "hero-left") {
+    const [hero, ...rest] = project.media;
+    return (
+      <div className="proj-media w-full flex" style={{ gap: "8px" }}>
+        {/* Left — hero image fills full height */}
+        <div style={{ flex: "0 0 50%", minHeight: "400px" }}>
+          <MediaItem m={hero} onClick={() => onOpen(0)} style={{ width: "100%", height: "100%", borderRadius: "0.3rem" }} />
+        </div>
+        {/* Right — 2×3 grid */}
+        <div style={{ flex: "1 1 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+          {rest.map((m, i) => (
+            <MediaItem key={i} m={m} onClick={() => onOpen(i + 1)} style={{ width: "100%", height: "100%", borderRadius: "0.3rem" }} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  /* ── default grid layout ── */
   const cols = project.gridCols === 2 ? 2 : 4;
 
   return (
@@ -42,11 +177,6 @@ function ProjectMedia({ project }) {
       {project.media.map((m, i) => {
         const span = m.span || cols;
         const colSpan = Math.min(span, cols);
-        const itemStyle = {
-          gridColumn: `span ${colSpan}`,
-          borderRadius: "0.3rem",
-          width: "100%",
-        };
         const hideClass = m.hide ? "hidden sm:block" : "";
 
         return m.type === "video" ? (
@@ -54,7 +184,7 @@ function ProjectMedia({ project }) {
             key={i}
             src={m.src}
             className={`block ${hideClass}`}
-            style={itemStyle}
+            style={{ gridColumn: `span ${colSpan}`, borderRadius: "0.3rem", width: "100%", cursor: "pointer" }}
           />
         ) : (
           <img
@@ -62,8 +192,9 @@ function ProjectMedia({ project }) {
             src={m.src}
             alt=""
             loading="lazy"
+            onClick={() => onOpen(i)}
             className={`w-full block ${hideClass}`}
-            style={{ ...itemStyle, pointerEvents: "none" }}
+            style={{ gridColumn: `span ${colSpan}`, borderRadius: "0.3rem", width: "100%", cursor: "pointer" }}
           />
         );
       })}
@@ -74,6 +205,7 @@ function ProjectMedia({ project }) {
 /* ── Main WorkSection ─────────────────────────────────────────────────── */
 export default function WorkSection({ loaded }) {
   const [activeId, setActiveId] = useState(null);
+  const [lightbox, setLightbox] = useState(null); // { media, index }
   const itemRefs        = useRef({});
   const headlineRef     = useRef(null);
   const headlineWrapRef = useRef(null);
@@ -412,11 +544,23 @@ export default function WorkSection({ loaded }) {
               </div>
 
               {/* media grid */}
-              <ProjectMedia project={p} />
+              <ProjectMedia
+                project={p}
+                onOpen={(idx) => setLightbox({ media: p.media, index: idx })}
+              />
             </div>
           ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <Lightbox
+          media={lightbox.media}
+          startIndex={lightbox.index}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </div>
   );
 }

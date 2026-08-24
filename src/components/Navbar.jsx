@@ -172,18 +172,17 @@ export default function Navbar({ visible }) {
     <>
     <nav
       ref={navRef}
-      className="z-[990] flex justify-between items-center w-screen fixed inset-x-0 top-0"
-      style={{ marginTop: "2rem", paddingLeft: "2vw", paddingRight: "2vw" }}
+      className="z-[990] flex justify-between items-center w-full fixed inset-x-0 top-0 mt-4 md:px-[2vw] px-4"
     >
       {/* LEFT — wordmark */}
       <div className="flex items-center" style={{ flex: "0 0 33%", minWidth: 0 }}>
         <Link
           to="/"
-          className="nav-wordmark no-underline flex items-center gap-2"
+          className="nav-wordmark no-underline flex items-center gap-2 whitespace-nowrap"
           style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
         >
           <span className="nav-name-jm">Lucid</span>
-          <div className="dot-jm" />
+          <div className="dot-jm flex-shrink-0" />
           <span className="nav-name-jm">Edge</span>
         </Link>
       </div>

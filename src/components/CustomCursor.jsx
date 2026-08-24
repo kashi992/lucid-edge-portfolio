@@ -151,7 +151,7 @@ export default function CustomCursor() {
       {/* Dot — lime, glows */}
       <div
         ref={dotRef}
-        className="fixed pointer-events-none z-[9999] rounded-full"
+        className="fixed pointer-events-none z-[99999] rounded-full"
         style={{
           width: "7px",
           height: "7px",
@@ -167,7 +167,7 @@ export default function CustomCursor() {
       {/* Ring 1 — medium lag, gradient border */}
       <div
         ref={ringRef}
-        className="fixed pointer-events-none z-[9998] rounded-full"
+        className="fixed pointer-events-none z-[99998] rounded-full"
         style={{
           width: "38px",
           height: "38px",
@@ -184,7 +184,7 @@ export default function CustomCursor() {
       {/* Email label */}
       <div
         ref={textRef}
-        className="fixed pointer-events-none z-[9999] whitespace-nowrap rounded-[20px] font-semibold"
+        className="fixed pointer-events-none z-[99999] whitespace-nowrap rounded-[20px] font-semibold"
         style={{
           left: "-200px",
           top: "-200px",

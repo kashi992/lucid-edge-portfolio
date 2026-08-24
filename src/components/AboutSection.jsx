@@ -5,7 +5,7 @@ import CTAButton from "./CTAButton";
 const BIO = [
   {
     label: "Who We Are",
-    body: "Malcolm Beddows is a multi-award-winning Animation and Film Production studio based in Paddington, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 20 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
+    body: "Lucid Edge is a multi-award-winning Animation and Film Production studio based in Surry Hills, Sydney — founded by Lucid Edge in 2005.\n\nWith over 20 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
   },
   {
     label: "Our Approach",
@@ -13,7 +13,7 @@ const BIO = [
   },
   {
     label: "Background",
-    body: "Malcolm Beddows brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, he established the studio as one of Sydney's leading creative production companies.",
+    body: "LUCID EDGE brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, he established the studio as one of Sydney's leading creative production companies.",
   },
   {
     label: "Awards &\nRecognitions",
@@ -25,7 +25,7 @@ const NEWS = [
   {
     num: "1",
     headline: "20 Years\nof Production",
-    body: "Malcolm Beddows has been delivering award-winning animation and film production for over 20 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
+    body: "LUCID EDGE has been delivering award-winning animation and film production for over 20 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
     href: "#",
     images: [],
   },
@@ -80,7 +80,7 @@ function StudioPanel() {
         filePath: "/morable-lucid.json",
         fps: 60,
         scale: 1,
-        altText: "Malcolm Beddows Studio",
+        altText: "LUCID EDGE Studio",
       });
       if (cancelled) { scene?.destroy?.(); return; }
       el.__usScene = scene;
@@ -114,14 +114,14 @@ function StudioPanel() {
           zIndex: 10,
         }}
       >
-        Malcolm Beddows
+        LUCID EDGE
       </p>
     </div>
   );
 }
 
 
-const HERO_HEADLINE = "Multi-award-winning animation and film production, based in Paddington, Sydney";
+const HERO_HEADLINE = "Multi-award-winning animation and film production studio, based in Surry Hills, Sydney";
 
 /* ─── Main component ────────────────────────────────────────────────────── */
 export default function AboutSection({ loaded }) {
@@ -378,7 +378,7 @@ export default function AboutSection({ loaded }) {
             >
               <img
                 src="/images/le-mark-lime.jpeg"
-                alt="Malcolm Beddows"
+                alt="LUCID EDGE"
                 style={{ height: "6vw" }}
               />
               <div
@@ -607,7 +607,8 @@ export default function AboutSection({ loaded }) {
                   ref={el => newsPanelRefs.current[i] = el}
                   className="w-full overflow-hidden rounded-lg h-[110vw] md:h-[50vw]"
                 >
-                  <StudioPanel />
+                  {/* <StudioPanel /> */}
+                  <img src="/images/Wellsford_v02.webp" alt="Wellsford" className="w-full h-full object-cover" />
                 </div>
               )}
 

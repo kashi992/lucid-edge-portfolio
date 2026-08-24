@@ -160,8 +160,7 @@ export default function Footer() {
       <div className="relative z-20 flex flex-col justify-end items-center w-[90vw] md:w-[92vw] h-full pb-[22vw] md:pb-[4vw]">
 
         {/* Top row */}
-        <div className="grid grid-cols-2 gap-4 pt-[55vh] md:pt-0 mb-0 md:mb-[4vw] w-full">
-          {/* Socials column */}
+        {/* <div className="grid grid-cols-2 gap-4 pt-[55vh] md:pt-0 mb-0 md:mb-[4vw] w-full">
           <div className="flex flex-col gap-8 md:gap-10">
             <div
               ref={socialsDividerRef}
@@ -193,9 +192,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Tools column */}
           <div className="flex flex-col gap-8 md:gap-10">
-            {/* divider line */}
             <div
               ref={toolsDividerRef}
               className="w-full h-[1px] mb-2 md:block hidden"
@@ -224,7 +221,7 @@ export default function Footer() {
           </div>
 
 
-        </div>
+        </div> */}
 
         {/* Giant name */}
         <div className="hidden md:flex justify-center gap-5 items-center mb-[0.5vw] w-[85vw]">

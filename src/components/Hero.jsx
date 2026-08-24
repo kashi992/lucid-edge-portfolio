@@ -36,15 +36,11 @@ export default function Hero({ visible }) {
       gsap.from(".hero-top-label",    { opacity: 0, y: 14, duration: 0.8, delay: 0.2,  ease: "power2.out" });
       gsap.from(".hero-bottom-label", { opacity: 0, y: 10, duration: 0.7, delay: 0.45, ease: "power2.out" });
 
-      // Preload all carousel images before starting
-      await Promise.all(
-        CAROUSEL_IMAGES.map(src => new Promise(resolve => {
-          const img = new Image();
-          img.onload  = resolve;
-          img.onerror = resolve;
-          img.src = src;
-        }))
-      );
+      // Preload all carousel images so decoding doesn't stutter on slide
+      CAROUSEL_IMAGES.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
 
       // Carousel — single track sliding horizontally
       const slideWidth = sectionRef.current.offsetWidth;
@@ -141,7 +137,7 @@ export default function Hero({ visible }) {
         <div
           ref={trackRef}
           className="absolute top-0 left-0 h-full flex"
-          style={{ width: `${CAROUSEL_IMAGES.length * 100}vw` }}
+          style={{ width: `${CAROUSEL_IMAGES.length * 100}vw`, willChange: "transform" }}
         >
           {CAROUSEL_IMAGES.map((src) => (
             <div
@@ -161,7 +157,7 @@ export default function Hero({ visible }) {
 
       {/* ── Desktop layout: column (top label / bottom lottie+subtitle) ── */}
       {/* ── Mobile layout:  row   (left heading / right subtitle)       ── */}
-      <div className="relative z-[3] w-full h-full flex flex-row xl:items-center justify-between md:flex-col md:justify-center p-[4vw]">
+      <div className="relative z-[3] w-full h-full flex flex-row xl:items-center justify-center md:flex-col md:justify-center p-[4vw]">
 
         {/* Top label — left on mobile, top on desktop */}
         <div className="hero-top-label w-[50%] md:w-auto" style={{ marginTop: "0",}}>

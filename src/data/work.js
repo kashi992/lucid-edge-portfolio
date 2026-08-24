@@ -3,6 +3,29 @@
 
 export const PROJECTS = [
   {
+    // ── REPLACE placeholder srcs with actual Northern Corridor PPP images/video ──
+    id: "northern-corridor-ppp",
+    title: "Northern Corridor\nPPP — New Zealand",
+    year: "2018",
+    challenge: "Produce a comprehensive suite of 3D animations and visualisations to support the Northern Corridor PPP bid in New Zealand, communicating the project's infrastructure design and construction approach to key government stakeholders.",
+    services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
+    role: "Full production — concept, 3D modelling, animation, and post-production for the Northern Corridor PPP bid submission.",
+    liveUrl: null,
+    layout: "hero-left",  // left 50% = hero image, right 50% = 2×3 grid
+    media: [
+      // index 0 — left hero image (tall, 50% width)
+      { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
+      // index 1–5 — right grid images (2 cols × 3 rows)
+      { type: "img", src: "/images/Hoteo_v02.webp" },
+      { type: "img", src: "/images/PORTAL_HR_NORTH_v02.webp" },
+      { type: "img", src: "/images/Te_Hana View_v001.webp" },
+      { type: "img", src: "/images/Warkworth_v02.webp" },
+      { type: "img", src: "/images/Wellsford_v02.webp" },
+      // index 6 — animation tile (bottom-right of grid)
+      { type: "video", src: "" },  // ← paste animation video URL here
+    ],
+  },
+  {
     id: "optus-campus",
     title: "Optus Campus\nAnimation",
     year: "2020",

@@ -118,7 +118,7 @@ export default function ContactForm() {
                 type="text"
                 name="name"
                 required
-                placeholder="Malcolm Beddows"
+                placeholder="Lucid Edge"
                 value={form.name}
                 onChange={onChange}
                 style={inputStyle}
