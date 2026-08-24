@@ -6,6 +6,28 @@ const isIOS = () =>
   typeof navigator !== "undefined" &&
   /iP(hone|ad|od)/.test(navigator.userAgent);
 
+const COVER = { position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" };
+const VIDEO_SRC = "/videos/showreel.mp4";
+
+// Tries to play hosted MP4; if file is missing falls back to a still image (no play button)
+function IosVideo() {
+  const [hasVideo, setHasVideo] = useState(false);
+  useEffect(() => {
+    fetch(VIDEO_SRC, { method: "HEAD" })
+      .then(r => { if (r.ok) setHasVideo(true); })
+      .catch(() => {});
+  }, []);
+
+  if (hasVideo) {
+    return (
+      <video autoPlay loop muted playsInline style={COVER}>
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </video>
+    );
+  }
+  return <img src="/images/DUSK-SHOT-HR_v02.webp" alt="" style={COVER} />;
+}
+
 export default function Footer() {
   const [ios] = useState(isIOS);
   const footerRef = useRef(null);
@@ -153,19 +175,9 @@ export default function Footer() {
         style={{ willChange: "transform" }}
       >
         {ios ? (
-          /* iOS Safari — place showreel.mp4 in /public/videos/ to enable autoplay.
-             Until then, shows a hero still image as background.              */
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/DUSK-SHOT-HR_v02.webp"
-            style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" }}
-          >
-            <source src="/videos/showreel.mp4" type="video/mp4" />
-            {/* No <source> = shows poster image until showreel.mp4 is added */}
-          </video>
+          /* iOS Safari — uses hosted MP4 if available, otherwise static image.
+             To enable video: place showreel.mp4 in /public/videos/            */
+          <IosVideo />
         ) : (
           /* All other browsers — Vimeo background iframe */
           <iframe
