@@ -178,12 +178,14 @@ export default function Navbar({ visible }) {
       <div className="flex items-center" style={{ flex: "0 0 33%", minWidth: 0 }}>
         <Link
           to="/"
-          className="nav-wordmark no-underline flex items-center gap-2 whitespace-nowrap"
-          style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem", paddingRight: "0.5rem" }}
+          className="nav-wordmark no-underline flex items-center gap-2 whitespace-nowrap p-2 backdrop-blur-[10px] rounded-full"
         >
-          <span className="nav-name-jm">Lucid</span>
-          <div className="dot-jm flex-shrink-0" />
-          <span className="nav-name-jm">Edge</span>
+          <img
+            src="/images/LE_logotype_lime.png"
+            alt="Lucid Edge"
+            className="block object-contain"
+            style={{ height: "1.4rem", pointerEvents: "none" }}
+          />
         </Link>
       </div>
 

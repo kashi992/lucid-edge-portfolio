@@ -484,7 +484,7 @@ export default function WorkSection({ loaded }) {
                   >
                     {p.year}
                   </div>
-                  <CTAButton href="https://lucidedge.com.au" label="See it live" />
+                  {/* <CTAButton href="https://lucidedge.com.au" label="See it live" /> */}
                 </div>
 
                 {/* col 2: challenge */}

@@ -5,8 +5,6 @@ import { TOOLS, SOCIALS } from "../data/services";
 export default function Footer() {
   const footerRef = useRef(null);
   const videoRef = useRef(null);
-  const lucidRef = useRef(null);
-  const edgeRef = useRef(null);
   const logoRef = useRef(null);
   const toolsLabelRef = useRef(null);
   const socialsLabelRef = useRef(null);
@@ -27,9 +25,7 @@ export default function Footer() {
 
       /* ── initial states ── */
       gsap.set(videoRef.current, { scale: 1.06, opacity: 0 });
-      gsap.set(lucidRef.current, { xPercent: -18, opacity: 0 });
-      gsap.set(edgeRef.current, { xPercent: 18, opacity: 0 });
-      gsap.set(logoRef.current, { scale: 0.5, opacity: 0, rotate: -30 });
+      gsap.set(logoRef.current, { scale: 0.85, opacity: 0, y: 20 });
       gsap.set(toolsLabelRef.current, { opacity: 0, y: 10 });
       gsap.set(socialsLabelRef.current, { opacity: 0, y: 10 });
       gsap.set(toolsDividerRef.current, { scaleX: 0, transformOrigin: "right center" });
@@ -49,16 +45,11 @@ export default function Footer() {
         .to(videoRef.current, {
           scale: 1, opacity: 1, duration: 1.4, ease: "power2.out",
         })
-        /* LUCID + EDGE slide from sides simultaneously */
-        .to([lucidRef.current, edgeRef.current], {
-          xPercent: 0, opacity: 1,
-          duration: 1.1, ease: "power3.out", stagger: 0,
-        }, "-=1.0")
-        /* logo flips in */
+        /* logo fades up */
         .to(logoRef.current, {
-          scale: 1, opacity: 1, rotate: 0,
-          duration: 0.75, ease: "back.out(2)",
-        }, "-=0.7")
+          scale: 1, opacity: 1, y: 0,
+          duration: 0.9, ease: "power3.out",
+        }, "-=1.0")
         /* divider lines sweep */
         .to([toolsDividerRef.current, socialsDividerRef.current], {
           scaleX: 1, duration: 0.55, ease: "power2.inOut", stagger: 0.08,
@@ -79,21 +70,6 @@ export default function Footer() {
           duration: 0.55, ease: "power3.out", stagger: 0.12,
         }, "-=0.2");
 
-      /* ── LUCID drifts left, EDGE drifts right on scroll ── */
-      gsap.to(lucidRef.current, {
-        x: "-8vw", ease: "none",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom", end: "bottom top", scrub: 1.2,
-        },
-      });
-      gsap.to(edgeRef.current, {
-        x: "8vw", ease: "none",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom", end: "bottom top", scrub: 1.2,
-        },
-      });
 
       /* ── video slow zoom-out on scroll ── */
       gsap.to(videoRef.current, {
@@ -104,13 +80,48 @@ export default function Footer() {
         },
       });
 
-      /* ── logo spins on scroll ── */
-      gsap.to(logoRef.current, {
-        rotate: 360, ease: "none",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top bottom", end: "bottom top", scrub: 2,
+      /* ── logo: continuous float after entry ── */
+      let floatTween;
+      ScrollTrigger.create({
+        trigger: footerRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          floatTween = gsap.to(logoRef.current, {
+            y: -14, duration: 2.2, ease: "sine.inOut",
+            repeat: -1, yoyo: true,
+          });
         },
+      });
+
+      /* ── logo: mouse parallax — follows cursor within footer ── */
+      const footer = footerRef.current;
+      const logo   = logoRef.current;
+      const onMouseMove = (e) => {
+        const rect   = footer.getBoundingClientRect();
+        const cx     = rect.left + rect.width  / 2;
+        const cy     = rect.top  + rect.height / 2;
+        const dx     = (e.clientX - cx) / rect.width;   // -0.5 → 0.5
+        const dy     = (e.clientY - cy) / rect.height;  // -0.5 → 0.5
+        gsap.to(logo, {
+          x: dx * 28, y: dy * 18,
+          duration: 0.8, ease: "power2.out", overwrite: "auto",
+        });
+      };
+      const onMouseLeave = () => {
+        gsap.to(logo, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.5)", overwrite: "auto" });
+        // restart float
+        if (floatTween) floatTween.restart();
+      };
+      footer.addEventListener("mousemove",  onMouseMove);
+      footer.addEventListener("mouseleave", onMouseLeave);
+
+      /* ── logo: hover scale + glow ── */
+      logo.addEventListener("mouseenter", () => {
+        gsap.to(logo, { scale: 1.06, filter: "brightness(1.2)", duration: 0.35, ease: "power2.out", overwrite: "auto" });
+      });
+      logo.addEventListener("mouseleave", () => {
+        gsap.to(logo, { scale: 1, filter: "brightness(1)", duration: 0.5, ease: "elastic.out(1, 0.5)", overwrite: "auto" });
       });
 
       /* ── social links hover ── */
@@ -122,15 +133,6 @@ export default function Footer() {
         el.addEventListener("mouseleave", () => {
           gsap.to(el, { x: 0, opacity: 0.65, duration: 0.3, ease: "power2.inOut", overwrite: true });
         });
-      });
-
-      /* ── logo hover scale ── */
-      const logo = logoRef.current;
-      logo.addEventListener("mouseenter", () => {
-        gsap.to(logo, { scale: 1.12, duration: 0.35, ease: "power2.out", overwrite: true });
-      });
-      logo.addEventListener("mouseleave", () => {
-        gsap.to(logo, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)", overwrite: true });
       });
     })();
   }, []);
@@ -147,13 +149,12 @@ export default function Footer() {
         className="absolute inset-0 z-10 pointer-events-none w-screen h-screen overflow-hidden flex justify-center items-center"
         style={{ willChange: "transform" }}
       >
-        {/* Works on all devices — iPhone, Android, Desktop */}
         <video
           autoPlay
-          loop
           muted
+          loop
           playsInline
-          style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", height: "56.25vw", minHeight: "100%", minWidth: "177.78vh", transform: "translate(-50%, -50%)", objectFit: "cover" }}
+          style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", minHeight: "100%", transform: "translate(-50%, -50%)", objectFit: "cover" }}
         >
           <source src="/videos/showreel.mp4" type="video/mp4" />
         </video>
@@ -228,30 +229,16 @@ export default function Footer() {
 
         </div> */}
 
-        {/* Giant name */}
-        <div className="hidden md:flex justify-center gap-5 items-center mb-[0.5vw] w-[85vw]">
-          <h2
-            ref={lucidRef}
-            className="m-0 text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
-            style={{ color: "var(--orange1)", fontFamily: "var(--font)", willChange: "transform" }}
-          >
-            LUCID
-          </h2>
+        {/* Site logo — large, centered */}
+        <div className="hidden md:flex justify-center items-center mb-[0.5vw] w-[85vw]">
           <img
             ref={logoRef}
-            src="/images/le-mark-lime.jpeg"
+            src="/images/LE_logotype_lime.png"
             loading="lazy"
-            alt="LE"
-            className="block rounded-full object-contain w-[8vw] h-[8vw] cursor-pointer flex-shrink-0"
-            style={{ willChange: "transform" }}
+            alt="Lucid Edge"
+            className="block object-contain cursor-pointer"
+            style={{ width: "55vw", willChange: "transform" }}
           />
-          <h2
-            ref={edgeRef}
-            className="m-0 text-right text-[15vw] font-semibold leading-[75%] tracking-[-0.7vw]"
-            style={{ color: "var(--orange1)", fontFamily: "var(--font)", willChange: "transform" }}
-          >
-            EDGE
-          </h2>
         </div>
 
         {/* Bottom bar */}
