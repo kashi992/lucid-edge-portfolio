@@ -22,8 +22,8 @@ export const PROJECTS = [
     ],
   },
   {
-    id: "western-sydney-metro",
-    title: "Western\nSydney Metro",
+    id: "western-sydney-metro-the-bays",
+    title: "Western Sydney\nMetro — The Bays",
     year: "2021",
     challenge: "Deliver high-fidelity 3D animation and construction sequencing content to support the Western Sydney Metro bid submission, communicating the project's scale and complexity to key government stakeholders.",
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
