@@ -121,6 +121,21 @@ function StudioPanel() {
 }
 
 
+function NewsVideo({ src }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.src = src; el.play().catch(() => {}); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [src]);
+  return <video ref={ref} loop muted playsInline className="w-full h-full object-cover" />;
+}
+
 const HERO_HEADLINE = "Multi-award-winning animation and film production studio, based in Surry Hills, Sydney";
 
 /* ─── Main component ────────────────────────────────────────────────────── */
@@ -610,8 +625,7 @@ export default function AboutSection({ loaded }) {
                   ref={el => newsPanelRefs.current[i] = el}
                   className="w-full overflow-hidden rounded-lg h-[110vw] md:h-[50vw]"
                 >
-                  {/* <StudioPanel /> */}
-                  <img src="/images/Wellsford_v02.webp" alt="Wellsford" className="w-full h-full object-cover" />
+                  <NewsVideo src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/showreel.mp4" />
                 </div>
               )}
 
