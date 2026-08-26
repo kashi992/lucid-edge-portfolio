@@ -9,7 +9,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the Northern Corridor PPP bid submission.",
     liveUrl: null,
-    videoUrl: SHOWREEL,
+    videoUrl: "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/acciona/WarkWorth_to_TeHana_Final_15.mp4",
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
