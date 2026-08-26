@@ -32,7 +32,7 @@ export default function Loader({ onComplete }) {
     <div ref={containerRef} className="container-loader">
       <div className="orange-intro">
         <div ref={nameRef} className="cont-juan-intro">
-          <img src="/images/LE_logotype_lime.png" alt="Lucid Edge" style={{ height: "2.5rem", width: "auto" }} />
+          <img src="/images/LE_logotype_lime.png" alt="Lucid Edge" style={{ height: "1.25rem", width: "auto" }} />
         </div>
       </div>
       <div ref={lineRef} className="grow-line" />

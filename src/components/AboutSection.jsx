@@ -34,10 +34,7 @@ const NEWS = [
     headline: "Australia's\nTop TimeLapse",
     body: "We are one of Australia's leading TimeLapse Camera providers for construction projects, operating over 100 cameras with a seamless pipeline for projects of any scale.",
     href: "#",
-    images: [
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/line-wide-works.png",
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png",
-    ],
+    images: [],
   },
   {
     num: "3",
@@ -45,8 +42,8 @@ const NEWS = [
     body: "From the Sydney Metro to Northern Beaches Hospital and major PPP bid submissions — our animation and film productions have helped teams across Australia secure landmark projects.",
     href: "#",
     images: [
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/Westmead_construction_sequence.png",
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/sydney-metro-central-station.png",
+      "/images/_O4A5555-Pano.webp",
+      "/images/_O4A5627-Pano.webp",
     ],
   },
 ];
@@ -133,7 +130,7 @@ function NewsVideo({ src }) {
     obs.observe(el);
     return () => obs.disconnect();
   }, [src]);
-  return <video ref={ref} loop muted playsInline className="w-full h-full object-cover" />;
+  return <video ref={ref} loop muted playsInline controls className="w-full h-full object-cover" />;
 }
 
 const HERO_HEADLINE = "Multi-award-winning animation and film production studio, based in Surry Hills, Sydney";
@@ -629,10 +626,17 @@ export default function AboutSection({ loaded }) {
                 </div>
               )}
 
-              {i > 0 && item.images.length > 0 && (
+              {i === 1 && (
+                <div ref={el => newsPanelRefs.current[i] = el} className="w-full overflow-hidden rounded-lg h-[55vw] md:h-[40vw]">
+                  <NewsVideo src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/Ridge_St_Girder_Install_may2024_v2+(1).mp4" />
+                </div>
+              )}
+              {i > 1 && item.images.length > 0 && (
                 <div ref={el => newsPanelRefs.current[i] = el} className="grid w-full md:grid-cols-2 xl:gap-x-2 xl:gap-y-1 gap-4">
                   {item.images.map((src, j) => (
-                    <img key={j} src={src} loading="lazy" alt="" className="w-full block object-cover rounded-lg" />
+                    <div key={j} className="w-full overflow-hidden rounded-lg" style={{ height: "30vw" }}>
+                      <img src={src} loading="lazy" alt="" className="w-full h-full object-cover block" />
+                    </div>
                   ))}
                 </div>
               )}
