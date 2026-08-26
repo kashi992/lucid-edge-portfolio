@@ -1,3 +1,5 @@
+const SHOWREEL = "https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/showreel.mp4";
+
 export const PROJECTS = [
   {
     id: "northern-corridor-ppp",
@@ -7,6 +9,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the Northern Corridor PPP bid submission.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -26,9 +29,12 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the Western Sydney Metro bid.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
-      { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
+      { type: "img", src: "/images/wsm-station-boxes-1.png" },
+      { type: "img", src: "/images/wsm-station-boxes-2.png" },
+      { type: "img", src: "/images/wsm-station-boxes-3.png" },
     ],
   },
   {
@@ -39,9 +45,10 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Construction Sequencing"],
     role: "Full production — 3D modelling, animation, and post-production for the line-wide works package.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
-      { type: "video", src: "/videos/showreel.mp4" },
+      { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
     ],
   },
   {
@@ -52,6 +59,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
     role: "Full production — concept, 3D modelling, animation, and post-production.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -65,6 +73,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Forensic Visualisation"],
     role: "Lead visualisation — 3D modelling and rendering to support the dispute resolution and legal teams.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -78,6 +87,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Construction Sequencing"],
     role: "Full production — 3D modelling, animation, and post-production.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -91,6 +101,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the bid submission.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -104,6 +115,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Construction Sequencing", "Bid Submission Video"],
     role: "Full production — concept, 3D modelling, animation, and post-production.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -117,6 +129,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Film Production"],
     role: "Full production — concept, 3D modelling, animation, and post-production.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
@@ -130,6 +143,7 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video", "Construction Sequencing"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the hospital bid submission.",
     liveUrl: null,
+    videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
       { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },

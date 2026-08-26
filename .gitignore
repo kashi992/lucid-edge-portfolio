@@ -3,3 +3,4 @@ dist
 .claude
 *.zip
 public/videos/*.mp4
+CLAUDE.md

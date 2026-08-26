@@ -145,8 +145,9 @@ function MediaItem({ m, style, className, onClick }) {
 function ProjectMedia({ project, onOpen }) {
   /* ── hero-left: big image left 50%, smart grid right 50% ── */
   if (project.layout === "hero-left") {
-    const [hero, ...rawRest] = project.media;
-    const rest = rawRest.filter(m => m.src); // skip empty placeholder tiles
+    const imgOnly = project.media.filter(m => m.src && m.type !== "video");
+    if (!imgOnly.length) return null;
+    const [hero, ...rest] = imgOnly;
 
     // Pick columns: 1 image → 1 col (full), 2+ → 2 cols
     const rightCols = rest.length === 1 ? 1 : 2;
@@ -181,6 +182,7 @@ function ProjectMedia({ project, onOpen }) {
 
   /* ── default grid layout ── */
   const cols = project.gridCols === 2 ? 2 : 4;
+  const gridMedia = project.media.filter(m => m.type !== "video");
 
   return (
     <div
@@ -191,7 +193,7 @@ function ProjectMedia({ project, onOpen }) {
         gap: "8px",
       }}
     >
-      {project.media.map((m, i) => {
+      {gridMedia.map((m, i) => {
         const span = m.span || cols;
         const colSpan = Math.min(span, cols);
         const hideClass = m.hide ? "hidden sm:block" : "";
@@ -223,6 +225,7 @@ function ProjectMedia({ project, onOpen }) {
 export default function WorkSection({ loaded }) {
   const [activeId, setActiveId] = useState(null);
   const [lightbox, setLightbox] = useState(null); // { media, index }
+  const [videoModal, setVideoModal] = useState(null); // url string or null
   const itemRefs        = useRef({});
   const headlineRef     = useRef(null);
   const headlineWrapRef = useRef(null);
@@ -484,6 +487,34 @@ export default function WorkSection({ loaded }) {
                   >
                     {p.year}
                   </div>
+                  {p.videoUrl && (
+                    <button
+                      onClick={() => setVideoModal(p.videoUrl)}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        alignSelf: "flex-start",
+                        background: "var(--orange1)",
+                        border: "none",
+                        borderRadius: "20rem",
+                        padding: "0.55rem 1.1rem",
+                        fontSize: "0.8rem",
+                        fontWeight: 700,
+                        color: "#1a1a1a",
+                        fontFamily: "var(--font)",
+                        cursor: "pointer",
+                        letterSpacing: "0.01em",
+                        lineHeight: "100%",
+                      }}
+                    >
+                      {/* play icon */}
+                      <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0L10 6L0 12V0Z" fill="#1a1a1a"/>
+                      </svg>
+                      Play Animation Video
+                    </button>
+                  )}
                   {/* <CTAButton href="https://lucidedge.com.au" label="See it live" /> */}
                 </div>
 
@@ -577,6 +608,34 @@ export default function WorkSection({ loaded }) {
           startIndex={lightbox.index}
           onClose={() => setLightbox(null)}
         />
+      )}
+
+      {/* Video modal */}
+      {videoModal && (
+        <div
+          onClick={() => setVideoModal(null)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "rgba(0,0,0,0.92)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >
+          <button
+            onClick={() => setVideoModal(null)}
+            style={{
+              position: "absolute", top: "1.25rem", right: "1.5rem",
+              background: "none", border: "none", cursor: "pointer",
+              color: "#fff", fontSize: "1.5rem", lineHeight: 1, opacity: 0.7,
+            }}
+          >✕</button>
+          <div onClick={e => e.stopPropagation()}>
+            <video
+              src={videoModal}
+              controls autoPlay loop muted playsInline
+              style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.5rem" }}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

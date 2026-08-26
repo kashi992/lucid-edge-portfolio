@@ -16,6 +16,7 @@ const NAV_ITEMS = [
 
 export default function Navbar({ visible }) {
   const navRef   = useRef(null);
+  const logoRef  = useRef(null);
   const { pathname } = useLocation();
 
   /* ── Entrance animation ── */
@@ -37,6 +38,11 @@ export default function Navbar({ visible }) {
       document.querySelectorAll(".nav-name-jm, .nav-link, .nav-social-link, .nav-link-mobile").forEach(el => {
         el.classList.toggle("is-peach", theme === "peach");
       });
+      if (logoRef.current) {
+        logoRef.current.src = theme === "grey"
+          ? "/images/LE_logotype_dark_gray.png"
+          : "/images/LE_logotype_lime.png";
+      }
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -181,6 +187,7 @@ export default function Navbar({ visible }) {
           className="nav-wordmark no-underline flex items-center gap-2 whitespace-nowrap p-2 backdrop-blur-[10px] rounded-full"
         >
           <img
+            ref={logoRef}
             src="/images/LE_logotype_lime.png"
             alt="Lucid Edge"
             className="block object-contain"

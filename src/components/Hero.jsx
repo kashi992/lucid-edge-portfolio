@@ -194,10 +194,13 @@ export default function Hero({ visible }) {
       <div className="relative z-[3] w-full h-full flex flex-row xl:items-center justify-center md:flex-col md:justify-center p-[4vw]">
 
         {/* Top label — left on mobile, top on desktop */}
-        <div className="hero-top-label w-[50%] md:w-auto" style={{ marginTop: "0",}}>
-          <h1 className="xl:m-0 md:mt-[18vh] font-semibold leading-[110%] text-center" style={{ fontSize: "clamp(1rem, 3.5vw, 2.5rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
-            Animation &amp; Film<br />Production Studio
+        <div className="hero-top-label w-[50%] md:w-auto flex flex-col items-center" style={{ marginTop: "0", gap: "1rem", maxWidth: "55vw" }}>
+          <h1 className="xl:m-0 md:mt-[18vh] font-semibold leading-[115%] text-center" style={{ fontSize: "clamp(0.9rem, 2.4vw, 2rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
+            Bringing Projects to Life.<br />From Bid to Delivery.
           </h1>
+          <p className="m-0 text-center font-normal leading-[150%]" style={{ fontSize: "clamp(0.7rem, 1.1vw, 1rem)", color: "var(--orange1)", fontFamily: "var(--font)", opacity: 0.8 }}>
+            A world-class animation and film studio partnering with project teams to win major projects, communicate complexity and deliver with confidence.
+          </p>
         </div>
 
         {/* Bottom — right on mobile (no Lottie), bottom on desktop (with Lottie) */}

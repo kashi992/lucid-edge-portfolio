@@ -15,11 +15,16 @@ export const SERVICES = [
     title: "4D Construction Sequencing",
     description: "Detailed 4D construction sequencing animations that visually communicate complex project timelines and methodologies to stakeholders and bid evaluators.",
     images: [
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/Westmead_construction_sequence.png",
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/SSC_Works_Final_2.png",
-      "https://lucidedge.com.au/wp-content/uploads/2020/07/sydney-metro-central-station.png",
+      "/images/wsm-station-boxes-1.png",
+      "/images/wsm-station-boxes-2.png",
+      "/images/wsm-station-boxes-3.png",
     ],
     videos: [],
+    projectRef: {
+      label: "Construction Sequence: Western Sydney Metro — Station Boxes. Client: GAMUDA",
+      linkText: "click here for more",
+      href: "/work#western-sydney-metro",
+    },
   },
   {
     id: "interactive-portals",

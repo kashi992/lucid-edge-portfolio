@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { SERVICES, IMAGES } from "../data/services";
 
 function ServiceRow({ service, index }) {
@@ -141,6 +142,32 @@ function ServiceRow({ service, index }) {
       >
         {service.description}
       </p>
+
+      {/* Project reference callout */}
+      {service.projectRef && (
+        <p
+          className="m-0 font-medium leading-[160%] md:pl-[3.8vw]"
+          style={{
+            fontFamily: "var(--font)",
+            fontSize: "clamp(0.8rem, 0.95vw, 0.95rem)",
+            color: "var(--grey)",
+            marginTop: "-0.5rem",
+          }}
+        >
+          {service.projectRef.label}{" "}
+          <Link
+            to={service.projectRef.href}
+            style={{
+              color: "var(--blue)",
+              fontWeight: 700,
+              textDecoration: "underline",
+              textUnderlineOffset: "3px",
+            }}
+          >
+            {service.projectRef.linkText}
+          </Link>
+        </p>
+      )}
 
       {/* ── Media cards ── */}
       {!isWebflow && (
