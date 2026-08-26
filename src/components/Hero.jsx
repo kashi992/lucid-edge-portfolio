@@ -198,7 +198,7 @@ export default function Hero({ visible }) {
           <h1 className="xl:m-0 md:mt-[18vh] font-semibold leading-[115%] text-center" style={{ fontSize: "clamp(0.9rem, 2.4vw, 2rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
             Bringing Projects to Life.<br />From Bid to Delivery.
           </h1>
-          <p className="m-0 text-center font-normal leading-[150%]" style={{ fontSize: "clamp(0.7rem, 1.1vw, 1rem)", color: "var(--orange1)", fontFamily: "var(--font)", opacity: 0.8 }}>
+          <p className="my-0 text-center font-normal leading-[150%] max-w-[600px] w-full mx-auto" style={{ fontSize: "clamp(0.7rem, 1.1vw, 1rem)", color: "var(--orange1)", fontFamily: "var(--font)", opacity: 0.8 }}>
             A world-class animation and film studio partnering with project teams to win major projects, communicate complexity and deliver with confidence.
           </p>
         </div>
