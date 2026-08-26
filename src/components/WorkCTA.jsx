@@ -213,7 +213,7 @@ export default function WorkCTA() {
           className="m-0 text-[0.9rem] font-semibold tracking-[0.03rem]"
           style={{ fontFamily: "var(--font)", color: "var(--grey)" }}
         >
-          Curious?... Check out my
+          Curious?... Check out our
         </p>
 
         {/* Folder */}
