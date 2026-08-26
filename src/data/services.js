@@ -21,8 +21,8 @@ export const SERVICES = [
     ],
     videos: [],
     projectRef: {
-      label: "Construction Sequence: Western Sydney Metro — Station Boxes. Client: GAMUDA",
-      linkText: "click here for more",
+      label: "Western Sydney Metro — Underground Station Construction for GAMUDA",
+      linkText: "Click here for more",
       href: "/work#western-sydney-metro-the-bays",
     },
   },

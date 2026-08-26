@@ -157,6 +157,7 @@ function ServiceRow({ service, index }) {
           {service.projectRef.label}{" "}
           <Link
             to={service.projectRef.href}
+            className="inline-block ps-1"
             style={{
               color: "var(--blue)",
               fontWeight: 700,

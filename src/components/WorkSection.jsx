@@ -232,6 +232,21 @@ export default function WorkSection({ loaded }) {
   const challengeRefs   = useRef([]);
   const roleRefs        = useRef([]);
 
+  /* Scroll to hash on mount (e.g. /work#western-sydney-metro-the-bays) */
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const tryScroll = (attempts = 0) => {
+      const el = document.getElementById(hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+      } else if (attempts < 10) {
+        setTimeout(() => tryScroll(attempts + 1), 150);
+      }
+    };
+    tryScroll();
+  }, []);
+
   /* IntersectionObserver — track active project in sidebar */
   useEffect(() => {
     const visible = new Set();
