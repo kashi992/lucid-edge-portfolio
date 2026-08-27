@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CAROUSEL_IMAGES = [
+   "/images/Mal_underpass.jpg",
   "/images/PORTAL_HR_SOUTH_v03.jpg",
   "/images/PORTAL_HR_SOUTH2_v02.jpg",
-  "/images/Mal_underpass.jpg",
   "/images/DUSK-SHOT-HR_v02.webp",
   "/images/Hoteo_v02.webp",
   "/images/PORTAL_HR_NORTH_v02.webp",
