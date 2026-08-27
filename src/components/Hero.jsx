@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CAROUSEL_IMAGES = [
+  "/images/PORTAL_HR_SOUTH_v03.jpg",
+  "/images/PORTAL_HR_SOUTH2_v02.jpg",
+  "/images/Mal_underpass.jpg",
   "/images/DUSK-SHOT-HR_v02.webp",
   "/images/Hoteo_v02.webp",
   "/images/PORTAL_HR_NORTH_v02.webp",
@@ -223,7 +226,7 @@ export default function Hero({ visible }) {
 
       {/* Bottom-left — featured project tag */}
       <div className="absolute bottom-[2vw] left-[4vw] z-[4] hidden md:block">
-        <p className="nav-social-link text-base is-peach" style={{ margin: 0, fontFamily: "var(--font)", letterSpacing: "0.03em", cursor: "default" }}>
+        <p className="nav-social-link text-base is-peach" style={{ margin: 0, fontFamily: "var(--font)", letterSpacing: "0.03em", cursor: "default", backdropFilter: "none" }}>
           Project: Northland Corridor PPP. for more{" "}
           <Link
             to="/work"
