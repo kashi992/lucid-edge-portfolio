@@ -19,6 +19,14 @@ export default function Contact() {
       <Navbar visible={loaded} />
       <main>
         <ContactBanner />
+        <div className="w-screen overflow-hidden" style={{ height: "55vw", maxHeight: "90vh" }}>
+          <img
+            src="/images/Mal_underpass.jpg"
+            alt=""
+            className="w-full h-full"
+            style={{ objectFit: "cover", objectPosition: "center 40%", display: "block" }}
+          />
+        </div>
         <ContactForm />
         <ContactCTA />
       </main>
