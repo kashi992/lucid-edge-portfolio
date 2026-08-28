@@ -100,7 +100,7 @@ function ServiceRow({ service, index }) {
       <div ref={lineRef} className="w-full h-[1px]" style={{ background: "var(--bg-grey)" }} />
 
       {/* Number + title */}
-      <div className="flex items-start gap-[3vw]">
+      <div className="flex items-start gap-[3vw] md:w-full w-fit mx-auto">
         <span
           ref={numRef}
           className="flex-shrink-0 text-[0.75rem] font-bold tracking-[0.12em] xl:pt-[0.6em]"
@@ -125,7 +125,7 @@ function ServiceRow({ service, index }) {
         </div>
 
         <div
-          className="flex-shrink-0 rounded-full w-[0.65vw] h-[0.65vw] min-w-[9px] min-h-[9px] mt-[0.9em]"
+          className="flex-shrink-0 rounded-full w-[0.65vw] h-[0.65vw] min-w-[9px] min-h-[9px] md:mt-[0.9em] mt-2"
           style={{ background: "var(--orange1)" }}
         />
       </div>
@@ -146,7 +146,7 @@ function ServiceRow({ service, index }) {
       {/* Project reference callout */}
       {service.projectRef && (
         <p
-          className="m-0 font-medium leading-[160%] md:pl-[3.8vw]"
+          className="m-0 font-medium leading-[160%] md:pl-[3.8vw] md:text-start text-center"
           style={{
             fontFamily: "var(--font)",
             fontSize: "clamp(0.8rem, 0.95vw, 0.95rem)",
@@ -181,7 +181,7 @@ function ServiceRow({ service, index }) {
               <div
                 key={i}
                 ref={r => (cardInnerRefs.current[i] = r)}
-                className={`flex-1 min-w-0 rounded-[10px] overflow-hidden will-change-transform ${service.gridCols ? "" : " md:h-[200px]"}`}
+                className={`flex-1 min-w-0 rounded-[10px] overflow-hidden will-change-transform ${service.gridCols ? "" : " md:h-[250px]"}`}
                 style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.12)", ...(service.gridCols ? { aspectRatio: "16/9" } : {}) }}
               >
                 {item.type === "img"

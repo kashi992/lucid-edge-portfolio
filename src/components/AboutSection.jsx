@@ -449,7 +449,7 @@ export default function AboutSection({ loaded }) {
                 zIndex: 5,
                 width: "100vw",
                 height: "100vh",
-                backgroundImage: "url('/images/about-juan-mora.jpg')",
+                backgroundImage: "url('/images/bridge-about-image.webp')",
                 backgroundPosition: "50%",
                 backgroundSize: "cover",
                 opacity: 0,

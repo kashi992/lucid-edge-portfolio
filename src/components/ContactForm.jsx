@@ -71,8 +71,8 @@ export default function ContactForm() {
     <section
       ref={sectionRef}
       data-nav="grey"
-      className="w-screen flex flex-col items-center"
-      style={{ background: "var(--bg-warm)", paddingBottom: "6vw" }}
+      className="w-screen flex flex-col items-center py-[6vw]"
+      style={{ background: "var(--bg-warm)"}}
     >
       <div
         ref={wrapRef}
