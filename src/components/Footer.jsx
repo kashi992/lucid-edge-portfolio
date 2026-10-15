@@ -160,10 +160,10 @@ export default function Footer() {
           playsInline
           style={{ position: "absolute", top: "50%", left: "50%", width: "100vw", minHeight: "100%", transform: "translate(-50%, -50%)", objectFit: "cover" }}
         >
-          <source src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/showreel.mp4" type="video/mp4" />
+          <source src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/LUCIDEDGE_showreel_2026+(1).mp4" type="video/mp4" />
         </video>
         {/* Dark overlay */}
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.1)" }} />
       </div>
 
       {/* Content */}
