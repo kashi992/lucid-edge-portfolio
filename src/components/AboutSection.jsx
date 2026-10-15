@@ -622,7 +622,8 @@ export default function AboutSection({ loaded }) {
                   ref={el => newsPanelRefs.current[i] = el}
                   className="w-full overflow-hidden rounded-lg h-[110vw] md:h-[50vw]"
                 >
-                  <NewsVideo src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/showreel.mp4" />
+                  <NewsVideo src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/LUCIDEDGE_showreel_2026+(1).mp4" />
+                  ssss
                 </div>
               )}
 
