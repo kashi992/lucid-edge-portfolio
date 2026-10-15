@@ -101,10 +101,14 @@ export const PROJECTS = [
     services: ["3D Animation", "Arch Viz", "Bid Submission Video"],
     role: "Full production — concept, 3D modelling, animation, and post-production for the bid submission.",
     liveUrl: null,
-    videoUrl: SHOWREEL,
+    videoUrl: "https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/Coffs_Harbour+(1).mp4",
     layout: "hero-left",
     media: [
-      { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
+      { type: "img", src: "/images/coffs-01.webp" },
+      { type: "img", src: "/images/coffs-02.webp" },
+      { type: "img", src: "/images/coffs-03.webp" },
+      { type: "img", src: "/images/coffs-04.webp" },
+      { type: "img", src: "/images/coffs-05.webp" },
     ],
   },
   {
