@@ -234,7 +234,7 @@ export default function Footer() {
         </div> */}
 
         {/* Site logo — large, centered */}
-        <div className="hidden md:flex justify-center items-center mb-[0.5vw] w-[85vw]">
+        <div className="hidden justify-center items-center mb-[0.5vw] w-[85vw]">
           <img
             ref={logoRef}
             src="/images/LE_logotype_lime.png"
@@ -246,7 +246,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="footer-bottom-bar flex justify-between items-center w-full">
+        <div className="footer-bottom-bar justify-between items-center w-full hidden">
           <h3
             ref={bottomLeftRef}
             className="hidden md:block m-0 text-[1.2rem] font-semibold leading-[100%]"
