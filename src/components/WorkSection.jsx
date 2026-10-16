@@ -31,31 +31,51 @@ function Lightbox({ media, startIndex, onClose }) {
   const [idx, setIdx] = useState(startIndex);
   const total = media.length;
   const current = media[idx];
+  const backdropRef = useRef(null);
+  const contentRef  = useRef(null);
 
   const prev = useCallback(() => setIdx(i => (i - 1 + total) % total), [total]);
   const next = useCallback(() => setIdx(i => (i + 1) % total), [total]);
+
+  /* Entrance animation */
+  useEffect(() => {
+    (async () => {
+      const { default: gsap } = await import("gsap");
+      gsap.fromTo(backdropRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+      gsap.fromTo(contentRef.current,
+        { opacity: 0, scale: 0.6, y: 60, rotateX: 12 },
+        { opacity: 1, scale: 1, y: 0, rotateX: 0, duration: 0.9, ease: "elastic.out(0.7,0.4)", delay: 0.1 }
+      );
+    })();
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  const handleClose = async () => {
+    const { default: gsap } = await import("gsap");
+    gsap.to(contentRef.current,  { opacity: 0, scale: 0.7, y: 40, duration: 0.35, ease: "power3.in" });
+    gsap.to(backdropRef.current, { opacity: 0, duration: 0.4, ease: "power2.in", delay: 0.1, onComplete: onClose });
+  };
 
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowLeft")  prev();
       if (e.key === "ArrowRight") next();
-      if (e.key === "Escape")     onClose();
+      if (e.key === "Escape")     handleClose();
     };
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [prev, next, onClose]);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [prev, next]);
 
   return (
     <div
-      onClick={onClose}
+      ref={backdropRef}
+      onClick={handleClose}
       style={{
         position: "fixed", inset: 0, zIndex: 9999,
         background: "rgba(0,0,0,0.92)",
         display: "flex", alignItems: "center", justifyContent: "center",
+        perspective: "1000px",
       }}
     >
       {/* Counter */}
@@ -68,13 +88,21 @@ function Lightbox({ media, startIndex, onClose }) {
 
       {/* Close */}
       <button
-        onClick={onClose}
+        onClick={handleClose}
         style={{
           position: "absolute", top: "1.25rem", right: "1.5rem",
           background: "none", border: "none", cursor: "pointer",
-          color: "#fff", fontSize: "1.5rem", lineHeight: 1, opacity: 0.7,
+          color: "#fff", fontSize: "1.5rem", lineHeight: 1, opacity: 0.7, zIndex: 1,
         }}
       >✕</button>
+
+      {/* Counter */}
+      <span style={{
+        position: "absolute", top: "1.5rem", left: "50%", transform: "translateX(-50%)",
+        color: "rgba(255,255,255,0.5)", fontFamily: "var(--font)", fontSize: "0.75rem", letterSpacing: "0.08em", zIndex: 1,
+      }}>
+        {idx + 1} / {total}
+      </span>
 
       {/* Prev */}
       {total > 1 && (
@@ -83,7 +111,7 @@ function Lightbox({ media, startIndex, onClose }) {
           style={{
             position: "absolute", left: "1.5rem", top: "50%", transform: "translateY(-50%)",
             background: "rgba(255,255,255,0.1)", border: "none", borderRadius: "50%",
-            width: "2.8rem", height: "2.8rem", cursor: "pointer",
+            width: "2.8rem", height: "2.8rem", cursor: "pointer", zIndex: 1,
             color: "#fff", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center",
           }}
         >‹</button>
@@ -91,6 +119,7 @@ function Lightbox({ media, startIndex, onClose }) {
 
       {/* Media */}
       <div
+        ref={contentRef}
         onClick={e => e.stopPropagation()}
         style={{ maxWidth: "90vw", maxHeight: "88vh", display: "flex", alignItems: "center", justifyContent: "center" }}
       >
@@ -98,13 +127,13 @@ function Lightbox({ media, startIndex, onClose }) {
           <video
             src={current.src}
             controls autoPlay loop muted playsInline
-            style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.5rem" }}
+            style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.75rem" }}
           />
         ) : (
           <img
             src={current.src}
             alt=""
-            style={{ maxWidth: "90vw", maxHeight: "88vh", objectFit: "contain", borderRadius: "0.5rem" }}
+            style={{ maxWidth: "90vw", maxHeight: "88vh", objectFit: "contain", borderRadius: "0.75rem" }}
           />
         )}
       </div>
@@ -116,7 +145,7 @@ function Lightbox({ media, startIndex, onClose }) {
           style={{
             position: "absolute", right: "1.5rem", top: "50%", transform: "translateY(-50%)",
             background: "rgba(255,255,255,0.1)", border: "none", borderRadius: "50%",
-            width: "2.8rem", height: "2.8rem", cursor: "pointer",
+            width: "2.8rem", height: "2.8rem", cursor: "pointer", zIndex: 1,
             color: "#fff", fontSize: "1.2rem", display: "flex", alignItems: "center", justifyContent: "center",
           }}
         >›</button>
@@ -199,10 +228,48 @@ function ShowreelModal({ src, onClose }) {
 }
 
 /* ── Render a single media item (img or video) ───────────────────────── */
-function MediaItem({ m, style, className, onClick }) {
-  return m.type === "video" ? (
-    <LazyVideo src={m.src} className={className || "w-full h-full block"} style={{ objectFit: "cover", borderRadius: "0.3rem", cursor: "pointer", ...(style || {}) }} />
-  ) : (
+function MediaItem({ m, style, className, onClick, onVideoOpen }) {
+  if (m.type === "video") {
+    return <LazyVideo src={m.src} className={className || "w-full h-full block"} style={{ objectFit: "cover", borderRadius: "0.3rem", cursor: "pointer", ...(style || {}) }} />;
+  }
+
+  // Image with optional video overlay
+  if (m.videoUrl) {
+    return (
+      <div
+        onClick={() => onVideoOpen(m.videoUrl)}
+        className={`block ${className || "w-full h-full"}`}
+        style={{ position: "relative", cursor: "pointer", borderRadius: "0.3rem", overflow: "hidden", ...(style || {}) }}
+      >
+        <img
+          src={m.src}
+          alt=""
+          loading="lazy"
+          className="w-full h-full block"
+          style={{ objectFit: "cover", display: "block" }}
+        />
+        {/* Play overlay */}
+        <div style={{
+          position: "absolute", inset: 0,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          background: "rgba(0,0,0,0.25)",
+          transition: "background 0.2s",
+        }}>
+          <div style={{
+            width: "3rem", height: "3rem", borderRadius: "50%",
+            background: "var(--orange1)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <svg width="12" height="14" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0L10 6L0 12V0Z" fill="#1a1a1a"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
     <img
       src={m.src}
       alt=""
@@ -215,7 +282,7 @@ function MediaItem({ m, style, className, onClick }) {
 }
 
 /* ── Media grid — per-project layout ─────────────────────────────────── */
-function ProjectMedia({ project, onOpen }) {
+function ProjectMedia({ project, onOpen, onVideoOpen }) {
   /* ── hero-left: big image left 50%, smart grid right 50% ── */
   if (project.layout === "hero-left") {
     const imgOnly = project.media.filter(m => m.src && m.type !== "video");
@@ -232,7 +299,7 @@ function ProjectMedia({ project, onOpen }) {
       <div className="proj-media w-full flex" style={{ gap: "8px" }}>
         {/* Left — hero image fills full height */}
         <div className="lg:min-h-[400px]" style={{ flex: "0 0 50%" }}>
-          <MediaItem m={hero} onClick={() => onOpen(0)} style={{ width: "100%", height: "100%", borderRadius: "0.3rem" }} />
+          <MediaItem m={hero} onClick={() => onOpen(0)} onVideoOpen={onVideoOpen} style={{ width: "100%", height: "100%", borderRadius: "0.3rem" }} />
         </div>
         {/* Right — adaptive grid, no empty cells */}
         <div style={{ flex: "1 1 0", display: "grid", gridTemplateColumns: `repeat(${rightCols}, 1fr)`, gap: "8px" }}>
@@ -244,6 +311,7 @@ function ProjectMedia({ project, onOpen }) {
                 key={i}
                 m={m}
                 onClick={() => onOpen(i + 1)}
+                onVideoOpen={onVideoOpen}
                 style={{ width: "100%", height: "100%", borderRadius: "0.3rem", gridColumn: spanAll ? "1 / -1" : undefined }}
               />
             );
@@ -710,6 +778,7 @@ export default function WorkSection({ loaded }) {
               <ProjectMedia
                 project={p}
                 onOpen={(idx) => setLightbox({ media: p.media.filter(m => m.src), index: idx })}
+                onVideoOpen={(url) => setVideoModal(url)}
               />
             </div>
           ))}
