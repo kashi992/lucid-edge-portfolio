@@ -6,7 +6,7 @@ const TICKER_ITEMS = [
 ];
 
 const BENEFITS_LIST = [
-  "We bring 20 years of multi-award-winning animation and film production experience.",
+  "We bring 2 Decades of multi-award-winning animation and film production experience.",
   "We specialise in helping construction teams win major project bids with compelling visuals.",
   "We create captivating narratives that engage stakeholders and deliver results.",
   "We deliver the highest quality animation, design, and film production on every project.",
@@ -401,7 +401,7 @@ export default function BenefitsSection() {
                   color: "var(--white)",
                 }}
               >
-                <Words text="20 years + award-winning results" />
+                <Words text="2 Decades + award-winning results" />
               </h2>
             </div>
 

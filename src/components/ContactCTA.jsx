@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 
 const HEADING_WORDS  = ["Let's", "create", "something", "award-winning", "together."];
-const SUBTITLE_WORDS = ["3D", "animation,", "film", "production,", "VFX", "&", "timelapse."];
+const SUBTITLE_WORDS = ["3D", "animation,", "film", "production,", "VFX", "&", "timelapse", "videos."];
 const TALK_WORDS     = ["Let's", "talk"];
 const EMAIL_CHARS    = "mbeddows@lucidedge.com.au".split("");
 

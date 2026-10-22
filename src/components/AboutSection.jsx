@@ -5,15 +5,15 @@ import CTAButton from "./CTAButton";
 const BIO = [
   {
     label: "Who We Are",
-    body: "Lucid Edge is a multi-award-winning Animation and Film Production studio based in Surry Hills, Sydney — founded by Lucid Edge in 2005.\n\nWith over 20 years of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction and infrastructure firms.\n\nWe create the digital content teams need to win and deliver major projects — combining animation, film, and creative direction with a captivating narrative.",
+    body: "Lucid Edge is a multi-award-winning Animation and Film Production studio based in Surry Hills, Sydney — founded by Malcolm Beddows in 2005.\n\nWith over 2 decades of experience, we've built a long-standing reputation in Construction Bid Submission and Large Project Delivery, partnering with Australia's leading construction companies.\n\nWe create the digital content teams need to win bids and also deliver major projects — combining photoreal animation, 4D construction sequencing ,film, and creative direction with captivating narratives.",
   },
   {
     label: "Our Approach",
-    body: "We work alongside Communications and Marketing teams to understand your visual requirements and deliver content that engages stakeholders at every level.\n\nFrom 3D animation and 4D construction sequencing to interactive portals, films, vox pops, project delivery digital content, and timelapse documentation — we bring a full production capability to every project, no matter the scale.\n\nOur goal is always the same: the highest quality production, delivered with clarity and impact.",
+    body: "We work alongside Bid Managers , Project Leaders. Communications and Marketing teams to understand your visual requirements, so, we can deliver the content that engages stakeholders at every level.\n\nFrom 3D animation and 4D construction sequencing to interactive portals, films, vox pops, project delivery digital content, and timelapse documentation — we bring world class production capabilities to every project, no matter the scale.\n\nOur goal is always the same: the highest quality production, delivered with clarity and impact.",
   },
   {
     label: "Background",
-    body: "LUCID EDGE brings two decades of experience across interactive design, 3D animation, film, and music — working across three continents.\n\nHis background spans aerospace engineering, early work at London engineering firms and Pinewood Studios, and creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, he established the studio as one of Sydney's leading creative production companies.",
+    body: "LUCID EDGE brings two decades of experience across interactive design, 3D animation, film — working across three continents.\n\nOur founders background spans studying aerospace engineering, joining one of Europes leading engineering companies WSP, then, onto Bionic Productions at  and Pinewood Studios, to creative leadership across Hong Kong, the Middle East, and Australia.\n\nFounding Lucid Edge in 2005, Malcolm established the studio as one of Sydney's leading creative production companies for the construction industry.",
   },
   {
     label: "Awards &\nRecognitions",
@@ -24,8 +24,8 @@ const BIO = [
 const NEWS = [
   {
     num: "1",
-    headline: "20 Years\nof Production",
-    body: "LUCID EDGE has been delivering award-winning animation and film production for over 20 years, partnering with Australia's leading construction and infrastructure firms to help them win major project bids.",
+    headline: "2 Decades\nof Production",
+    body: "LUCID EDGE has been delivering award-winning animation and film production for over 2 Decades, partnering with Australia's leading construction companies.",
     href: "#",
     images: [],
   },
@@ -39,11 +39,11 @@ const NEWS = [
   {
     num: "3",
     headline: "Award-Winning\nBid Videos",
-    body: "From the Sydney Metro to Northern Beaches Hospital and major PPP bid submissions — our animation and film productions have helped teams across Australia secure landmark projects.",
+    body: "From NZ Northland PPP to Sydney Metro West Station Boxes bid submission - our animations and films have help over $100bn in project value throughout Australia and New Zealand.",
     href: "#",
     images: [
-      "/images/_O4A5555-Pano.webp",
-      "/images/_O4A5627-Pano.webp",
+      "/images/PORTAL_HR_SOUTH_v03.jpg",
+      "/images/wsm-station-boxes-1.png",
     ],
   },
 ];
