@@ -196,7 +196,7 @@ export default function Hero({ visible }) {
       <div className="relative z-[3] w-full h-full flex flex-row xl:items-center justify-center md:flex-col md:justify-center p-[4vw]">
 
         {/* Top label — left on mobile, top on desktop */}
-        <div className="hero-top-label w-[50%] md:w-auto flex flex-col items-center" style={{ marginTop: "0", gap: "1rem", maxWidth: "55vw" }}>
+        <div className="hero-top-label w-[50%] md:w-auto m-auto flex flex-col items-center" style={{ marginTop: "0", gap: "1rem", maxWidth: "55vw"}}>
           <h1 className="xl:m-0 md:mt-[18vh] font-semibold leading-[115%] text-center" style={{ fontSize: "clamp(0.9rem, 2.4vw, 2rem)", color: "var(--orange1)", fontFamily: "var(--font)" }}>
             Bringing Projects to Life.<br />From Bid to Delivery.
           </h1>
