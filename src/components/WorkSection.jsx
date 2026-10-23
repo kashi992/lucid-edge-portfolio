@@ -219,7 +219,7 @@ function ShowreelModal({ src, onClose }) {
       <div ref={videoWrapRef} onClick={e => e.stopPropagation()}>
         <video
           src={src}
-          controls autoPlay loop muted playsInline
+          controls autoPlay loop playsInline
           style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.75rem", display: "block" }}
         />
       </div>
