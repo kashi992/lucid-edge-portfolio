@@ -268,33 +268,32 @@ export default function AboutSection({ loaded }) {
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
-      /* ── Scroll section — fade in on enter, then parallax + fade out on scroll ── */
-      gsap.set(photoRef.current, { opacity: 0, scale: 1.06 });
+      /* ── Scroll section — smooth fade in, gentle parallax, late soft fade out ── */
+      gsap.set(photoRef.current, { opacity: 0, scale: 1.04 });
 
-      // Fade + scale in when section enters viewport
+      // Smooth fade + scale in when section enters viewport
       gsap.to(photoRef.current, {
         opacity: 1,
         scale: 1,
-        duration: 1.2,
-        ease: "power2.out",
+        duration: 1.8,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: scrollRef.current,
-          start: "top 60%",
+          start: "top 70%",
           once: true,
         },
       });
 
-      // While scrolling through 300vh: parallax throughout, fade only in last 20%
+      // Gentle parallax only — no fade out at all
       const scrollTl = gsap.timeline();
       scrollTl
-        .to(photoRef.current, { y: "-18%", ease: "none" }, 0)          // parallax full duration
-        .to(photoRef.current, { opacity: 0, ease: "power1.in" }, 0.8); // fade only last 20%
+        .to(photoRef.current, { y: "-10%", ease: "none" }, 0);
 
       ScrollTrigger.create({
         trigger: scrollRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.2,
+        scrub: 2,
         animation: scrollTl,
       });
 
@@ -439,7 +438,7 @@ export default function AboutSection({ loaded }) {
         style={{ background: "var(--bg-warm)" }}
       >
         {/* hero-about-wrapper: full viewport, flex col centered — matches reference exactly */}
-        <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible pt-[70px]">
+        <div className="flex flex-col justify-center items-center w-screen relative overflow-visible pt-[120px] pb-[70px]">
 
           {/* wrapper-cont-50._70: 49% on desktop, 80% on mobile */}
           <div className="relative w-[88%] lg:w-[80%]">
