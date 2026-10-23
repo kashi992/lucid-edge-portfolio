@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import CTAButton from "./CTAButton";
 
 /* ─── data ─────────────────────────────────────────────────────────────── */
@@ -47,6 +47,66 @@ const NEWS = [
     ],
   },
 ];
+
+/* ─── Showreel Modal ────────────────────────────────────────────────────── */
+function ShowreelModal({ src, onClose }) {
+  const backdropRef  = useRef(null);
+  const videoWrapRef = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      const { default: gsap } = await import("gsap");
+      gsap.fromTo(backdropRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+      gsap.fromTo(videoWrapRef.current,
+        { opacity: 0, scale: 0.6, y: 60, rotateX: 12 },
+        { opacity: 1, scale: 1, y: 0, rotateX: 0, duration: 0.9, ease: "elastic.out(0.7,0.4)", delay: 0.1 }
+      );
+    })();
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
+  const handleClose = async () => {
+    const { default: gsap } = await import("gsap");
+    gsap.to(videoWrapRef.current, { opacity: 0, scale: 0.7, y: 40, duration: 0.35, ease: "power3.in" });
+    gsap.to(backdropRef.current,  { opacity: 0, duration: 0.4, ease: "power2.in", delay: 0.1, onComplete: onClose });
+  };
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") handleClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  return (
+    <div
+      ref={backdropRef}
+      onClick={handleClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 9999,
+        background: "rgba(0,0,0,0.92)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        perspective: "1000px",
+      }}
+    >
+      <button
+        onClick={handleClose}
+        style={{
+          position: "absolute", top: "1.25rem", right: "1.5rem",
+          background: "none", border: "none", cursor: "pointer",
+          color: "#fff", fontSize: "1.5rem", lineHeight: 1, opacity: 0.7,
+        }}
+      >✕</button>
+      <div ref={videoWrapRef} onClick={e => e.stopPropagation()}>
+        <video
+          src={src}
+          controls autoPlay loop muted playsInline
+          style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.75rem", display: "block" }}
+        />
+      </div>
+    </div>
+  );
+}
 
 /* ─── Morable canvas — UnicornStudio v2.1.6 addScene per element ────────── */
 function StudioPanel() {
@@ -137,6 +197,7 @@ const HERO_HEADLINE = "Multi-award-winning animation and film production studio,
 
 /* ─── Main component ────────────────────────────────────────────────────── */
 export default function AboutSection({ loaded }) {
+  const [videoModal, setVideoModal] = useState(false);
   /* refs — hero */
   const heroRef       = useRef(null);
   const heroTagRef    = useRef(null);
@@ -378,7 +439,7 @@ export default function AboutSection({ loaded }) {
         style={{ background: "var(--bg-warm)" }}
       >
         {/* hero-about-wrapper: full viewport, flex col centered — matches reference exactly */}
-        <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible">
+        <div className="flex flex-col justify-center items-center w-screen h-screen relative overflow-visible pt-[70px]">
 
           {/* wrapper-cont-50._70: 49% on desktop, 80% on mobile */}
           <div className="relative w-[88%] lg:w-[80%]">
@@ -422,9 +483,44 @@ export default function AboutSection({ loaded }) {
                 ))}
               </h1>
             </div>
+
+            {/* Showreel button */}
+            <button
+              onClick={() => setVideoModal(true)}
+              className="self-center lg:self-start mt-6"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                background: "var(--orange1)",
+                border: "none",
+                borderRadius: "20rem",
+                padding: "1.1rem 2.2rem",
+                fontSize: "1.25rem",
+                fontWeight: 700,
+                color: "#1a1a1a",
+                fontFamily: "var(--font)",
+                cursor: "pointer",
+                letterSpacing: "0.01em",
+                lineHeight: "100%",
+              }}
+            >
+              <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0L10 6L0 12V0Z" fill="#1a1a1a"/>
+              </svg>
+              Watch Showreel
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Showreel modal */}
+      {videoModal && (
+        <ShowreelModal
+          src="https://lucid-edge-assets.s3.ap-southeast-2.amazonaws.com/LUCIDEDGE_showreel_2026+(1).mp4"
+          onClose={() => setVideoModal(false)}
+        />
+      )}
 
       {/* ═══════════════════════════════════════════════════ SCROLL PHOTO */}
       {/* .section > .about-scroll-wrapper — 300vh scroll space */}

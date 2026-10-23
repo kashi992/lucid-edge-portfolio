@@ -18,11 +18,9 @@ function ServiceRow({ service, index }) {
   if (!isWebflow) {
     const imgs = service.images || [];
     const vids = service.videos  || [];
-    if (imgs[0]) mediaItems.push({ type: "img", src: imgs[0] });
     if (vids[0]) mediaItems.push({ type: "vid", src: vids[0] });
-    if (imgs[1]) mediaItems.push({ type: "img", src: imgs[1] });
     if (vids[1]) mediaItems.push({ type: "vid", src: vids[1] });
-    if (imgs[2]) mediaItems.push({ type: "img", src: imgs[2] });
+    imgs.forEach(src => mediaItems.push({ type: "img", src }));
   }
 
   const webflowCards = isWebflow
@@ -175,7 +173,7 @@ function ServiceRow({ service, index }) {
         <div className="w-full overflow-hidden pb-[4vw] pt-[1vw] [perspective:1200px]">
           <div
             ref={stripRef}
-            className={service.gridCols ? "md:gap-5 gap-3 grid md:grid-cols-2" : "grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-3"}
+            className={service.gridCols === 4 ? "md:gap-5 gap-3 grid md:grid-cols-4 grid-cols-2" : service.gridCols === 3 ? "md:gap-5 gap-3 grid md:grid-cols-3 grid-cols-2" : service.gridCols ? "md:gap-5 gap-3 grid md:grid-cols-2" : "grid md:grid-cols-3 grid-cols-1 md:gap-5 gap-3"}
           >
             {mediaItems.map((item, i) => (
               <div

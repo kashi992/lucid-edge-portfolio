@@ -311,7 +311,7 @@ export default function BenefitsSection() {
           {/* dark-jm-img — full bleed background */}
           <img
             ref={darkImgRef}
-            src="/images/home-about-jm-1.jpg"
+            src="/images/_O4A5627-Pano.webp"
             loading="lazy"
             alt=""
             className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
@@ -321,7 +321,7 @@ export default function BenefitsSection() {
           {/* light-jm-img — full bleed, fades in on top */}
           <img
             ref={lightImgRef}
-            src="/images/home-about-jm-3.jpg"
+            src="/images/_O4A5627-Pano.webp"
             loading="lazy"
             alt=""
             className="absolute inset-0 w-full h-full object-cover pointer-events-none z-[1]"
