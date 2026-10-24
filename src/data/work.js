@@ -48,7 +48,7 @@ export const PROJECTS = [
     videoUrl: "https://cpb-uglsolution-videos.s3-accelerate.amazonaws.com/%23Interface_Integration_14032025_finalVO_1.mp4",
     layout: "hero-left",
     media: [
-      { type: "img", src: "/images/lineww-1.webp" },
+      { type: "img", src: "/images/lineww-9.webp" },
       { type: "img", src: "/images/lineww-2.webp" },
       { type: "img", src: "/images/lineww-3.webp" },
       { type: "img", src: "/images/lineww-4.webp" },
@@ -56,7 +56,7 @@ export const PROJECTS = [
       { type: "img", src: "/images/lineww-6.webp" },
       { type: "img", src: "/images/lineww-7.webp" },
       { type: "img", src: "/images/lineww-8.webp" },
-      { type: "img", src: "/images/lineww-9.webp" },
+      { type: "img", src: "/images/lineww-1.webp" },
     ],
   },
   {
@@ -77,7 +77,6 @@ export const PROJECTS = [
       { type: "img", src: "/images/warringah-freeway-5.webp" },
       { type: "img", src: "/images/warringah-freeway-6.webp" },
       { type: "img", src: "/images/warringah-freeway-7.webp" },
-      { type: "img", src: "/images/warringah-freeway-8.webp" },
     ],
   },
   {
