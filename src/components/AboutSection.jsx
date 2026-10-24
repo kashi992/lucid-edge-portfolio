@@ -97,12 +97,15 @@ function ShowreelModal({ src, onClose }) {
           color: "#fff", fontSize: "1.5rem", lineHeight: 1, opacity: 0.7,
         }}
       >✕</button>
-      <div ref={videoWrapRef} onClick={e => e.stopPropagation()}>
+      <div ref={videoWrapRef} onClick={e => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
         <video
           src={src}
           controls autoPlay loop playsInline
-          style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.75rem", display: "block" }}
+          style={{ maxWidth: "90vw", maxHeight: "85vh", borderRadius: "0.75rem", display: "block" }}
         />
+        <p style={{ margin: 0, color: "rgba(255,255,255,0.6)", fontFamily: "var(--font)", fontSize: "0.8rem", letterSpacing: "0.04em" }}>
+          🔊 This video plays with sound — use the controls to adjust volume
+        </p>
       </div>
     </div>
   );
@@ -293,7 +296,7 @@ export default function AboutSection({ loaded }) {
         trigger: scrollRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 2,
+        scrub: 1,
         animation: scrollTl,
       });
 
@@ -531,7 +534,7 @@ export default function AboutSection({ loaded }) {
         <div
           ref={scrollRef}
           className="about-scroll-section relative flex justify-center items-start w-screen z-[1]"
-          style={{ height: "300vh", overflow: "visible" }}
+          style={{ height: "150vh", overflow: "visible" }}
         >
           {/* .sticky-cont-about */}
           <div className="sticky top-0" style={{ width: "100vw", height: "100vh", background: "var(--bg-warm)" }}>

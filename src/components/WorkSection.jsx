@@ -216,12 +216,15 @@ function ShowreelModal({ src, onClose }) {
       >✕</button>
 
       {/* Video */}
-      <div ref={videoWrapRef} onClick={e => e.stopPropagation()}>
+      <div ref={videoWrapRef} onClick={e => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}>
         <video
           src={src}
           controls autoPlay loop playsInline
-          style={{ maxWidth: "90vw", maxHeight: "88vh", borderRadius: "0.75rem", display: "block" }}
+          style={{ maxWidth: "90vw", maxHeight: "85vh", borderRadius: "0.75rem", display: "block" }}
         />
+        <p style={{ margin: 0, color: "rgba(255,255,255,0.6)", fontFamily: "var(--font)", fontSize: "0.8rem", letterSpacing: "0.04em" }}>
+          🔊 This video plays with sound — use the controls to adjust volume
+        </p>
       </div>
     </div>
   );

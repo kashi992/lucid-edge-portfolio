@@ -228,7 +228,7 @@ export default function Hero({ visible }) {
         <p className="nav-social-link text-base is-peach" style={{ margin: 0, fontFamily: "var(--font)", letterSpacing: "0.03em", cursor: "default", backdropFilter: "none" }}>
           Project: Northland Corridor PPP. for more{" "}
           <Link
-            to="/work"
+            to="/work#northern-corridor-ppp"
             style={{ textDecoration: "underline", textUnderlineOffset: "3px", color: "inherit" }}
           >
             click here

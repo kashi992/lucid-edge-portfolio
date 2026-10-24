@@ -9,6 +9,11 @@ export const SERVICES = [
       "/images/3D-Animation-tile-3.webp",
     ],
     videos: [],
+    projectRef: {
+      label: "Northland PPP - New Zealand -",
+      linkText: "click here for more",
+      href: "/work#northern-corridor-ppp",
+    },
   },
   {
     id: "4d-construction-sequencing",
@@ -45,20 +50,18 @@ export const SERVICES = [
     images: [
       "/images/films-vox-pops-1.webp",
     "/images/films-vox-pops-2.webp",
-      "/images/films-vox-pops-3.webp",
       "/images/films-vox-pops-4.webp",
     ],
     videos: [],
   },
   {
     id: "project-delivery-digital-content",
-    title: "Project Delivery Digital Content",
+    title: "Digital Content Delivery for Communications Teams throughout a projects lifecycle",
     description: "End-to-end digital content packages for major project delivery — animations, films, and graphics that support communications teams throughout the project lifecycle.",
     gridCols: 3,
     images: [
       "/images/project-delivery-digital-content-1.webp",
       "/images/project-delivery-digital-content-2.webp",
-      "/images/project-delivery-digital-content-3.webp",
       "/images/project-delivery-digital-content-4.webp",
       "/images/project-delivery-digital-content-5.webp",
       "/images/project-delivery-digital-content-6.webp",

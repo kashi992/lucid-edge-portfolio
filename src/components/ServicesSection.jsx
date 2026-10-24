@@ -147,8 +147,8 @@ function ServiceRow({ service, index }) {
           className="m-0 font-medium leading-[160%] md:pl-[3.8vw] md:text-start text-center"
           style={{
             fontFamily: "var(--font)",
-            fontSize: "clamp(0.8rem, 0.95vw, 0.95rem)",
-            color: "var(--grey)",
+            fontSize: "clamp(1rem, 1.3vw, 1.3rem)",
+            color: "var(--blue)",
             marginTop: "-0.5rem",
           }}
         >
@@ -157,7 +157,7 @@ function ServiceRow({ service, index }) {
             to={service.projectRef.href}
             className="inline-block ps-1"
             style={{
-              color: "var(--blue)",
+              color: "#000000",
               fontWeight: 700,
               textDecoration: "underline",
               textUnderlineOffset: "3px",
