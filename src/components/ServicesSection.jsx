@@ -153,18 +153,20 @@ function ServiceRow({ service, index }) {
           }}
         >
           {service.projectRef.label}{" "}
-          <Link
-            to={service.projectRef.href}
-            className="inline-block ps-1"
-            style={{
-              color: "#000000",
-              fontWeight: 700,
-              textDecoration: "underline",
-              textUnderlineOffset: "3px",
-            }}
-          >
-            {service.projectRef.linkText}
-          </Link>
+          {service.projectRef.linkText && (
+            <Link
+              to={service.projectRef.href}
+              className="inline-block ps-1"
+              style={{
+                color: "#000000",
+                fontWeight: 700,
+                textDecoration: "underline",
+                textUnderlineOffset: "3px",
+              }}
+            >
+              {service.projectRef.linkText}
+            </Link>
+          )}
         </p>
       )}
 

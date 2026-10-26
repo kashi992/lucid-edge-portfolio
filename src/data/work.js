@@ -90,7 +90,13 @@ export const PROJECTS = [
     videoUrl: SHOWREEL,
     layout: "hero-left",
     media: [
-      { type: "img", src: "/images/DUSK-SHOT-HR_v02.webp" },
+      { type: "img", src: "/images/clapham-1.webp" },
+      { type: "img", src: "/images/clapham-2.webp" },
+      { type: "img", src: "/images/clapham-3.webp" },
+      { type: "img", src: "/images/clapham-4.webp" },
+      { type: "img", src: "/images/clapham-5.webp" },
+      { type: "img", src: "/images/clapham-6.webp" },
+      { type: "img", src: "/images/clapham-7.webp" },
     ],
   },
   {

@@ -5,7 +5,7 @@ export const SERVICES = [
     description: "Award-winning 3D animations for construction bid submissions and major project delivery, partnering with Australia's leading construction firms for over 2 Decades.",
     images: [
       "/images/3D-Animation-tile-1.webp",
-      "/images/3D-Animation-tile-2.webp",
+      "/images/PORTAL_HR_NORTH_v02.webp",
       "/images/3D-Animation-tile-3.webp",
     ],
     videos: [],
@@ -53,11 +53,14 @@ export const SERVICES = [
       "/images/films-vox-pops-4.webp",
     ],
     videos: [],
+    projectRef: {
+      label: "Watch our team on location, filming you and your team, adding a human touch to your bids.",
+    },
   },
   {
     id: "project-delivery-digital-content",
     title: "Digital Content Delivery for Communications Teams throughout a projects lifecycle",
-    description: "End-to-end digital content packages for major project delivery — animations, films, and graphics that support communications teams throughout the project lifecycle.",
+    description: "End-to-End digital content packages for major project delivery. Including monthly progress reports through onground photography, drone filming, helicopter shoots comms videos to capture team culture and interactive tools. Both daytime and night-time shoots for major milestone capturing…",
     gridCols: 3,
     images: [
       "/images/project-delivery-digital-content-1.webp",

@@ -703,7 +703,7 @@ export default function AboutSection({ loaded }) {
                 >
                   {item.body.split("").map((ch, ci) =>
                     ch === " "
-                      ? <span key={ci} className="news-char" style={{ display: "inline-block", width: "0.25em" }}>&nbsp;</span>
+                      ? <span key={ci} className="news-char"> </span>
                       : <span key={ci} className="news-char">{ch}</span>
                   )}
                 </p>
