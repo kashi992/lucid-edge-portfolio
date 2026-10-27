@@ -230,6 +230,42 @@ function ShowreelModal({ src, onClose }) {
   );
 }
 
+/* ── Image with shimmer placeholder + fade-in on load ────────────────── */
+function BlurImage({ src, alt = "", onClick, className, style }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div
+      onClick={onClick}
+      className={className}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        cursor: onClick ? "pointer" : "default",
+        background: "linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%)",
+        backgroundSize: "200% 100%",
+        animation: loaded ? "none" : "shimmer 1.4s infinite",
+        ...style,
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+          opacity: loaded ? 1 : 0,
+          transition: "opacity 0.5s ease",
+        }}
+      />
+    </div>
+  );
+}
+
 /* ── Render a single media item (img or video) ───────────────────────── */
 function MediaItem({ m, style, className, onClick, onVideoOpen }) {
   if (m.type === "video") {
@@ -244,13 +280,7 @@ function MediaItem({ m, style, className, onClick, onVideoOpen }) {
         className={`block ${className || "w-full h-full"}`}
         style={{ position: "relative", cursor: "pointer", borderRadius: "0.3rem", overflow: "hidden", ...(style || {}) }}
       >
-        <img
-          src={m.src}
-          alt=""
-          loading="lazy"
-          className="w-full h-full block"
-          style={{ objectFit: "cover", display: "block" }}
-        />
+        <BlurImage src={m.src} style={{ width: "100%", height: "100%" }} />
         {/* Play overlay */}
         <div style={{
           position: "absolute", inset: 0,
@@ -273,13 +303,11 @@ function MediaItem({ m, style, className, onClick, onVideoOpen }) {
   }
 
   return (
-    <img
+    <BlurImage
       src={m.src}
-      alt=""
-      loading="lazy"
       onClick={onClick}
       className={`block ${className || "w-full h-full"}`}
-      style={{ objectFit: "cover", borderRadius: "0.3rem", cursor: "pointer", ...(style || {}) }}
+      style={{ borderRadius: "0.3rem", cursor: "pointer", ...(style || {}) }}
     />
   );
 }
@@ -350,11 +378,9 @@ function ProjectMedia({ project, onOpen, onVideoOpen }) {
             style={{ gridColumn: `span ${colSpan}`, borderRadius: "0.3rem", width: "100%", cursor: "pointer" }}
           />
         ) : (
-          <img
+          <BlurImage
             key={i}
             src={m.src}
-            alt=""
-            loading="lazy"
             onClick={() => onOpen(i)}
             className={`w-full block ${hideClass}`}
             style={{ gridColumn: `span ${colSpan}`, borderRadius: "0.3rem", width: "100%", cursor: "pointer" }}
@@ -375,6 +401,7 @@ export default function WorkSection({ loaded }) {
   const headlineWrapRef = useRef(null);
   const challengeRefs   = useRef([]);
   const roleRefs        = useRef([]);
+
 
   /* Scroll to hash on mount (e.g. /work#western-sydney-metro-the-bays) */
   useEffect(() => {
@@ -446,34 +473,6 @@ export default function WorkSection({ loaded }) {
       const { ScrollTrigger }  = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
-      /* Hide all work chars upfront */
-      [...challengeRefs.current, ...roleRefs.current].forEach(el => {
-        if (el) gsap.set(el.querySelectorAll(".work-char"), { opacity: 0 });
-      });
-
-      /* Sequential char reveal per project: challenge → role */
-      PROJECTS.forEach((p, i) => {
-        const challengeEl = challengeRefs.current[i];
-        const roleEl      = roleRefs.current[i];
-        if (!challengeEl) return;
-
-        ScrollTrigger.create({
-          trigger: challengeEl,
-          start: "top 88%",
-          once: true,
-          onEnter: () => {
-            const challengeChars = challengeEl.querySelectorAll(".work-char");
-            gsap.to(challengeChars, {
-              opacity: 1, duration: 0.06, stagger: 0.004, ease: "power2.out",
-              onComplete: () => {
-                if (!roleEl) return;
-                const roleChars = roleEl.querySelectorAll(".work-char");
-                gsap.to(roleChars, { opacity: 1, duration: 0.06, stagger: 0.004, ease: "power2.out" });
-              },
-            });
-          },
-        });
-      });
 
       /* project info cols slide in on scroll */
       document.querySelectorAll(".proj-col").forEach(el => {
@@ -623,7 +622,7 @@ export default function WorkSection({ loaded }) {
 
         {/* Project items */}
         <div className="flex flex-col w-full">
-          {PROJECTS.map(p => (
+          {PROJECTS.map((p, pi) => (
             <div
               key={p.id}
               id={p.id}
@@ -717,11 +716,7 @@ export default function WorkSection({ loaded }) {
                     className="m-0"
                     style={{ fontSize: "0.85rem", fontWeight: 500, color: "var(--grey)", fontFamily: "var(--font)", lineHeight: "150%" }}
                   >
-                    {p.challenge.split("").map((ch, ci) =>
-                      ch === " "
-                        ? <span key={ci} className="work-char" style={{ display: "inline-block", width: "0.25em" }}>&nbsp;</span>
-                        : <span key={ci} className="work-char">{ch}</span>
-                    )}
+                    {p.challenge}
                   </p>
                 </div>
 
@@ -768,11 +763,7 @@ export default function WorkSection({ loaded }) {
                     className="m-0"
                     style={{ fontSize: "0.85rem", fontWeight: 500, color: "var(--grey)", fontFamily: "var(--font)", lineHeight: "150%" }}
                   >
-                    {p.role.split("").map((ch, ci) =>
-                      ch === " "
-                        ? <span key={ci} className="work-char" style={{ display: "inline-block", width: "0.25em" }}>&nbsp;</span>
-                        : <span key={ci} className="work-char">{ch}</span>
-                    )}
+                    {p.role}
                   </p>
                 </div>
               </div>

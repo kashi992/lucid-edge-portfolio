@@ -17,7 +17,7 @@ const BIO = [
   },
   {
     label: "Awards &\nRecognitions",
-    body: "Multi-Award-Winning Studio\n20+ Years in Production\n100+ TimeLapse Cameras Deployed\n60+ Major Projects Delivered",
+    body: "GOLD - INTERACTIVE 3D Environments - AEAF\nSILVER - ELKIEM training website and Motion Graphic Videos - AEAF\nGlobal WINNER - SAI Global - Interactive Standards House\nGlobal WINNER - HDR Architects - MARSH",
   },
 ];
 
@@ -325,33 +325,6 @@ export default function AboutSection({ loaded }) {
 
       });
 
-      // Hide all bio chars upfront so paragraphs 2-4 don't show before animation
-      BIO.forEach((_, i) => {
-        const body = bodyRefs.current[i];
-        if (body) gsap.set(body.querySelectorAll(".bio-char"), { opacity: 0 });
-      });
-
-      // Sequential body reveal — each paragraph waits for the previous to finish
-      const animateBioBody = (index) => {
-        if (index >= BIO.length) return;
-        const body = bodyRefs.current[index];
-        if (!body) { animateBioBody(index + 1); return; }
-        const chars = body.querySelectorAll(".bio-char");
-        gsap.to(chars, {
-          opacity: 1, duration: 0.06, stagger: 0.004, ease: "power2.out",
-          onComplete: () => animateBioBody(index + 1),
-        });
-      };
-
-      const firstBody = bodyRefs.current[0];
-      if (firstBody) {
-        ScrollTrigger.create({
-          trigger: firstBody,
-          start: "top 85%",
-          once: true,
-          onEnter: () => animateBioBody(0),
-        });
-      }
 
       /* helper: create a once-only ScrollTrigger that also fires immediately
          if the trigger element is already in the viewport on page load */
@@ -391,15 +364,6 @@ export default function AboutSection({ loaded }) {
           });
         }
 
-        // Body — character reveal matching reference
-        if (body) {
-          const chars = body.querySelectorAll(".news-char");
-          gsap.fromTo(chars,
-            { opacity: 0 },
-            { opacity: 1, duration: 0.3, stagger: 0.018, ease: "power2.out",
-              scrollTrigger: { trigger: body, start: "top 85%", once: true } }
-          );
-        }
 
         // Button fade
         if (btn) {
@@ -593,11 +557,7 @@ export default function AboutSection({ loaded }) {
                 >
                   {item.body.split("\n").map((line, li, arr) => (
                     <span key={li}>
-                      {line.split("").map((ch, ci) =>
-                        ch === " "
-                          ? <span key={ci} className="bio-char" style={{ display: "inline-block", width: "0.25em" }}>&nbsp;</span>
-                          : <span key={ci} className="bio-char">{ch}</span>
-                      )}
+                      {line}
                       {li < arr.length - 1 && <br />}
                     </span>
                   ))}
@@ -701,11 +661,7 @@ export default function AboutSection({ loaded }) {
                   className="m-0 font-semibold leading-[140%] w-full text-[2.5vw] md:text-[0.9rem]"
                   style={{ color: "var(--bg-warm)", fontFamily: "var(--font)", opacity: 0.75 }}
                 >
-                  {item.body.split("").map((ch, ci) =>
-                    ch === " "
-                      ? <span key={ci} className="news-char"> </span>
-                      : <span key={ci} className="news-char">{ch}</span>
-                  )}
+                  {item.body}
                 </p>
                 <div ref={el => newsBtnRefs.current[i] = el} className="flex xl:justify-end items-end w-full">
                   <CTAButton href={item.href} label="Learn more" />
